@@ -4,11 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class vote {
+public class Vote {
 	
 	private Integer id;
 
-	public vote() {
+	public Vote() {
 		super();
 	}
 
