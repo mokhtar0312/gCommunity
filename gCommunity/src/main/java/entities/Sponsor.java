@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Sponsor implements Serializable {
 
 	   
-	@Id
+	
 	private Integer id;
 	private String contribution;
 	private String description;
@@ -24,7 +24,7 @@ public class Sponsor implements Serializable {
 	public Sponsor() {
 		super();
 	}   
-
+	@Id
 	public Integer getId() {
 		return this.id;
 	}

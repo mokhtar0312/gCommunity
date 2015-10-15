@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity(name="simpleMember")
 
-public class simpleMember implements Serializable {
+public class SimpleMember implements Serializable {
 
 	
 	private String name;   
@@ -26,7 +26,7 @@ public class simpleMember implements Serializable {
 	private String email;
 	private static final long serialVersionUID = 1L;
 
-	public simpleMember() {
+	public SimpleMember() {
 		super();
 	}   
 	public String getName() {
