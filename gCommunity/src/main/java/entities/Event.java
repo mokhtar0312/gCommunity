@@ -1,12 +1,11 @@
 package entities;
 
 import java.io.Serializable;
-import java.lang.Float;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
+
 
 /**
  * Entity implementation class for Entity: Event
@@ -25,6 +24,9 @@ public class Event implements Serializable {
 	private String description;
 	private Float fee;
 	private static final long serialVersionUID = 1L;
+	
+	private List<ActiveMember> activeMembers ;
+	private List<SimpleMember> simpleMembers ;
 
 	public Event() {
 		super();
@@ -70,6 +72,20 @@ public class Event implements Serializable {
 	}
 	public void setDate(Date date) {
 		this.date = date;
+	}
+	@ManyToMany(mappedBy="events")
+	public List<ActiveMember> getActiveMembers() {
+		return activeMembers;
+	}
+	public void setActiveMembers(List<ActiveMember> activeMembers) {
+		this.activeMembers = activeMembers;
+	}
+	@ManyToMany(mappedBy="events")
+	public List<SimpleMember> getSimpleMembers() {
+		return simpleMembers;
+	}
+	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
+		this.simpleMembers = simpleMembers;
 	}
    
 }

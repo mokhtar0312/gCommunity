@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -25,6 +27,9 @@ public class SimpleMember implements Serializable {
 	private Double xp;
 	private String email;
 	private static final long serialVersionUID = 1L;
+	
+	private List<Event>events;
+	private List<Model3D>model3Ds;
 
 	public SimpleMember() {
 		super();
@@ -85,6 +90,20 @@ public class SimpleMember implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	@ManyToMany
+	public List<Event> getEvents() {
+		return events;
+	}
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+	@ManyToMany
+	public List<Model3D> getModel3Ds() {
+		return model3Ds;
+	}
+	public void setModel3Ds(List<Model3D> model3Ds) {
+		this.model3Ds = model3Ds;
 	}
    
 }
