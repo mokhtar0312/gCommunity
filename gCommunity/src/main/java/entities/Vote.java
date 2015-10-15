@@ -7,6 +7,13 @@ import javax.persistence.Id;
 public class Vote {
 	
 	private Integer id;
+	
+	
+
+	@Override
+	public String toString() {
+		return "Vote [id=" + id + "]";
+	}
 
 	public Vote() {
 		super();
