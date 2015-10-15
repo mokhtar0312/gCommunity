@@ -24,6 +24,11 @@ public class Sponsor implements Serializable {
 	public Sponsor() {
 		super();
 	}   
+	@Override
+	public String toString() {
+		return "Sponsor [id=" + id + ", contribution=" + contribution
+				+ ", description=" + description + ", level=" + level + "]";
+	}
 	public Integer getId() {
 		return this.id;
 	}
