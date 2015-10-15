@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -21,6 +22,8 @@ public class News implements Serializable {
 	private Date date;
 	private String description;
 	private static final long serialVersionUID = 1L;
+	
+	private List<ActiveMember>activeMembers;
 
 	public News() {
 		super();
@@ -53,6 +56,13 @@ public class News implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	@ManyToMany(mappedBy="news")
+	public List<ActiveMember> getActiveMembers() {
+		return activeMembers;
+	}
+	public void setActiveMembers(List<ActiveMember> activeMembers) {
+		this.activeMembers = activeMembers;
 	}
    
 }

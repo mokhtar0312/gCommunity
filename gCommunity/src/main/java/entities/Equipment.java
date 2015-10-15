@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
+
 import javax.persistence.*;
 
 /**
@@ -20,6 +22,8 @@ public class Equipment implements Serializable {
 	private String name;
 	private Boolean state;
 	private static final long serialVersionUID = 1L;
+	
+	private List<ActiveMember>activeMembers;
 
 	public Equipment() {
 		super();
@@ -52,6 +56,13 @@ public class Equipment implements Serializable {
 
 	public void setState(Boolean state) {
 		this.state = state;
+	}
+	@ManyToMany(mappedBy="equipments")
+	public List<ActiveMember> getActiveMembers() {
+		return activeMembers;
+	}
+	public void setActiveMembers(List<ActiveMember> activeMembers) {
+		this.activeMembers = activeMembers;
 	}
    
 }

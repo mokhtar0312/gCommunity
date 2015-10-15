@@ -24,6 +24,9 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	
 	private List<Event> events;
 	private Membership membership;
+	private List<Equipment>equipments;
+	private List<News>news;
+	private List<Sponsor>sponsors;
 
 	public ActiveMember() {
 		super();
@@ -55,6 +58,27 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	}
 	public void setEvents(List<Event> events) {
 		this.events = events;
+	}
+	@ManyToMany
+	public List<Equipment> getEquipments() {
+		return equipments;
+	}
+	public void setEquipments(List<Equipment> equipments) {
+		this.equipments = equipments;
+	}
+	@ManyToMany
+	public List<News> getNews() {
+		return news;
+	}
+	public void setNews(List<News> news) {
+		this.news = news;
+	}
+	@ManyToMany
+	public List<Sponsor> getSponsors() {
+		return sponsors;
+	}
+	public void setSponsors(List<Sponsor> sponsors) {
+		this.sponsors = sponsors;
 	}
    
 }
