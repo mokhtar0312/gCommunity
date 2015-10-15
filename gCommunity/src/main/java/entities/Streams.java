@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -21,6 +22,8 @@ public class Streams implements Serializable {
 	private String winner;
 	private Integer viewers;
 	private static final long serialVersionUID = 1L;
+	
+	private List<SimpleMember> simpleMembers;
 
 	public Streams() {
 		super();
@@ -53,6 +56,13 @@ public class Streams implements Serializable {
 
 	public void setViewers(Integer viewers) {
 		this.viewers = viewers;
+	}
+	@ManyToMany(mappedBy="streamss")
+	public List<SimpleMember> getSimpleMembers() {
+		return simpleMembers;
+	}
+	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
+		this.simpleMembers = simpleMembers;
 	}
    
 }

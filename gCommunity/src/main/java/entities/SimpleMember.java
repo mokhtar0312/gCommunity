@@ -28,8 +28,11 @@ public class SimpleMember implements Serializable {
 	private String email;
 	private static final long serialVersionUID = 1L;
 	
+	private List<Streams> streamss;
+	private List<Tutorial> tutorials;
 	private List<Event>events;
 	private List<Model3D>model3Ds;
+	private List<Packs> packss;
 
 	public SimpleMember() {
 		super();
@@ -105,5 +108,27 @@ public class SimpleMember implements Serializable {
 	public void setModel3Ds(List<Model3D> model3Ds) {
 		this.model3Ds = model3Ds;
 	}
+	@ManyToMany
+	public List<Tutorial> getTutorials() {
+		return tutorials;
+	}
+	public void setTutorials(List<Tutorial> tutorials) {
+		this.tutorials = tutorials;
+	}
+	@ManyToMany
+	public List<Packs> getPackss() {
+		return packss;
+	}
+	public void setPackss(List<Packs> packss) {
+		this.packss = packss;
+	}
+	@ManyToMany
+	public List<Streams> getStreamss() {
+		return streamss;
+	}
+	public void setStreamss(List<Streams> streamss) {
+		this.streamss = streamss;
+	}
+
    
 }
