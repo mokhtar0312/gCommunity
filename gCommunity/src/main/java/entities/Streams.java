@@ -1,55 +1,58 @@
 package entities;
 
 import java.io.Serializable;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  * Entity implementation class for Entity: Streams
  *
  */
 @Entity
-
 public class Streams implements Serializable {
 
-	
 	private Integer id;
 	private Date date_diffusion;
 	private String winner;
 	private Integer viewers;
 	private static final long serialVersionUID = 1L;
-	
+
 	private List<SimpleMember> simpleMembers;
+	private List<ActiveMember> activeMembers;
 
 	public Streams() {
 		super();
-	}   
-	@Id    
+	}
+
+	@Id
 	public Integer getId() {
 		return this.id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
-	}   
+	}
+
 	public Date getDate_diffusion() {
 		return this.date_diffusion;
 	}
 
 	public void setDate_diffusion(Date date_diffusion) {
 		this.date_diffusion = date_diffusion;
-	}   
+	}
+
 	public String getWinner() {
 		return this.winner;
 	}
 
 	public void setWinner(String winner) {
 		this.winner = winner;
-	}   
+	}
+
 	public Integer getViewers() {
 		return this.viewers;
 	}
@@ -57,12 +60,23 @@ public class Streams implements Serializable {
 	public void setViewers(Integer viewers) {
 		this.viewers = viewers;
 	}
-	@ManyToMany(mappedBy="streamss")
+
+	@ManyToMany(mappedBy = "streamss")
 	public List<SimpleMember> getSimpleMembers() {
 		return simpleMembers;
 	}
+
 	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
 		this.simpleMembers = simpleMembers;
 	}
-   
+
+	@ManyToMany(mappedBy = "streamsss")
+	public List<ActiveMember> getActiveMembers() {
+		return activeMembers;
+	}
+
+	public void setActiveMembers(List<ActiveMember> activeMembers) {
+		this.activeMembers = activeMembers;
+	}
+
 }

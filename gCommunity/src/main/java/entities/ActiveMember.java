@@ -27,6 +27,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private List<Equipment>equipments;
 	private List<News>news;
 	private List<Sponsor>sponsors;
+	private List<Streams>streamsss;
 
 	public ActiveMember() {
 		super();
@@ -79,6 +80,13 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	}
 	public void setSponsors(List<Sponsor> sponsors) {
 		this.sponsors = sponsors;
+	}
+	@ManyToMany
+	public List<Streams> getStreamsss() {
+		return streamsss;
+	}
+	public void setStreamsss(List<Streams> streamsss) {
+		this.streamsss = streamsss;
 	}
    
 }
