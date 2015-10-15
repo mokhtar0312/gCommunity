@@ -10,6 +10,11 @@ public class Vote {
 	
 	
 
+	@Override
+	public String toString() {
+		return "Vote [id=" + id + "]";
+	}
+
 	public Vote() {
 		super();
 	}
