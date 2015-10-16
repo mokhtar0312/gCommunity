@@ -8,8 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import services.interfaces.Model3DLocal;
-import services.interfaces.Model3DRemote;
+import services.interfaces.Model3DServicesLocal;
+import services.interfaces.Model3DServicesRemote;
 import entities.Model3D;
 
 /**
@@ -17,7 +17,7 @@ import entities.Model3D;
  */
 @Stateless
 @LocalBean
-public class Model3DServices implements Model3DRemote, Model3DLocal {
+public class Model3DServices implements Model3DServicesRemote, Model3DServicesLocal {
 	@PersistenceContext
 	EntityManager entitymanager;
 

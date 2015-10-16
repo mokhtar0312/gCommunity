@@ -7,7 +7,7 @@ import javax.ejb.Local;
 import entities.Model3D;;
 
 @Local
-public interface Model3DLocal {
+public interface Model3DServicesLocal {
 
 	Boolean addM(Model3D model3D);
 

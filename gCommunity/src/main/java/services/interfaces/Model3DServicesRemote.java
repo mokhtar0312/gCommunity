@@ -8,7 +8,7 @@ import javax.ejb.Remote;
 import entities.Model3D;
 
 @Remote
-public interface Model3DRemote {
+public interface Model3DServicesRemote {
 	
 	Boolean addM(Model3D model3D);
 
