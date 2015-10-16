@@ -16,7 +16,7 @@ Boolean addSimpleMember(SimpleMember simpleMember);
 
 	Boolean updateSimpleMember(SimpleMember simpleMember);
 
-	Boolean deleteEmployee(SimpleMember simpleMember);
+	Boolean deleteSimpleMember(SimpleMember simpleMember);
 
 	List<SimpleMember> findAllSimpleMember();
 
