@@ -16,7 +16,7 @@ public interface SimpleMemberServicesRemote {
 
 	Boolean updateSimpleMember(SimpleMember simpleMember);
 
-	Boolean deleteEmployee(SimpleMember simpleMember);
+	Boolean deleteSimpleMember(SimpleMember simpleMember);
 
 	List<SimpleMember> findAllSimpleMember();
 

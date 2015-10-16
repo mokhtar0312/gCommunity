@@ -8,33 +8,32 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import services.interfaces.MembershipServicesLocal;
-import services.interfaces.MembershipServicesRemote;
-import entities.Membership;
+import services.interfaces.EquipmentServicesLocal;
+import services.interfaces.EquipmentServicesRemote;
+import entities.Equipment;
 
 /**
- * Session Bean implementation class MembershipServices
+ * Session Bean implementation class EquipmentServices
  */
 @Stateless
 @LocalBean
-public class MembershipServices implements MembershipServicesRemote,
-		MembershipServicesLocal {
-
+public class EquipmentServices implements EquipmentServicesRemote,
+		EquipmentServicesLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	/**
 	 * Default constructor.
 	 */
-	public MembershipServices() {
+	public EquipmentServices() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public Boolean addEvent(Membership membership) {
+	public Boolean addEquipment(Equipment equipment) {
 		Boolean b = false;
 		try {
-			entityManager.persist(membership);
+			entityManager.persist(equipment);
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -43,10 +42,10 @@ public class MembershipServices implements MembershipServicesRemote,
 	}
 
 	@Override
-	public Boolean deleteMemberShipById(Integer id) {
+	public Boolean deleteEquipmentById(Integer id) {
 		Boolean b = false;
 		try {
-			entityManager.remove(findMemberShipById(id));
+			entityManager.remove(findEquipmentById(id));
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -55,29 +54,15 @@ public class MembershipServices implements MembershipServicesRemote,
 	}
 
 	@Override
-	public Membership findMemberShipById(Integer id) {
-		return entityManager.find(Membership.class, id);
-
+	public Equipment findEquipmentById(Integer id) {
+		return entityManager.find(Equipment.class, id);
 	}
 
 	@Override
-	public Boolean updateMemberShip(Membership membership) {
+	public Boolean updateEquipment(Equipment equipment) {
 		Boolean b = false;
 		try {
-			entityManager.merge(membership);
-			b = true;
-		} catch (Exception e) {
-			System.err.println("ouups ...");
-		}
-		return b;
-
-	}
-
-	@Override
-	public Boolean deleteMemberShip(Membership membership) {
-		Boolean b = false;
-		try {
-			entityManager.remove(entityManager.merge(membership));
+			entityManager.merge(equipment);
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -85,10 +70,21 @@ public class MembershipServices implements MembershipServicesRemote,
 		return b;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Membership> findAllMemberShips() {
-		String jpql = "select m from MemberShip m";
+	public Boolean deleteEquipment(Equipment equipment) {
+		Boolean b = false;
+		try {
+			entityManager.remove(entityManager.merge(equipment));
+			b = true;
+		} catch (Exception e) {
+			System.err.println("ouups ...");
+		}
+		return b;
+	}
+
+	@Override
+	public List<Equipment> findAllEquipment() {
+		String jpql = "select e from Equipment e";
 		Query query = entityManager.createQuery(jpql);
 		return query.getResultList();
 	}

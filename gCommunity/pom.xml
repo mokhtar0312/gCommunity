@@ -38,8 +38,7 @@
 					<filename>${project.artifactId}.jar</filename>
 					<hostname>localhost</hostname>
 					<username>admin</username>
-					<password>wildflyadmin
-					</password>
+					<password>wildflyadmin</password>
 					<port>19990</port>
 				</configuration>
 				<executions>
