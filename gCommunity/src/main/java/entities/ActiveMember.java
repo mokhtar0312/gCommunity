@@ -18,7 +18,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private String role;
 	private static final long serialVersionUID = 1L;
 
-	private List<Vote> votes;
+	
 	private List<Event> events;
 	private Membership membership;
 	private List<Equipment> equipments;
@@ -101,13 +101,6 @@ public class ActiveMember extends SimpleMember implements Serializable {
 		this.streamsss = streamsss;
 	}
 
-	public List<Vote> getVotes() {
-		return votes;
-	}
-
-	public void setVotes(List<Vote> votes) {
-		this.votes = votes;
-	}
 
 	@OneToOne
 	public Vote getVote() {

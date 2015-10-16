@@ -70,7 +70,7 @@ public class SimpleMemberServices implements SimpleMemberServicesRemote, SimpleM
 	}
 
 	@Override
-	public Boolean deleteEmployee(SimpleMember simpleMember) {
+	public Boolean deleteSimpleMember(SimpleMember simpleMember) {
 		Boolean b = false;
 		try {
 			entityManager.remove(entityManager.merge(simpleMember));
