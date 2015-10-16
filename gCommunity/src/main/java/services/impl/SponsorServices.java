@@ -8,33 +8,32 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import services.interfaces.MembershipServicesLocal;
-import services.interfaces.MembershipServicesRemote;
-import entities.Membership;
+import services.interfaces.SponsorServicesLocal;
+import services.interfaces.SponsorServicesRemote;
+import entities.Sponsor;
 
 /**
- * Session Bean implementation class MembershipServices
+ * Session Bean implementation class SponsorServices
  */
 @Stateless
 @LocalBean
-public class MembershipServices implements MembershipServicesRemote,
-		MembershipServicesLocal {
-
+public class SponsorServices implements SponsorServicesRemote,
+		SponsorServicesLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	/**
 	 * Default constructor.
 	 */
-	public MembershipServices() {
+	public SponsorServices() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public Boolean addEvent(Membership membership) {
+	public Boolean addSponsor(Sponsor sponsor) {
 		Boolean b = false;
 		try {
-			entityManager.persist(membership);
+			entityManager.persist(sponsor);
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -43,10 +42,10 @@ public class MembershipServices implements MembershipServicesRemote,
 	}
 
 	@Override
-	public Boolean deleteMemberShipById(Integer id) {
+	public Boolean deleteSponsorById(Integer id) {
 		Boolean b = false;
 		try {
-			entityManager.remove(findMemberShipById(id));
+			entityManager.remove(findSponsorById(id));
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -55,29 +54,28 @@ public class MembershipServices implements MembershipServicesRemote,
 	}
 
 	@Override
-	public Membership findMemberShipById(Integer id) {
-		return entityManager.find(Membership.class, id);
+	public Sponsor findSponsorById(Integer id) {
+		return entityManager.find(Sponsor.class, id);
 
 	}
 
 	@Override
-	public Boolean updateMemberShip(Membership membership) {
+	public Boolean updateSponsor(Sponsor sponsor) {
 		Boolean b = false;
 		try {
-			entityManager.merge(membership);
+			entityManager.merge(sponsor);
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
 		}
 		return b;
-
 	}
 
 	@Override
-	public Boolean deleteMemberShip(Membership membership) {
+	public Boolean deleteSponsor(Sponsor sponsor) {
 		Boolean b = false;
 		try {
-			entityManager.remove(entityManager.merge(membership));
+			entityManager.remove(entityManager.merge(sponsor));
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -87,8 +85,8 @@ public class MembershipServices implements MembershipServicesRemote,
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Membership> findAllMemberShips() {
-		String jpql = "select m from MemberShip m";
+	public List<Sponsor> findAllSponsors() {
+		String jpql = "select s from Sponsor s";
 		Query query = entityManager.createQuery(jpql);
 		return query.getResultList();
 	}

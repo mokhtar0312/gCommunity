@@ -8,30 +8,31 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import services.interfaces.SimpleMemberServicesLocal;
-import services.interfaces.SimpleMemberServicesRemote;
+import entities.ActiveMember;
 import entities.SimpleMember;
+import services.interfaces.ActiveMemberServicesLocal;
+import services.interfaces.ActiveMemberServicesRemote;
 
 /**
- * Session Bean implementation class SimpleMemberServices
+ * Session Bean implementation class ActiveMemberServices
  */
 @Stateless
 @LocalBean
-public class SimpleMemberServices implements SimpleMemberServicesRemote, SimpleMemberServicesLocal {
+public class ActiveMemberServices implements ActiveMemberServicesRemote, ActiveMemberServicesLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
     /**
      * Default constructor. 
      */
-    public SimpleMemberServices() {
+    public ActiveMemberServices() {
         // TODO Auto-generated constructor stub
     }
 
 	@Override
-	public Boolean addSimpleMember(SimpleMember simpleMember) {
+	public Boolean addActiveMember(ActiveMember activeMember) {
 		Boolean b = false;
 		try {
-			entityManager.persist(simpleMember);
+			entityManager.persist(activeMember);
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -40,10 +41,10 @@ public class SimpleMemberServices implements SimpleMemberServicesRemote, SimpleM
 	}
 
 	@Override
-	public Boolean deleteSimpleMemberById(Integer id) {
+	public Boolean deleteActiveMemberById(Integer id) {
 		Boolean b = false;
 		try {
-			entityManager.remove(findSimpleMemberById(id));
+			entityManager.remove(findActiveMemberById(id));
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -52,16 +53,16 @@ public class SimpleMemberServices implements SimpleMemberServicesRemote, SimpleM
 	}
 
 	@Override
-	public SimpleMember findSimpleMemberById(Integer id) {
-		return entityManager.find(SimpleMember.class, id);
+	public ActiveMember findActiveMemberById(Integer id) {
+		return entityManager.find(ActiveMember.class, id);
 
 	}
 
 	@Override
-	public Boolean updateSimpleMember(SimpleMember simpleMember) {
+	public Boolean updateActiveMember(ActiveMember activeMember) {
 		Boolean b = false;
 		try {
-			entityManager.merge(simpleMember);
+			entityManager.merge(activeMember);
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -70,10 +71,10 @@ public class SimpleMemberServices implements SimpleMemberServicesRemote, SimpleM
 	}
 
 	@Override
-	public Boolean deleteSimpleMember(SimpleMember simpleMember) {
+	public Boolean deleteEmployee(ActiveMember activeMember) {
 		Boolean b = false;
 		try {
-			entityManager.remove(entityManager.merge(simpleMember));
+			entityManager.remove(entityManager.merge(activeMember));
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -83,8 +84,8 @@ public class SimpleMemberServices implements SimpleMemberServicesRemote, SimpleM
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<SimpleMember> findAllSimpleMember() {
-		String jpql = "select m from SimpleMember m";
+	public List<ActiveMember> findAllActiveMember() {
+		String jpql = "select m from ActiveMember m";
 		Query query = entityManager.createQuery(jpql);
 		return query.getResultList();
 	}
