@@ -1,6 +1,7 @@
 package services.interfaces;
 
 import java.util.List;
+import entities.Model3D;
 
 import javax.ejb.Remote;
 
