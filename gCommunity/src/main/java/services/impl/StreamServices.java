@@ -29,7 +29,7 @@ public class StreamServices implements StreamServicesRemote, StreamServicesLocal
     }
 
 @Override
-public Boolean addStream(Streams stream) {
+public Boolean addStream(Streams stream ) {
 	boolean b=false;
 	try {
 		entitymanager.persist(stream);
