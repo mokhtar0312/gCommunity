@@ -74,7 +74,7 @@ public Boolean deleteStream(Integer id) {
 }
 
 @Override
-public List<Streams> finAllStreams() {
+public List<Streams> findAllStreams() {
 	String jpql = "select s from Streams s";
 	Query query = entitymanager.createQuery(jpql);
 	

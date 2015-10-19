@@ -13,5 +13,5 @@ public interface StreamServicesRemote {
 	Streams findStreamById(Integer id);
 	Boolean updateStream(Streams stream);
 	Boolean deleteStream(Integer id);
-	List<Streams> finAllStreams();
+	List<Streams> findAllStreams();
 }
