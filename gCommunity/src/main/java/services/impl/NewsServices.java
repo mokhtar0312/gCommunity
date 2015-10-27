@@ -6,6 +6,7 @@ import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import services.interfaces.NewsServicesLocal;
 import services.interfaces.NewsServicesRemote;
@@ -69,10 +70,12 @@ public class NewsServices implements NewsServicesRemote, NewsServicesLocal {
 		return b;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<News> DisplayAllNews() {
-		// TODO Auto-generated method stub
-		return null;
+		String jpql = "select n from News n";
+		Query query = entitymanager.createQuery(jpql);
+		return query.getResultList();
 	}
 
 }
