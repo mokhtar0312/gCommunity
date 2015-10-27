@@ -29,16 +29,16 @@ public class ServiceLocator {
 		return instance;
 	}
 
-	public Object getProxy(String jndiNam) {
+	public Object getProxy(String jndiName) {
 		Object proxy = null;
-		proxy = map.get(jndiNam);
+		proxy = map.get(jndiName);
 		if (proxy == null) {
 			try {
-				proxy = context.lookup(jndiNam);
+				proxy = context.lookup(jndiName);
 			} catch (NamingException e) {
 				e.printStackTrace();
 			}
-			map.put(jndiNam, proxy);
+			map.put(jndiName, proxy);
 		}
 
 		return proxy;
