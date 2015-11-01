@@ -23,7 +23,7 @@ public class Sponsor implements Serializable {
 	private String level;
 	private static final long serialVersionUID = 1L;
 	
-	private List<ActiveMember>activeMembers;
+	
 
 	public Sponsor() {
 		super();
@@ -57,12 +57,6 @@ public class Sponsor implements Serializable {
 	public void setLevel(String level) {
 		this.level = level;
 	}
-	@ManyToMany(mappedBy="sponsors")
-	public List<ActiveMember> getActiveMembers() {
-		return activeMembers;
-	}
-	public void setActiveMembers(List<ActiveMember> activeMembers) {
-		this.activeMembers = activeMembers;
-	}
+	
    
 }

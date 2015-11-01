@@ -21,9 +21,8 @@ public class Streams implements Serializable {
 	private Integer viewers;
 	private static final long serialVersionUID = 1L;
 
-	private List<SimpleMember> simpleMembers;
-	private List<ActiveMember> activeMembers;
-
+	
+	
 	public Streams() {
 		super();
 	}
@@ -61,22 +60,6 @@ public class Streams implements Serializable {
 		this.viewers = viewers;
 	}
 
-	@ManyToMany(mappedBy = "streamss")
-	public List<SimpleMember> getSimpleMembers() {
-		return simpleMembers;
-	}
-
-	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
-		this.simpleMembers = simpleMembers;
-	}
-
-	@ManyToMany(mappedBy = "streamsss")
-	public List<ActiveMember> getActiveMembers() {
-		return activeMembers;
-	}
-
-	public void setActiveMembers(List<ActiveMember> activeMembers) {
-		this.activeMembers = activeMembers;
-	}
+	
 
 }

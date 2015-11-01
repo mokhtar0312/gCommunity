@@ -14,6 +14,7 @@
 		<class>entities.Streams</class>
 		<class>entities.Model3D</class>
 		<class>entities.Vote</class>
+		<class>entities.VoteID</class>
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<property name="hibernate.show_sql" value="true" />

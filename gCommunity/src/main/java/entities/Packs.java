@@ -26,7 +26,6 @@ public class Packs implements Serializable {
 	private Date datemiseenligne;
 	private static final long serialVersionUID = 1L;
 	
-	private List<SimpleMember> simpleMembers;
 
 	public Packs() {
 		super();
@@ -74,12 +73,6 @@ public class Packs implements Serializable {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	@ManyToMany(mappedBy="packss")
-	public List<SimpleMember> getSimpleMembers() {
-		return simpleMembers;
-	}
-	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
-		this.simpleMembers = simpleMembers;
-	}
+	
    
 }

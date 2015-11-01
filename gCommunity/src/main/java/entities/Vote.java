@@ -2,9 +2,10 @@ package entities;
 
 import java.io.Serializable;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  * Entity implementation class for Entity: Vote
@@ -13,41 +14,44 @@ import javax.persistence.OneToOne;
 @Entity
 public class Vote implements Serializable {
 
-	private Integer id;
-	private ActiveMember member;
-	private Boolean voted;
+	private VoteID voteid;
+	private ActiveMember activemembervoter;
+	private ActiveMember activemembervoted;
+
+	@ManyToOne
+	@JoinColumn(name = "voter", referencedColumnName = "id", updatable = false, insertable = false)
+	public ActiveMember getActivemembervoter() {
+		return activemembervoter;
+	}
+
+	public void setActivemembervoter(ActiveMember activemembervoter) {
+		this.activemembervoter = activemembervoter;
+	}
+
+	@ManyToOne
+	@JoinColumn(name = "voted", referencedColumnName = "id", updatable = false, insertable = false)
+	public ActiveMember getActivemembervoted() {
+		return activemembervoted;
+	}
+
+	public void setActivemembervoted(ActiveMember activemembervoted) {
+		this.activemembervoted = activemembervoted;
+	}
+
+	@EmbeddedId
+	public VoteID getVoteid() {
+		return voteid;
+	}
+
+	public void setVoteid(VoteID voteid) {
+		this.voteid = voteid;
+	}
+
 	private Integer year;
 	private static final long serialVersionUID = 1L;
 
-	private ActiveMember activeMember;
-
 	public Vote() {
 		super();
-	}
-
-	@Id
-	public Integer getId() {
-		return this.id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public ActiveMember getMember() {
-		return this.member;
-	}
-
-	public void setMember(ActiveMember member) {
-		this.member = member;
-	}
-
-	public Boolean getVoted() {
-		return this.voted;
-	}
-
-	public void setVoted(Boolean voted) {
-		this.voted = voted;
 	}
 
 	public Integer getYear() {
@@ -56,15 +60,6 @@ public class Vote implements Serializable {
 
 	public void setYear(Integer year) {
 		this.year = year;
-	}
-
-	@OneToOne(mappedBy = "vote")
-	public ActiveMember getActiveMember() {
-		return activeMember;
-	}
-
-	public void setActiveMember(ActiveMember activeMember) {
-		this.activeMember = activeMember;
 	}
 
 }

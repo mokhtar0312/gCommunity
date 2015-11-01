@@ -22,7 +22,7 @@ public class News implements Serializable {
 	private String description;
 	private static final long serialVersionUID = 1L;
 
-	private ActiveMember activemember;
+	
 
 	public News() {
 		super();
@@ -61,14 +61,5 @@ public class News implements Serializable {
 		this.description = description;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id", insertable = false, updatable = false)
-	public ActiveMember getActiveMember() {
-		return activemember;
-	}
-
-	public void setActiveMember(ActiveMember activemember) {
-		this.activemember = activemember;
-	}
 
 }

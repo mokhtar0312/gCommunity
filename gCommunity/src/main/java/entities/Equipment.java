@@ -23,7 +23,7 @@ public class Equipment implements Serializable {
 	private Boolean state;
 	private static final long serialVersionUID = 1L;
 	
-	private List<ActiveMember>activeMembers;
+	
 
 	public Equipment() {
 		super();
@@ -57,12 +57,6 @@ public class Equipment implements Serializable {
 	public void setState(Boolean state) {
 		this.state = state;
 	}
-	@ManyToMany(mappedBy="equipments")
-	public List<ActiveMember> getActiveMembers() {
-		return activeMembers;
-	}
-	public void setActiveMembers(List<ActiveMember> activeMembers) {
-		this.activeMembers = activeMembers;
-	}
+	
    
 }
