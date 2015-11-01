@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -18,7 +20,6 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private String role;
 	private static final long serialVersionUID = 1L;
 
-	
 	private List<Event> events;
 	private Membership membership;
 	private List<Equipment> equipments;
@@ -74,7 +75,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 		this.equipments = equipments;
 	}
 
-	@ManyToMany
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "activeMember")
 	public List<News> getNews() {
 		return news;
 	}
@@ -100,7 +101,6 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	public void setStreamsss(List<Streams> streamsss) {
 		this.streamsss = streamsss;
 	}
-
 
 	@OneToOne
 	public Vote getVote() {
