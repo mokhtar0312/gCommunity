@@ -8,6 +8,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.sun.mail.handlers.message_rfc822;
+
 /**
  * Entity implementation class for Entity: ActiveMember
  *
@@ -27,7 +29,9 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private List<Streams> streamsss;
 	private List<Vote> voters;
 	private List<Vote> voteds;
-
+	private List<Message> messages ;
+	private List<Notification> notifications ;
+	
 	@OneToMany(mappedBy="activemembervoter")
 	public List<Vote> getVoters() {
 		return voters;
@@ -119,6 +123,23 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	public void setStreamsss(List<Streams> streamsss) {
 		this.streamsss = streamsss;
 	}
+@OneToMany(mappedBy="activeMember")
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+	@OneToMany(mappedBy="activeMember")
+	public List<Notification> getNotifications() {
+		return notifications;
+	}
+
+	public void setNotifications(List<Notification> notifications) {
+		this.notifications = notifications;
+	}
+
 
 
 

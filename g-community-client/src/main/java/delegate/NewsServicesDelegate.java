@@ -8,7 +8,7 @@ import entities.News;
 
 public class NewsServicesDelegate {
 	//private static NewsServicesRemote remote;
-	private static final String jndi = "/g-community/NewsServices!services.interfaces.NewsServicesRemote";
+	private static final String jndi = "/g-community-ejb/NewsServices!services.interfaces.NewsServicesRemote";
 
 	private static NewsServicesRemote getProxy() {
 		return (NewsServicesRemote) ServiceLocator.getInstance().getProxy(

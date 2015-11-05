@@ -8,7 +8,7 @@ import entities.Packs;
 
 public class PacksServicesDelegate {
 	//private static PacksServicesRemote remote;
-		private static final String jndi = "/g-community/PacksServices!services.interfaces.PacksServicesRemote";
+		private static final String jndi = "/g-community-ejb/PacksServices!services.interfaces.PacksServicesRemote";
 
 		private static PacksServicesRemote getProxy() {
 			return (PacksServicesRemote) ServiceLocator.getInstance().getProxy(
