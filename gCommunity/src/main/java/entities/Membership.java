@@ -23,7 +23,8 @@ public class Membership implements Serializable {
 	public Membership() {
 		super();
 	}   
-	@Id    
+	@Id  
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}

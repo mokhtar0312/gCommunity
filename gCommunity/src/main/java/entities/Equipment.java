@@ -28,7 +28,8 @@ public class Equipment implements Serializable {
 	public Equipment() {
 		super();
 	}   
-	@Id    
+	@Id  
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.Id;
 	}

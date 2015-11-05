@@ -28,7 +28,8 @@ public class Model3D implements Serializable {
 	public Model3D() {
 		super();
 	}   
-	@Id    
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}

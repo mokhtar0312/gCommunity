@@ -30,7 +30,8 @@ public class Packs implements Serializable {
 	public Packs() {
 		super();
 	}   
-	@Id    
+	@Id  
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}

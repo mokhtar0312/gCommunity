@@ -45,6 +45,7 @@ public class SimpleMember implements Serializable {
 		this.name = name;
 	} 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}
