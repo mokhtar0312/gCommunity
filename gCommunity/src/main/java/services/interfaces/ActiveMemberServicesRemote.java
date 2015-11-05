@@ -17,7 +17,7 @@ public interface ActiveMemberServicesRemote {
 
 	Boolean updateActiveMember(ActiveMember activeMember);
 
-	Boolean deleteEmployee(ActiveMember activeMember);
+	Boolean deleteActiveMember(ActiveMember activeMember);
 
 	List<ActiveMember> findAllActiveMember();
 

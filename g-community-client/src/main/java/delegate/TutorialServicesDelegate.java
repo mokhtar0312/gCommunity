@@ -9,7 +9,7 @@ import entities.Tutorial;
 public class TutorialServicesDelegate {
 
 	// private static TutorialServicesRemote remote;
-	private static final String jndi = "/g-community/TutorialServices!services.interfaces.TutorialServicesRemote";
+	private static final String jndi = "/g-community-ejb/TutorialServices!services.interfaces.TutorialServicesRemote";
 
 	private static TutorialServicesRemote getProxy() {
 		return (TutorialServicesRemote) ServiceLocator.getInstance().getProxy(jndi);
