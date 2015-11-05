@@ -8,25 +8,26 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import entities.ActiveMember;
-import entities.SimpleMember;
 import services.interfaces.ActiveMemberServicesLocal;
 import services.interfaces.ActiveMemberServicesRemote;
+import entities.ActiveMember;
 
 /**
  * Session Bean implementation class ActiveMemberServices
  */
 @Stateless
 @LocalBean
-public class ActiveMemberServices implements ActiveMemberServicesRemote, ActiveMemberServicesLocal {
+public class ActiveMemberServices implements ActiveMemberServicesRemote,
+		ActiveMemberServicesLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
-    /**
-     * Default constructor. 
-     */
-    public ActiveMemberServices() {
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * Default constructor.
+	 */
+	public ActiveMemberServices() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Boolean addActiveMember(ActiveMember activeMember) {
@@ -71,7 +72,7 @@ public class ActiveMemberServices implements ActiveMemberServicesRemote, ActiveM
 	}
 
 	@Override
-	public Boolean deleteEmployee(ActiveMember activeMember) {
+	public Boolean deleteActiveMember(ActiveMember activeMember) {
 		Boolean b = false;
 		try {
 			entityManager.remove(entityManager.merge(activeMember));

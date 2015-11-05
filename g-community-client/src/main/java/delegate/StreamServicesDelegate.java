@@ -10,7 +10,7 @@ import services.interfaces.StreamServicesRemote;
 public class StreamServicesDelegate {
 
 	private static StreamServicesRemote remote;
-	private static final String jndi = "/g-community/StreamServices!services.interfaces.StreamServicesRemote";
+	private static final String jndi = "/g-community-ejb/StreamServices!services.interfaces.StreamServicesRemote";
 
 	private static StreamServicesRemote getProxy() {
 		return (StreamServicesRemote) ServiceLocator.getInstance().getProxy(

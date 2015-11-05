@@ -16,10 +16,8 @@ import javax.persistence.*;
 
 public class SimpleMember implements Serializable {
 
-	
-	private String name;   
-	
 	private Integer id;
+	private String name; 	
 	private String surname;
 	private String username;
 	private String password;

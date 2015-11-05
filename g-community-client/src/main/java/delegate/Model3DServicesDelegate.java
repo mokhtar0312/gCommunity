@@ -10,7 +10,7 @@ import services.interfaces.Model3DServicesRemote;
 public class Model3DServicesDelegate {
 
 	private static Model3DServicesRemote remote;
-	private static final String jndi = "/g-community/Model3DServices!services.interfaces.Model3DServicesRemote";
+	private static final String jndi = "/g-community-ejb/Model3DServices!services.interfaces.Model3DServicesRemote";
 
 	private static Model3DServicesRemote getProxy() {
 		return (Model3DServicesRemote) ServiceLocator.getInstance().getProxy(
