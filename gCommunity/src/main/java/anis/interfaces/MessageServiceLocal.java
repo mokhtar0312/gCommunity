@@ -3,6 +3,7 @@ package anis.interfaces;
 import java.util.List;
 
 import javax.ejb.Local;
+import javax.persistence.criteria.CriteriaBuilder.In;
 
 import entities.ActiveMember;
 import entities.Message;
@@ -19,5 +20,7 @@ public interface MessageServiceLocal {
     ActiveMember findActiveMemberById(Long long1);
     ActiveMember findActiveMemberByEmail(String email);
     List<Message> readAllMessageByIDActiveMember(ActiveMember activeMember);
+    List<Message> findAllMessage();
+
 
 }

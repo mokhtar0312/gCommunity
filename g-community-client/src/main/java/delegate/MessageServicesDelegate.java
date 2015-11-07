@@ -52,7 +52,10 @@ public class MessageServicesDelegate {
 	}
 
 	public static List<Message> readAllMessageByIDActiveMember(
-			ActiveMember activeMember) {
+		ActiveMember activeMember) {
 		return getProxy().readAllMessageByIDActiveMember(activeMember);
+	}
+	public static  List<Message> findAllMessage() {
+		return getProxy().findAllMessage();
 	}
 }

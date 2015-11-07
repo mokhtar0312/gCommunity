@@ -105,13 +105,13 @@ public class MessageService implements MessageServiceRemote, MessageServiceLocal
 		Query query = entityManager.createQuery("Select e from Message e where e.activeMember=:l ");
 		query.setParameter("l", activeMember);
 
-		try {
-			activeMember =  (ActiveMember) query.getResultList();
+		return query.getResultList();
+	}
 
-
-		} catch (Exception e) {
-			activeMember=null;
-		}
+	@Override
+	public List<Message> findAllMessage() {
+		String jpql = "select m from Message m";
+		Query query = entityManager.createQuery(jpql);
 		return query.getResultList();
 	}
 
