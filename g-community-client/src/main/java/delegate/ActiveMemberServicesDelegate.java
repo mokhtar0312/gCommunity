@@ -17,27 +17,27 @@ public class ActiveMemberServicesDelegate {
 	}
 	
 
-	public static Boolean addActiveMember(ActiveMember activeMember){
+	public static Boolean doAddActiveMember(ActiveMember activeMember){
 		return getProxy().addActiveMember(activeMember);
 	}
 
-	public static Boolean deleteActiveMemberById(Integer id){
+	public static Boolean doDeleteActiveMemberById(Integer id){
 		return getProxy().deleteActiveMemberById(id);
 	}
 
-	public static ActiveMember findActiveMemberById(Integer id){
+	public static ActiveMember doFindActiveMemberById(Integer id){
 		return getProxy().findActiveMemberById(id);
 	}
 
-	public static Boolean updateActiveMember(ActiveMember activeMember){
+	public static Boolean doUpdateActiveMember(ActiveMember activeMember){
 		return getProxy().updateActiveMember(activeMember);
 	}
 
-	public static Boolean deleteEmployee(ActiveMember activeMember){
+	public static Boolean doDeleteEmployee(ActiveMember activeMember){
 		return getProxy().deleteActiveMember(activeMember);
 	}
 
-	public static List<ActiveMember> findAllActiveMember(){
+	public static List<ActiveMember> doFindAllActiveMember(){
 
 		return getProxy().findAllActiveMember();
 	}
