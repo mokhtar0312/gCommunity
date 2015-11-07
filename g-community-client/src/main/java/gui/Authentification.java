@@ -1,14 +1,14 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 
 public class Authentification {
 
@@ -51,7 +51,7 @@ public class Authentification {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(44, 62, 80));
-		panel.setBounds(0, 0, 455, 261);
+		panel.setBounds(0, 0, 404, 222);
 		frmIdentification.getContentPane().add(panel);
 		panel.setLayout(null);
 		

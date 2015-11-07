@@ -22,6 +22,7 @@ public class SimpleMember implements Serializable {
 	private String username;
 	private String password;
 	private String summonerName;
+	private String server;
 	private Double xp;
 	private String email;
 	private static final long serialVersionUID = 1L;
@@ -127,6 +128,12 @@ public class SimpleMember implements Serializable {
 	}
 	public void setStreamss(List<Streams> streamss) {
 		this.streamss = streamss;
+	}
+	public String getServer() {
+		return server;
+	}
+	public void setServer(String server) {
+		this.server = server;
 	}
 
    
