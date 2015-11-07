@@ -22,7 +22,7 @@ public class Event implements Serializable {
 	private String name;
 	private int numberOfParticipants;
 	private String description;
-	private Float fee;
+	private Double fee;
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -60,11 +60,11 @@ public class Event implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}   
-	public Float getFee() {
+	public Double getFee() {
 		return this.fee;
 	}
 
-	public void setFee(Float fee) {
+	public void setFee(Double  fee) {
 		this.fee = fee;
 	}
 	public Date getDate() {

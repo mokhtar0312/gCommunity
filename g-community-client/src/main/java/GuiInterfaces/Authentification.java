@@ -9,10 +9,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Authentification {
 
-	private JFrame frmIdentification;
+	public JFrame frmIdentification;
 	private JTextField textField;
 	private JPasswordField passwordField;
 
@@ -79,6 +81,12 @@ public class Authentification {
 		panel.add(btnLogIn);
 		
 		JButton btnSignIn = new JButton("Sign In");
+		btnSignIn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmIdentification.setVisible(false);
+				new SignIn().frmSignIn.setVisible(true);
+			}
+		});
 		btnSignIn.setBounds(79, 155, 112, 23);
 		panel.add(btnSignIn);
 		
