@@ -41,4 +41,7 @@ public class ActiveMemberServicesDelegate {
 
 		return getProxy().findAllActiveMember();
 	}
+	public static ActiveMember doFindActiveMemberByUserName(String username){
+		return getProxy().findActiveMemberByUserName(username);
+	}
 }

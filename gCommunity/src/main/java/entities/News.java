@@ -2,11 +2,13 @@ package entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  * Entity implementation class for Entity: News
@@ -21,7 +23,8 @@ public class News implements Serializable {
 	private String description;
 	private static final long serialVersionUID = 1L;
 
-	
+	private List<ActiveMember> ActiveMembers;
+
 
 	public News() {
 		super();
@@ -59,6 +62,14 @@ public class News implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+@ManyToMany(mappedBy="news")
+	public List<ActiveMember> getActiveMembers() {
+		return ActiveMembers;
+	}
+
+	public void setActiveMembers(List<ActiveMember> activeMembers) {
+		ActiveMembers = activeMembers;
 	}
 
 

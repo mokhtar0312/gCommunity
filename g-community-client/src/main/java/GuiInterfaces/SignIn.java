@@ -1,6 +1,7 @@
 package GuiInterfaces;
 
 import java.awt.EventQueue;
+import java.awt.Window;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,11 +20,14 @@ import javax.swing.JSplitPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
+import delegate.ActiveMemberServicesDelegate;
 import entities.ActiveMember;
 
 import java.awt.Canvas;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import javax.swing.SwingConstants;
 
 public class SignIn {
 
@@ -47,6 +51,7 @@ public class SignIn {
 				try {
 					SignIn window = new SignIn();
 					window.frmSignIn.setVisible(true);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -91,6 +96,15 @@ public class SignIn {
 		tfSumoner.setBounds(514, 125, 126, 20);
 		panel.add(tfSumoner);
 		tfSumoner.setColumns(10);
+		
+		JLabel erreurusername = new JLabel("The Username Exist !!!");
+		erreurusername.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		erreurusername.setHorizontalAlignment(SwingConstants.CENTER);
+		erreurusername.setForeground(Color.RED);
+		erreurusername.setBounds(260, 302, 150, 14);
+		erreurusername.setVisible(false);
+		panel.add(erreurusername);
+		
 		
 		JLabel lblName = new JLabel("Name");
 		lblName.setForeground(Color.WHITE);
@@ -201,7 +215,11 @@ public class SignIn {
 		JButton btnNewButton_1 = new JButton("Save");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				////////
+				
 			ActiveMember memberCreated =new ActiveMember();
+			
+			/////////////////////
 			 String name=tfName.getText(); 	
 			 String surname=tfSurname.getText();
 			 String username=tfUsername.getText();
@@ -212,15 +230,41 @@ public class SignIn {
 			 String email=tfEmail.getText();
 			 Integer phone=Integer.parseInt((tfphone.getText()));
 		     String role=(String) cbRole.getSelectedItem();
+		     
+		     
+		     /////
+				memberCreated.setApproved(true);
+				memberCreated.setName(name);
+				memberCreated.setSurname(surname);
+				memberCreated.setUsername(username);
+				memberCreated.setPassword(password);
+				memberCreated.setSummonerName(summonerName);
+				memberCreated.setServer(server);
+				memberCreated.setEmail(email);
+				memberCreated.setPhone(phone);
+				memberCreated.setRole(role);
 				
-				
+				 
+//				 ActiveMember memberfound=ActiveMemberServicesDelegate.doFindActiveMemberByUserName(username);
+//				if(memberfound==null){
+				ActiveMemberServicesDelegate.doAddActiveMember(memberCreated);
+				frmSignIn.setVisible(false);
+				new Authentification().frmIdentification.setVisible(true);
+//				new Authentification().frmIdentification.setVisible(true);
+//				
+//				}else
+//				{
+//			
+//					erreurusername.setVisible(true);
+//
+//				}
 			}
 		});
 		btnNewButton_1.setBounds(385, 342, 126, 23);
 		panel.add(btnNewButton_1);
 		
-		Canvas canvas = new Canvas();
-		canvas.setBounds(340, 243, 156, 18);
-		panel.add(canvas);
+		
+		
+		
 	}
 }

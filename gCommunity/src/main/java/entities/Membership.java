@@ -18,7 +18,7 @@ public class Membership implements Serializable {
 	private Float fee;
 	private static final long serialVersionUID = 1L;
 	
-	
+	private ActiveMember activeMember;
 
 	public Membership() {
 		super();
@@ -38,6 +38,13 @@ public class Membership implements Serializable {
 
 	public void setFee(Float fee) {
 		this.fee = fee;
+	}
+	@OneToOne(mappedBy="membership")
+	public ActiveMember getActiveMember() {
+		return activeMember;
+	}
+	public void setActiveMember(ActiveMember activeMember) {
+		this.activeMember = activeMember;
 	}
 	
    

@@ -24,7 +24,8 @@ public class Streams implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	
-	
+	private List<ActiveMember> ActiveMembers;
+
 	public Streams() {
 		super();
 	}
@@ -61,6 +62,14 @@ public class Streams implements Serializable {
 
 	public void setViewers(Integer viewers) {
 		this.viewers = viewers;
+	}
+@ManyToMany(mappedBy="streamsss")
+	public List<ActiveMember> getActiveMembers() {
+		return ActiveMembers;
+	}
+
+	public void setActiveMembers(List<ActiveMember> activeMembers) {
+		ActiveMembers = activeMembers;
 	}
 
 	

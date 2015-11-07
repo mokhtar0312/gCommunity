@@ -91,4 +91,18 @@ public class ActiveMemberServices implements ActiveMemberServicesRemote,
 		return query.getResultList();
 	}
 
+	@Override
+	public ActiveMember findActiveMemberByUserName(String username) {
+		ActiveMember found = null;
+		
+		String jpql = "select m from ActiveMember m where m.username=:param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param",username);
+		try{
+			found = (ActiveMember) query.getSingleResult();
+		}catch(Exception ex){
+		}
+		return found;
+	}
+
 }

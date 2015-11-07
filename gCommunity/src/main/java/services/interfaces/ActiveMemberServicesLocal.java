@@ -19,5 +19,6 @@ public interface ActiveMemberServicesLocal {
 	Boolean deleteActiveMember(ActiveMember activeMember);
 
 	List<ActiveMember> findAllActiveMember();
+	ActiveMember findActiveMemberByUserName(String username);
 
 }

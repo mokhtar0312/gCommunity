@@ -20,5 +20,6 @@ public interface ActiveMemberServicesRemote {
 	Boolean deleteActiveMember(ActiveMember activeMember);
 
 	List<ActiveMember> findAllActiveMember();
+	ActiveMember findActiveMemberByUserName(String username);
 
 }

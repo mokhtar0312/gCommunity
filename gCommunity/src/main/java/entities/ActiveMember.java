@@ -8,8 +8,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.sun.mail.handlers.message_rfc822;
-
 /**
  * Entity implementation class for Entity: ActiveMember
  *
@@ -22,7 +20,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private Boolean approved;
 	private static final long serialVersionUID = 1L;
 
-	private List<Event> events;
+	
 	private Membership membership;
 	private List<Equipment> equipments;
 	private List<News> news;
@@ -30,10 +28,10 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private List<Streams> streamsss;
 	private List<Vote> voters;
 	private List<Vote> voteds;
-	private List<Message> messages ;
-	private List<Notification> notifications ;
-	
-	@OneToMany(mappedBy="activemembervoter")
+	private List<Message> messages;
+	private List<Notification> notifications;
+
+	@OneToMany(mappedBy = "activemembervoter")
 	public List<Vote> getVoters() {
 		return voters;
 	}
@@ -41,8 +39,8 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	public void setVoters(List<Vote> voters) {
 		this.voters = voters;
 	}
-	
-	@OneToMany(mappedBy="activemembervoted")
+
+	@OneToMany(mappedBy = "activemembervoted")
 	public List<Vote> getVoteds() {
 		return voteds;
 	}
@@ -80,14 +78,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 		this.membership = membership;
 	}
 
-	@ManyToMany
-	public List<Event> getEvents() {
-		return events;
-	}
-
-	public void setEvents(List<Event> events) {
-		this.events = events;
-	}
+	
 
 	@ManyToMany
 	public List<Equipment> getEquipments() {
@@ -124,7 +115,8 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	public void setStreamsss(List<Streams> streamsss) {
 		this.streamsss = streamsss;
 	}
-@OneToMany(mappedBy="activeMember")
+
+	@OneToMany(mappedBy = "activeMember")
 	public List<Message> getMessages() {
 		return messages;
 	}
@@ -132,7 +124,8 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	public void setMessages(List<Message> messages) {
 		this.messages = messages;
 	}
-	@OneToMany(mappedBy="activeMember")
+
+	@OneToMany(mappedBy = "activeMember")
 	public List<Notification> getNotifications() {
 		return notifications;
 	}
@@ -141,7 +134,6 @@ public class ActiveMember extends SimpleMember implements Serializable {
 		this.notifications = notifications;
 	}
 
-
 	public Boolean getApproved() {
 		return approved;
 	}
@@ -149,7 +141,5 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	public void setApproved(Boolean approved) {
 		this.approved = approved;
 	}
-
-
 
 }

@@ -1,12 +1,13 @@
 package entities;
 
 import java.io.Serializable;
-import java.lang.Double;
-import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  * Entity implementation class for Entity: simpleMember
@@ -36,13 +37,7 @@ public class SimpleMember implements Serializable {
 	public SimpleMember() {
 		super();
 	}   
-	public String getName() {
-		return this.name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	} 
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {
@@ -51,7 +46,14 @@ public class SimpleMember implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}   
+	}  
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	} 
 	public String getSurname() {
 		return this.surname;
 	}
@@ -59,6 +61,7 @@ public class SimpleMember implements Serializable {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}   
+
 	public String getUsername() {
 		return this.username;
 	}
