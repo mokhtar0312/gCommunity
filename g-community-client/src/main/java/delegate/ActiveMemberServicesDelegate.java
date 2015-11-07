@@ -16,6 +16,7 @@ public class ActiveMemberServicesDelegate {
 				jndi);
 	}
 	
+
 	public static Boolean addActiveMember(ActiveMember activeMember){
 		return getProxy().addActiveMember(activeMember);
 	}
@@ -37,6 +38,7 @@ public class ActiveMemberServicesDelegate {
 	}
 
 	public static List<ActiveMember> findAllActiveMember(){
+
 		return getProxy().findAllActiveMember();
 	}
 }

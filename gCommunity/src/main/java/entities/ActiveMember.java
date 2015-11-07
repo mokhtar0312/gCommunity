@@ -17,6 +17,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 
 	private Integer phone;
 	private String role;
+	private Boolean approved;
 	private static final long serialVersionUID = 1L;
 
 	private List<Event> events;
@@ -118,6 +119,14 @@ public class ActiveMember extends SimpleMember implements Serializable {
 
 	public void setStreamsss(List<Streams> streamsss) {
 		this.streamsss = streamsss;
+	}
+
+	public Boolean getApproved() {
+		return approved;
+	}
+
+	public void setApproved(Boolean approved) {
+		this.approved = approved;
 	}
 
 
