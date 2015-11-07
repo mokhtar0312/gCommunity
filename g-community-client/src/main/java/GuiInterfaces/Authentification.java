@@ -16,6 +16,12 @@ import entities.SimpleMember;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Authentification {
 
@@ -87,22 +93,23 @@ public class Authentification {
 				String username=tfname.getText();
 				System.out.println(username);
 				String password=passwordField.getText();
-				try {
-					SimpleMember memberfound=ActiveMemberServicesDelegate.doFindActiveMemberByUserName("bb");
+				ActiveMember found=new ActiveMember();
+				List<ActiveMember>aa=ActiveMemberServicesDelegate.doFindAllActiveMember();
+				for(ActiveMember a:aa){
 					
-					if(memberfound.getPassword()==password){
-						frmIdentification.setVisible(false);
-						
-					}
-					else{
-							System.out.println("erruuuur");}
-							
-					
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					if(a.getUsername().equals(username)){
+					found=a;}
 				}
 				
+				if(found.getPassword().equals(password)){
+					
+					frmIdentification.setVisible(false);
+					
+				}
+				
+				
+				
+		
 				
 				
 				
@@ -122,8 +129,23 @@ public class Authentification {
 		panel.add(btnSignIn);
 		
 		JLabel lblForgotYourPassword = new JLabel("Forgot your password?");
+		lblForgotYourPassword.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frmIdentification.setVisible(false);
+				new passwordFinder().frame.setVisible(true);
+			}
+		});
+		lblForgotYourPassword.setHorizontalAlignment(SwingConstants.CENTER);
+		lblForgotYourPassword.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				frmIdentification.setVisible(false);
+				new passwordFinder().frame.setVisible(true);
+			}
+		});
 		lblForgotYourPassword.setForeground(Color.WHITE);
-		lblForgotYourPassword.setBounds(187, 123, 173, 14);
+		lblForgotYourPassword.setBounds(57, 123, 303, 28);
 		panel.add(lblForgotYourPassword);
 	}
 }
