@@ -42,7 +42,10 @@ public class ShowUsersFrame extends JPanel {
 
 		setLayout(null);
 		JScrollPane scrollPane = new JScrollPane();
+
 		scrollPane.setBounds(96, 56, 476, 173);
+
+
 		add(scrollPane);
 		accountingTable = new JTable();
 		scrollPane.setViewportView(accountingTable);

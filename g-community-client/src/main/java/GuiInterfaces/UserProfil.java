@@ -29,6 +29,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JScrollPane;
 
+import repo.AfficherEventAdapter;
+
 public class UserProfil {
 	/**
 	 * 
@@ -209,17 +211,17 @@ public class UserProfil {
 		nvmj.setBackground(new Color(52, 73, 94));
 		tabbedPane.addTab("New Message", null, nvmj, null);
 
-		JPanel panel_5 = new JPanel();
-		panel_5.setLayout(null);
-		panel_5.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("New tab", null, panel_5, null);
+		AficherEvent event = new AficherEvent(admin);
+		event.setLayout(null);
+		event.setBackground(new Color(52, 73, 94));
+		tabbedPane.addTab("My Events", null, event, null);
 
 		JPanel achievement = new JPanel();
 		achievement.setLayout(null);
 		achievement.setOpaque(true);
 		achievement.setBorder(null);
 		achievement.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("achievement", null, achievement, null);
+		tabbedPane.addTab("Achievement", null, achievement, null);
 
 		JLabel lblimage = new JLabel("");
 		lblimage.setIcon(new ImageIcon(UserProfil.class

@@ -95,7 +95,10 @@ public class ShowUsers {
 		JLabel label_2 = new JLabel("Members");
 		label_2.setOpaque(true);
 		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+
+		
 		label_2.setForeground(Color.BLUE);
+
 		label_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		label_2.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
 		label_2.setBackground(Color.ORANGE);

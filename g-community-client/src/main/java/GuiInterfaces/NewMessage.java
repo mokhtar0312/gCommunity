@@ -13,16 +13,13 @@ import javax.swing.JButton;
 
 
 
-
-
-
-
 import delegate.ActiveMemberServicesDelegate;
 import delegate.MessageServicesDelegate;
 import entities.ActiveMember;
 import entities.Message;
 import entities.Notification;
 
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.Date;
@@ -44,8 +41,8 @@ public class NewMessage extends JPanel {
     ActiveMember em = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
 	
     String username= em.getUsername();
-	Context context ;
-	String jndiName = "/g-community-ejb/ActiveMemberServices!services.interfaces.ActiveMemberServicesRemote";
+//	Context context ;
+	//String jndiName = "/g-community-ejb/ActiveMemberServices!services.interfaces.ActiveMemberServicesRemote";
 	String password = em.getPassword();
 	/**
 	 * Create the panel.
@@ -63,6 +60,7 @@ public class NewMessage extends JPanel {
 		label_2.setBounds(238, 50, 128, 14);
 		add(label_2);
 		JLabel labelid = new JLabel("New label");
+		labelid.setForeground(new Color(52, 73, 94));
 		labelid.setBounds(501, 68, 46, 14);
 		add(labelid);
 		JComboBox<String> comboType = new JComboBox<String>();
@@ -112,21 +110,22 @@ public class NewMessage extends JPanel {
 				Message message = new Message();
 				Date date = new Date(2015-1900,8-1,9);
 				ActiveMember e1 = new ActiveMember();
-				ActiveMember admin = new ActiveMember();
-				Notification notif = new Notification();
+		//		ActiveMember admin = new ActiveMember();
+				//Notification notif = new Notification();
 				e1 = ActiveMemberServicesDelegate.doFindActiveMemberById(Integer.parseInt(labelid.getText()));
 				message.setContent(jcontent.getText());
 				message.setDate(date);
-				admin = ActiveMemberServicesDelegate.doFindActiveMemberById(em.getId());
+				//admin = ActiveMemberServicesDelegate.doFindActiveMemberById(em.getId());
 				message.setSubject(jsubject.getText());
-				message.setActiveMember(admin);
+				message.setActiveMember(e1);
 				
-				notif.setDescription("new Message");
-				notif.setEtat(0);
-				notif.setActiveMember(admin);
-				notif.setMessage(message);
+//				notif.setDescription("new Message");
+//				notif.setEtat(0);
+//				notif.setActiveMember(admin);
+//				notif.setMessage(message);
 				try {
-					MessageServicesDelegate.ajouterMessage(message, notif);
+					MessageServicesDelegate.ajouterMessage(message);
+
 					JOptionPane.showMessageDialog(null, "Success!!", "Good :D", JOptionPane.OK_CANCEL_OPTION);
 					
 					

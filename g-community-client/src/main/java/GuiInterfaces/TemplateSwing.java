@@ -49,7 +49,7 @@ private int test;
 		frmGCommunity.getContentPane().setLayout(null);
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(211, 0, 709, 581);
+		panel_1.setBounds(214, 0, 706, 581);
 		panel_1.setBackground(new Color(52, 73, 94));
 		frmGCommunity.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
@@ -81,7 +81,7 @@ private int test;
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(new Color(241, 196, 15));
-		panel_2.setBounds(208, 0, 3, 581);
+		panel_2.setBounds(208, 0, 10, 581);
 		frmGCommunity.getContentPane().add(panel_2);
 		
 		JPanel panel_menu = new JPanel();
