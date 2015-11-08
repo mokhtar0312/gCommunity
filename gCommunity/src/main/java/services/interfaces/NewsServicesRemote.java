@@ -11,6 +11,7 @@ public interface NewsServicesRemote {
 	Boolean addNews(News news);
 
 	News findNewsbyId(Integer Id);
+	List<News> FindbyTyped(String typed);
 
 	Boolean updateNews(News news);
 

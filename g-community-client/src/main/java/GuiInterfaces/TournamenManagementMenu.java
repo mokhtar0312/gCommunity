@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.naming.NamingException;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,49 +34,28 @@ private int test;
 
 	/**
 	 * Create the application.
+	 * @throws NamingException 
 	 */
-	public TournamenManagementMenu() {
+	public TournamenManagementMenu() throws NamingException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws NamingException 
 	 */
-	private void initialize() {
+	private void initialize() throws NamingException {
 		trounamentM = new JFrame();
 		trounamentM.setTitle("        G Community");
 		trounamentM.setBounds(100, 100, 936, 620);
 		trounamentM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		trounamentM.getContentPane().setLayout(null);
 		
-		JPanel panel_1 = new JPanel();
+		TournamentManagement panel_1 = new TournamentManagement();
 		panel_1.setBounds(211, 0, 709, 581);
 		panel_1.setBackground(new Color(52, 73, 94));
 		trounamentM.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
-		
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		JPanel Tab1 = new JPanel();
-		Tab1.setBorder(null);
-		Tab1.setBackground(new Color(52, 73, 94));
-		Tab1.setOpaque(true);
-		tabbedPane.addTab("Tab1", Tab1);
-		Tab1.setLayout(null);
-		JPanel Tab2 = new JPanel();
-		Tab2.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("Tab2", Tab2);
-		Tab2.setLayout(null);
-		JPanel Tab3 = new JPanel();
-		Tab3.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("Tab3", Tab3);
-		JPanel Tab4 = new JPanel();
-		Tab4.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("Tab4", Tab4);
-		Tab4.setLayout(null);
-		tabbedPane.setOpaque(true);
-		tabbedPane.setBackground(new Color(52, 73, 94));
-		tabbedPane.setBounds(10, 11, 689, 559);
-		panel_1.add(tabbedPane);
 		
 		
 		

@@ -24,6 +24,10 @@ import javax.swing.border.EmptyBorder;
 import delegate.EventServiceDelegate;
 import entities.Event;
 import repo.EventModel;
+import javax.swing.JLabel;
+import javax.swing.border.MatteBorder;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class TournamentManagement  extends JFrame {
 
@@ -71,9 +75,9 @@ public class TournamentManagement  extends JFrame {
 		// proxyGamer.readAllGamer();
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 412);
+		setBounds(100, 100, 870, 609);
 		contentPane = new JPanel();
-		contentPane.setBackground(new Color(0, 102, 102));
+		contentPane.setBackground(new Color(52, 73, 94));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setTitle("List of Account");
 		setContentPane(contentPane);
@@ -89,7 +93,7 @@ public class TournamentManagement  extends JFrame {
 				System.out.println("aaa" + test + row);
 			}
 		});
-		scrollPane.setBounds(38, 62, 357, 138);
+		scrollPane.setBounds(355, 110, 357, 217);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -135,7 +139,7 @@ public class TournamentManagement  extends JFrame {
 					
 				
 			}});
-				upda.setBounds(306, 339, 89, 23);
+				upda.setBounds(623, 492, 89, 23);
 				contentPane.add(upda);
 				
 				btnDelete = new JButton("DELETE");
@@ -159,43 +163,43 @@ public class TournamentManagement  extends JFrame {
 						
 					}
 				});
-				btnDelete.setBounds(195, 339, 89, 23);
+				btnDelete.setBounds(490, 492, 89, 23);
 				contentPane.add(btnDelete);
 				
 				login = new JTextField();
-				login.setBounds(150, 211, 72, 20);
+				login.setBounds(581, 352, 72, 20);
 				contentPane.add(login);
 				login.setColumns(10);
 				
 				pwd = new JTextField();
-				pwd.setBounds(150, 242, 72, 20);
+				pwd.setBounds(581, 383, 72, 20);
 				contentPane.add(pwd);
 				pwd.setColumns(10);
 				
 				pseudo = new JTextField();
-				pseudo.setBounds(150, 273, 72, 20);
+				pseudo.setBounds(581, 414, 72, 20);
 				contentPane.add(pseudo);
 				pseudo.setColumns(10);
 				
 				dtrpnLogin = new JEditorPane();
 				dtrpnLogin.setForeground(new Color(51, 0, 102));
-				dtrpnLogin.setBackground(new Color(0, 102, 102));
+				dtrpnLogin.setBackground(new Color(52, 73, 94));
 				dtrpnLogin.setText("Description :");
-				dtrpnLogin.setBounds(10, 211, 106, 20);
+				dtrpnLogin.setBounds(445, 352, 106, 20);
 				contentPane.add(dtrpnLogin);
 				
 				dtrpnPassword = new JEditorPane();
 				dtrpnPassword.setForeground(new Color(51, 0, 102));
-				dtrpnPassword.setBackground(new Color(0, 102, 102));
+				dtrpnPassword.setBackground(new Color(52, 73, 94));
 				dtrpnPassword.setText("Fee :");
-				dtrpnPassword.setBounds(10, 242, 106, 20);
+				dtrpnPassword.setBounds(445, 383, 106, 20);
 				contentPane.add(dtrpnPassword);
 				
 				dtrpnPseudo = new JEditorPane();
 				dtrpnPseudo.setForeground(new Color(51, 0, 102));
-				dtrpnPseudo.setBackground(new Color(0, 102, 102));
+				dtrpnPseudo.setBackground(new Color(52, 73, 94));
 				dtrpnPseudo.setText("Pseudo :");
-				dtrpnPseudo.setBounds(10, 273, 106, 20);
+				dtrpnPseudo.setBounds(445, 414, 106, 20);
 				contentPane.add(dtrpnPseudo);
 				
 				JButton btnBack = new JButton("BACK");
@@ -214,8 +218,86 @@ public class TournamentManagement  extends JFrame {
 					
 				});
 				btnBack.setForeground(new Color(0, 0, 102));
-				btnBack.setBounds(20, 339, 89, 23);
-				contentPane.add(btnBack);}
+				btnBack.setBounds(355, 492, 89, 23);
+				contentPane.add(btnBack);
+				
+				JPanel panel = new JPanel();
+				panel.setLayout(null);
+				panel.setBackground(new Color(52, 73, 94));
+				panel.setBounds(10, 0, 208, 581);
+				contentPane.add(panel);
+				
+				JLabel label = new JLabel("My Profile");
+				label.setOpaque(true);
+				label.setHorizontalAlignment(SwingConstants.CENTER);
+				label.setForeground(Color.DARK_GRAY);
+				label.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				label.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+				label.setBackground(Color.ORANGE);
+				label.setBounds(10, 85, 188, 53);
+				panel.add(label);
+				
+				JLabel label_1 = new JLabel("Home");
+				label_1.setHorizontalAlignment(SwingConstants.CENTER);
+				label_1.setForeground(Color.WHITE);
+				label_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				label_1.setBounds(0, 0, 208, 53);
+				panel.add(label_1);
+				
+				JLabel label_2 = new JLabel("Members");
+				label_2.setOpaque(true);
+				label_2.setHorizontalAlignment(SwingConstants.CENTER);
+				label_2.setForeground(Color.DARK_GRAY);
+				label_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				label_2.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+				label_2.setBackground(Color.ORANGE);
+				label_2.setBounds(10, 149, 188, 53);
+				panel.add(label_2);
+				
+				JLabel label_3 = new JLabel("Game");
+				label_3.setOpaque(true);
+				label_3.setHorizontalAlignment(SwingConstants.CENTER);
+				label_3.setForeground(Color.DARK_GRAY);
+				label_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				label_3.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+				label_3.setBackground(Color.ORANGE);
+				label_3.setBounds(10, 213, 188, 53);
+				panel.add(label_3);
+				
+				JLabel label_4 = new JLabel("Tournaments");
+				label_4.setOpaque(true);
+				label_4.setHorizontalAlignment(SwingConstants.CENTER);
+				label_4.setForeground(Color.DARK_GRAY);
+				label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				label_4.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+				label_4.setBackground(Color.ORANGE);
+				label_4.setBounds(10, 277, 188, 57);
+				panel.add(label_4);
+				
+				JLabel label_5 = new JLabel("Vote");
+				label_5.setOpaque(true);
+				label_5.setHorizontalAlignment(SwingConstants.CENTER);
+				label_5.setForeground(Color.DARK_GRAY);
+				label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				label_5.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+				label_5.setBackground(Color.ORANGE);
+				label_5.setBounds(10, 345, 188, 53);
+				panel.add(label_5);
+				
+				JLabel label_6 = new JLabel("Log Out");
+				label_6.setOpaque(true);
+				label_6.setHorizontalAlignment(SwingConstants.CENTER);
+				label_6.setForeground(Color.DARK_GRAY);
+				label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
+				label_6.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+				label_6.setBackground(Color.ORANGE);
+				label_6.setBounds(21, 526, 164, 29);
+				panel.add(label_6);
+				
+				JPanel panel_1 = new JPanel();
+				panel_1.setBackground(new Color(241, 196, 15));
+				panel_1.setBounds(226, 0, 3, 581);
+				contentPane.add(panel_1);}
 			
 			
 
