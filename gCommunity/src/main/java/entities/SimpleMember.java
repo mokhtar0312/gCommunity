@@ -3,7 +3,9 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -97,7 +99,7 @@ public class SimpleMember implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<Event> getEvents() {
 		return events;
 	}

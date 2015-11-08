@@ -11,13 +11,13 @@ import entities.Notification;
 
 @Local
 public interface MessageServiceLocal {
-	Boolean ajouterMessage(Message message,Notification notification);
+	Boolean ajouterMessage(Message message);
 	List<Message> readAllMessage();
 	Boolean deleteMessageById(Integer id);
 	Boolean updateMessage(Message message);	
 	Message findMessageById(Integer id);
     ActiveMember findActiveMemeberByUsername(String username);
-    ActiveMember findActiveMemberById(Long long1);
+    ActiveMember findActiveMemberById(int i);
     ActiveMember findActiveMemberByEmail(String email);
     List<Message> readAllMessageByIDActiveMember(ActiveMember activeMember);
     List<Message> findAllMessage();

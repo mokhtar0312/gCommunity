@@ -18,9 +18,9 @@ public class MessageServicesDelegate {
 				jndi);
 	}
 
-	public static Boolean ajouterMessage(Message message,
-			Notification notification) {
-		return getProxy().ajouterMessage(message, notification);
+	public static Boolean ajouterMessage(Message message
+			) {
+		return getProxy().ajouterMessage(message);
 	}
 
 	public static List<Message> readAllMessage() {
@@ -43,8 +43,8 @@ public class MessageServicesDelegate {
 		return getProxy().findActiveMemeberByUsername(username);
 	}
 
-	public static ActiveMember findActiveMemberById(Long long1) {
-		return getProxy().findActiveMemberById(long1);
+	public static ActiveMember findActiveMemberById(int i) {
+		return getProxy().findActiveMemberById(i);
 	}
 
 	public static ActiveMember findActiveMemberByEmail(String email) {

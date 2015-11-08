@@ -29,6 +29,8 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JScrollPane;
 
+import repo.AfficherEventAdapter;
+
 public class UserProfil {
 	/**
 	 * 
@@ -39,6 +41,10 @@ public class UserProfil {
 	// ActiveMemberServicesDelegate.doFindActiveMemberById(11);
 	ActiveMember am = new ActiveMember();
 	ActiveMember admin = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
+	String username=admin.getSurname();
+	String password=admin.getPassword();
+
+
 
 
 	private JFrame frame;
@@ -185,37 +191,37 @@ public class UserProfil {
 		panel.add(label_6);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
 		panel_1.setBackground(new Color(52, 73, 94));
 		panel_1.setBounds(217, 2, 701, 581);
 		frame.getContentPane().add(panel_1);
+		panel_1.setLayout(null);
 
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(10, 11, 689, 559);
 		tabbedPane.setOpaque(true);
 		tabbedPane.setBackground(new Color(52, 73, 94));
-		tabbedPane.setBounds(10, 11, 689, 559);
 		panel_1.add(tabbedPane);
 
 		ConsulterMessageAdmin Message = new ConsulterMessageAdmin(admin);
 		Message.setLayout(null);
 		Message.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("Message", null, Message, null);
+		tabbedPane.addTab("  All Messages  ", null, Message, null);
 
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("New tab", null, panel_4, null);
+		NewMessage nvmj = new NewMessage(admin , username, password);
+		nvmj.setBackground(new Color(52, 73, 94));
+		tabbedPane.addTab("New Message", null, nvmj, null);
 
-		JPanel panel_5 = new JPanel();
-		panel_5.setLayout(null);
-		panel_5.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("New tab", null, panel_5, null);
+		AficherEvent event = new AficherEvent(admin);
+		event.setLayout(null);
+		event.setBackground(new Color(52, 73, 94));
+		tabbedPane.addTab("My Events", null, event, null);
 
 		JPanel achievement = new JPanel();
 		achievement.setLayout(null);
 		achievement.setOpaque(true);
 		achievement.setBorder(null);
 		achievement.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("achievement", null, achievement, null);
+		tabbedPane.addTab("Achievement", null, achievement, null);
 
 		JLabel lblimage = new JLabel("");
 		lblimage.setIcon(new ImageIcon(UserProfil.class
