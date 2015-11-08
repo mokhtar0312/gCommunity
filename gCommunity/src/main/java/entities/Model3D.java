@@ -23,7 +23,8 @@ public class Model3D implements Serializable {
 	private String img;
 	private static final long serialVersionUID = 1L;
 	
-	
+	private List<SimpleMember> simpleMembers;
+
 
 	public Model3D() {
 		super();
@@ -57,6 +58,13 @@ public class Model3D implements Serializable {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+	@ManyToMany(mappedBy="model3Ds")
+	public List<SimpleMember> getSimpleMembers() {
+		return simpleMembers;
+	}
+	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
+		this.simpleMembers = simpleMembers;
 	}
 	
    

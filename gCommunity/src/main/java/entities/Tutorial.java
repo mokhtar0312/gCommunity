@@ -1,11 +1,13 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  * Entity implementation class for Entity: Tutorial
@@ -19,6 +21,9 @@ public class Tutorial implements Serializable {
 	private String description;
 	private Integer rate;
 	private static final long serialVersionUID = 1L;
+	
+	private List<SimpleMember> simpleMembers;
+
 
 	public Tutorial() {
 		super();
@@ -56,6 +61,14 @@ public class Tutorial implements Serializable {
 
 	public void setRate(Integer rate) {
 		this.rate = rate;
+	}
+@ManyToMany(mappedBy="tutorials")
+	public List<SimpleMember> getSimpleMembers() {
+		return simpleMembers;
+	}
+
+	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
+		this.simpleMembers = simpleMembers;
 	}
 
 	

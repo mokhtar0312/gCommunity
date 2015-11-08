@@ -15,7 +15,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
@@ -71,89 +70,98 @@ public class VoteInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setLayout(null);
-		
+
 		JButton btnCheckIfVote = new JButton("Check If Vote Is Possible");
-		
+
 		JButton btnNewButton = new JButton("Vote");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				List<ActiveMember> accounting;
+				ActiveMember voted = new ActiveMember();
+				accounting = ActiveMemberServicesDelegate
+						.doFindAllActiveMember();
+				for (ActiveMember c : accounting) {
+					if (c.getUsername().equals(choix)) {
+						voted = c;
+					}
+				}
+				VoteServicesDelegate.addVote(
+						Calendar.getInstance().get(Calendar.YEAR),
+						voted.getId(), member.getId());
 			}
 		});
 		btnNewButton.setVisible(false);
 		btnNewButton.setBounds(469, 263, 194, 33);
 		frame.getContentPane().add(btnNewButton);
-		
-		
+
 		JComboBox<String> comboType = new JComboBox<String>();
-		 frame.getContentPane().add(comboType);
-		 comboType.setVisible(false);
-		 comboType.addMouseListener(new MouseAdapter() {
-		 @Override
-		 public void mouseClicked(MouseEvent e) {
-		 List<ActiveMember> accounting;
-		 accounting = ActiveMemberServicesDelegate.doFindAllActiveMember();
-		 for (ActiveMember c : accounting) {
-		 comboType.addItem(c.getUsername());
-		 
-		 choix = comboType.getSelectedItem().toString();
-		 }
-		
-		
-		 }
-		 });
-		 comboType.setBounds(357, 113, 410, 60);
-		 
-		 ConsulterCandidat panel = new ConsulterCandidat();
-		 panel.setBounds(218, 0, 699, 581);
-		 panel.setBackground(new Color(52, 73, 94));
-		 frame.getContentPane().add(panel);
-		 panel.setLayout(null);
+		frame.getContentPane().add(comboType);
+		comboType.setVisible(false);
+		comboType.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				List<ActiveMember> accounting;
+				accounting = ActiveMemberServicesDelegate
+						.doFindAllActiveMember();
+				for (ActiveMember c : accounting) {
+					comboType.addItem(c.getUsername());
+
+					choix = comboType.getSelectedItem().toString();
+				}
+
+			}
+		});
+		comboType.setBounds(357, 113, 410, 60);
+
+		ConsulterCandidat panel = new ConsulterCandidat();
+		panel.setBounds(218, 0, 699, 581);
+		panel.setBackground(new Color(52, 73, 94));
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
 		btnCheckIfVote.setBounds(228, 393, 287, 33);
 		panel.add(btnCheckIfVote);
 
-		
-
-		
 		btnCheckIfVote.addActionListener(new ActionListener() {
-			
+
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(member.getName() + member.getServer());
-				
-				Vote vote=new Vote();
-				List<Vote>votes=VoteServicesDelegate.findAllVotes();
+
+				Vote vote = new Vote();
+				List<Vote> votes = VoteServicesDelegate.findAllVotes();
 				System.out.println("kabougaaa");
 
-				for(Vote a:votes){
-					
-					if(a.getActivemembervoter().equals(member) && a.getYear().equals(Calendar.getInstance().get(Calendar.YEAR))){
-					vote=a;}
+				for (Vote a : votes) {
+
+					if (a.getActivemembervoter().equals(member)
+							&& a.getYear().equals(
+									Calendar.getInstance().get(Calendar.YEAR))) {
+						vote = a;
+					}
 				}
-				
-				if(vote != null){
-					JFrame parent = new JFrame();
-					JOptionPane.showMessageDialog(parent, "You have even voted for this year");
-				}
-				else{
-					panel.setVisible(false);
-					btnCheckIfVote.setVisible(false);
-					JPanel panel = new JPanel();
-					 panel.setBounds(218, 0, 699, 581);
-					 panel.setBackground(new Color(52, 73, 94));
-					 frame.getContentPane().add(panel);
-					 panel.setLayout(null);
-					comboType.setVisible(true);
-					btnNewButton.setVisible(true);
-					//VoteServicesDelegate.addVote(Calendar.getInstance().get(Calendar.YEAR), member.getId(), idMembervoted)
-					
-				}
-				
-				
+
+				// if(vote == null){
+				panel.setVisible(false);
+				btnCheckIfVote.setVisible(false);
+				JPanel panel = new JPanel();
+				panel.setBounds(218, 0, 699, 581);
+				panel.setBackground(new Color(52, 73, 94));
+				frame.getContentPane().add(panel);
+				panel.setLayout(null);
+				comboType.setVisible(true);
+				btnNewButton.setVisible(true);
+				// }
+				// else{
+				// JFrame parent = new JFrame();
+				// JOptionPane.showMessageDialog(parent,
+				// "You have even voted for this year");
+				//
+				//
+				//
+				// }
+
 			}
 		});
-		
-		
-		
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(208, 0, 10, 581);
@@ -244,9 +252,6 @@ public class VoteInterface {
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setBounds(450, 52, 225, 33);
 		frame.getContentPane().add(lblNewLabel);
-		
-		 
 
-		
 	}
 }

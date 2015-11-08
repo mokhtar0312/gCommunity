@@ -23,7 +23,8 @@ public class Streams implements Serializable {
 	private Integer viewers;
 	private static final long serialVersionUID = 1L;
 
-	
+	private List<SimpleMember> simpleMembers;
+
 	private List<ActiveMember> ActiveMembers;
 
 	public Streams() {
@@ -70,6 +71,14 @@ public class Streams implements Serializable {
 
 	public void setActiveMembers(List<ActiveMember> activeMembers) {
 		ActiveMembers = activeMembers;
+	}
+@ManyToMany(mappedBy="streamss")
+	public List<SimpleMember> getSimpleMembers() {
+		return simpleMembers;
+	}
+
+	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
+		this.simpleMembers = simpleMembers;
 	}
 
 	
