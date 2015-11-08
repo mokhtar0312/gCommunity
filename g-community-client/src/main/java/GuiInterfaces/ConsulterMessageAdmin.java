@@ -105,7 +105,7 @@ public class ConsulterMessageAdmin extends JPanel  {
 			add(btnToExcel);
 			
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(86, 107, 572, 119);
+			scrollPane.setBounds(41, 89, 572, 119);
 			add(scrollPane);
 			accountingTable = new JTable();
 			scrollPane.setViewportView(accountingTable);
