@@ -1,4 +1,4 @@
-package GuiInterfaces;
+package anisGUI;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;

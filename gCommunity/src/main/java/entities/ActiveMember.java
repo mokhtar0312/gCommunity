@@ -3,6 +3,7 @@ package entities;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -31,7 +32,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private List<Message> messages;
 	private List<Notification> notifications;
 
-	@OneToMany(mappedBy = "activemembervoter")
+	@OneToMany(mappedBy = "activemembervoter",cascade=CascadeType.MERGE)
 	public List<Vote> getVoters() {
 		return voters;
 	}
@@ -40,7 +41,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 		this.voters = voters;
 	}
 
-	@OneToMany(mappedBy = "activemembervoted")
+	@OneToMany(mappedBy = "activemembervoted", cascade=CascadeType.MERGE)
 	public List<Vote> getVoteds() {
 		return voteds;
 	}

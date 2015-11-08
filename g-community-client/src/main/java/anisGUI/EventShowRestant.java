@@ -1,4 +1,4 @@
-package GuiInterfaces;
+package anisGUI;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -21,10 +21,10 @@ import entities.ActiveMember;
 
 import javax.swing.JScrollPane;
 
-import repo.AfficherEventAdapter;
 import repo.ConsulterListeMessageAdminAdapter;
+import repo.EventAffich;
 
-public class AficherEvent extends JPanel  {
+public class EventShowRestant extends JPanel  {
 	/**
 	 * 
 	 */
@@ -39,8 +39,9 @@ public class AficherEvent extends JPanel  {
 	 */
 	
 
+   
     
-	public AficherEvent(ActiveMember admin) throws NamingException {
+	public EventShowRestant(ActiveMember admin) throws NamingException {
 		
 		this.admin=admin;
 
@@ -53,7 +54,7 @@ public class AficherEvent extends JPanel  {
 			accountingTable = new JTable();
 			scrollPane.setViewportView(accountingTable);
 			accountingTable.setBackground(Color.WHITE);
-			accountingTable.setModel(new AfficherEventAdapter((ActiveMember) admin) );
+			accountingTable.setModel(new EventAffich((ActiveMember) admin) );
 
 		} catch (NamingException e1) {
 			// TODO Auto-generated catch block

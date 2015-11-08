@@ -1,4 +1,4 @@
-package GuiInterfaces;
+package anisGUI;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -23,7 +23,7 @@ import javax.swing.JScrollPane;
 
 import repo.ConsulterListeMessageAdminAdapter;
 
-public class ConsulterMessageAdmin extends JPanel  {
+public class AfficherMessage extends JPanel  {
 	/**
 	 * 
 	 */
@@ -62,7 +62,7 @@ public class ConsulterMessageAdmin extends JPanel  {
             System.out.println(e);
         }
     }
-	public ConsulterMessageAdmin(ActiveMember admin) throws NamingException {
+	public AfficherMessage(ActiveMember admin) throws NamingException {
 		
 		this.admin=admin;
 
@@ -74,7 +74,7 @@ public class ConsulterMessageAdmin extends JPanel  {
 				public void actionPerformed(ActionEvent e) {
 					
 					 JFileChooser fc = new JFileChooser();
-		                int option = fc.showSaveDialog(ConsulterMessageAdmin.this);
+		                int option = fc.showSaveDialog(AfficherMessage.this);
 		                if(option == JFileChooser.APPROVE_OPTION){
 		                    String filename = fc.getSelectedFile().getName(); 
 		                    String path = fc.getSelectedFile().getParentFile().getPath();
