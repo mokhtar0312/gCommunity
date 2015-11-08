@@ -4,10 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 /**
  * Entity implementation class for Entity: News
@@ -22,13 +21,12 @@ public class News implements Serializable {
 	private String description;
 	private static final long serialVersionUID = 1L;
 
-	
-
 	public News() {
 		super();
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return this.id;
 	}
@@ -60,6 +58,5 @@ public class News implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
 
 }
