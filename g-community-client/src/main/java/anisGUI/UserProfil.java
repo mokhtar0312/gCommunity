@@ -1,4 +1,4 @@
-package GuiInterfaces;
+package anisGUI;
 
 import java.awt.Color;
 import java.awt.Desktop;
@@ -29,6 +29,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JScrollPane;
 
+import GuiInterfaces.Authentification;
 import repo.AfficherEventAdapter;
 
 public class UserProfil {
@@ -202,7 +203,7 @@ public class UserProfil {
 		tabbedPane.setBackground(new Color(52, 73, 94));
 		panel_1.add(tabbedPane);
 
-		ConsulterMessageAdmin Message = new ConsulterMessageAdmin(admin);
+		AfficherMessage Message = new AfficherMessage(admin);
 		Message.setLayout(null);
 		Message.setBackground(new Color(52, 73, 94));
 		tabbedPane.addTab("  All Messages  ", null, Message, null);
@@ -211,7 +212,7 @@ public class UserProfil {
 		nvmj.setBackground(new Color(52, 73, 94));
 		tabbedPane.addTab("New Message", null, nvmj, null);
 
-		AficherEvent event = new AficherEvent(admin);
+		AficherUserEvent event = new AficherUserEvent(admin);
 		event.setLayout(null);
 		event.setBackground(new Color(52, 73, 94));
 		tabbedPane.addTab("My Events", null, event, null);
