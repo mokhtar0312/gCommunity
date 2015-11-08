@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -81,7 +83,7 @@ public class Event implements Serializable {
 		this.date = date;
 	}
 
-	@ManyToMany(mappedBy = "events")
+	@ManyToMany(mappedBy = "events",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<SimpleMember> getSimpleMember() {
 		return SimpleMember;
 	}

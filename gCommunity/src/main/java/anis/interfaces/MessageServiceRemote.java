@@ -10,7 +10,7 @@ import entities.Notification;
 
 @Remote
 public interface MessageServiceRemote {
-	Boolean ajouterMessage(Message message,Notification notification);
+	Boolean ajouterMessage(Message message);
 	List<Message> readAllMessage();
 	Boolean deleteMessageById(Integer id);
 	Boolean updateMessage(Message message);	

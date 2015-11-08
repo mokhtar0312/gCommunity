@@ -11,7 +11,7 @@ import entities.Notification;
 
 @Local
 public interface MessageServiceLocal {
-	Boolean ajouterMessage(Message message,Notification notification);
+	Boolean ajouterMessage(Message message);
 	List<Message> readAllMessage();
 	Boolean deleteMessageById(Integer id);
 	Boolean updateMessage(Message message);	

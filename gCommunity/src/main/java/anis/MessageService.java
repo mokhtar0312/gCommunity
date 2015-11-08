@@ -32,14 +32,13 @@ public class MessageService implements MessageServiceRemote, MessageServiceLocal
     }
 
 	@Override
-	public Boolean ajouterMessage(Message message, Notification notification) {
+	public Boolean ajouterMessage(Message message) {
 		Boolean b = false;
 		try {
 			entityManager.persist(message);
-			entityManager.persist(notification);
 			b = true;
 		} catch (Exception e) {
-			System.err.println("ouups ...");
+			System.err.println("lייייייייי");
 		}
 		return b;
 	}

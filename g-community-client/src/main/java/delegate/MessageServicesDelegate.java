@@ -18,9 +18,9 @@ public class MessageServicesDelegate {
 				jndi);
 	}
 
-	public static Boolean ajouterMessage(Message message,
-			Notification notification) {
-		return getProxy().ajouterMessage(message, notification);
+	public static Boolean ajouterMessage(Message message
+			) {
+		return getProxy().ajouterMessage(message);
 	}
 
 	public static List<Message> readAllMessage() {
