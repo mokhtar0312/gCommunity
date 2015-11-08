@@ -34,12 +34,14 @@ public class VoteServices implements VoteServicesRemote, VoteServicesLocal {
 	}
 
 	@Override
-	public Boolean addVote(Vote vote, Integer idMember) {
+	public Boolean addVote(Integer year, Integer idMembervoter,Integer idMembervoted) {
 		boolean b = false;
 		try {
-			ActiveMember memberFound = activeMemberServices
-					.findActiveMemberById(idMember);
-			// vote.setMember(memberFound);
+			ActiveMember memberVoter= activeMemberServices
+					.findActiveMemberById(idMembervoter);
+			ActiveMember memberVoted= activeMemberServices
+					.findActiveMemberById(idMembervoted);
+			Vote vote=new Vote(memberVoter, memberVoted, year);
 			entitymanager.merge(vote);
 			b = true;
 
@@ -80,13 +82,16 @@ public class VoteServices implements VoteServicesRemote, VoteServicesLocal {
 		return b;
 	}
 
+	
 	@Override
 	public List<Vote> findAllVotes() {
 
-		String jpql = "select v from Vote s";
+		String jpql = "select v from Vote v";
 		Query query = entitymanager.createQuery(jpql);
 
 		return query.getResultList();
 	}
+	
+	
 
 }

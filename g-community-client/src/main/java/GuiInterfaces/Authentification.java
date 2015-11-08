@@ -3,6 +3,7 @@ package GuiInterfaces;
 import java.awt.Color;
 import java.awt.EventQueue;
 
+import javax.naming.NamingException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +20,9 @@ import java.awt.event.ActionEvent;
 import java.util.List;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+
 import javax.swing.SwingConstants;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -104,6 +107,12 @@ public class Authentification {
 				if(found.getPassword().equals(password)){
 					
 					frmIdentification.setVisible(false);
+					try {
+						new VoteInterface(found).frame.setVisible(true);
+					} catch (NamingException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
 				}
 				

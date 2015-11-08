@@ -9,7 +9,7 @@ import entities.Vote;
 @Remote
 public interface VoteServicesRemote {
 
-	Boolean addVote(Vote vote,Integer idMember);
+	Boolean addVote(Integer year, Integer idMembervoter,Integer idMembervoted);
 	Vote findVoteById(Integer id);
 	Boolean updateVote(Vote vote);
 	Boolean deleteVote(Integer id);

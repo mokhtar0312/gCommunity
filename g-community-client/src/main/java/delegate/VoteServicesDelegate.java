@@ -15,24 +15,26 @@ public class VoteServicesDelegate {
 		return (VoteServicesRemote) ServiceLocator.getInstance().getProxy(jndi);
 	}
 
-	private static Boolean addVote(Vote vote, Integer idMember) {
-		return getProxy().addVote(vote, idMember);
+	public static Boolean addVote(Integer year, Integer idMembervoter, Integer idMembervoted) {
+		return getProxy().addVote(year, idMembervoter, idMembervoted);
 	}
 
-	private static Vote findVoteById(Integer id) {
+	public static Vote findVoteById(Integer id) {
 		return getProxy().findVoteById(id);
 	}
 
-	private static Boolean updateVote(Vote vote) {
+	public static Boolean updateVote(Vote vote) {
 		return getProxy().updateVote(vote);
 	}
 
-	private static Boolean deleteVote(Integer id) {
+	public static Boolean deleteVote(Integer id) {
 		return getProxy().deleteVote(id);
 	}
 
-	private static List<Vote> findAllVotes() {
+	public static List<Vote> findAllVotes() {
 		return getProxy().findAllVotes();
 	}
+	
+	
 
 }

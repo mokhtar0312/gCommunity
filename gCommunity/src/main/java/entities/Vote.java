@@ -20,6 +20,21 @@ public class Vote implements Serializable {
 	private ActiveMember activemembervoted;
 	private Integer year;
 
+	
+	
+
+	
+	
+	
+	
+	public Vote(ActiveMember activemembervoter, ActiveMember activemembervoted,
+			Integer year) {
+		this.voteid = new VoteID(activemembervoter.getId(), activemembervoted.getId());
+		this.activemembervoter = activemembervoter;
+		this.activemembervoted = activemembervoted;
+		this.year = year;
+	}
+
 	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name = "voter", referencedColumnName = "id", updatable = false, insertable = false)
 	public ActiveMember getActivemembervoter() {

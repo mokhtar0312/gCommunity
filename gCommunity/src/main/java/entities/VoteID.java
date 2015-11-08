@@ -14,6 +14,17 @@ public class VoteID implements Serializable {
 
 	private Integer voter;
 	private Integer voted;
+	
+	
+	
+	
+	
+	
+	public VoteID(Integer voter, Integer voted) {
+		super();
+		this.voter = voter;
+		this.voted = voted;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

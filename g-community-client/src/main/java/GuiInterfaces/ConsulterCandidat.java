@@ -28,10 +28,13 @@ public class ConsulterCandidat extends JPanel {
 
 		setLayout(null);
 		try {
+			
+			JScrollPane scrollPane_1 = new JScrollPane();
+			scrollPane_1.setBounds(86, 107, 572, 119);
+			add(scrollPane_1);
 
 			JScrollPane scrollPane = new JScrollPane();
-			scrollPane.setBounds(86, 107, 572, 119);
-			add(scrollPane);
+			scrollPane_1.setViewportView(scrollPane);
 			accountingTable = new JTable();
 			scrollPane.setViewportView(accountingTable);
 			accountingTable.setBackground(Color.WHITE);
