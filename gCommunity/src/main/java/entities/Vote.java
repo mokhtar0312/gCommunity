@@ -17,6 +17,7 @@ public class Vote implements Serializable {
 	private VoteID voteid;
 	private ActiveMember activemembervoter;
 	private ActiveMember activemembervoted;
+	private Integer year;
 
 	@ManyToOne
 	@JoinColumn(name = "voter", referencedColumnName = "id", updatable = false, insertable = false)
@@ -47,7 +48,7 @@ public class Vote implements Serializable {
 		this.voteid = voteid;
 	}
 
-	private Integer year;
+	
 	private static final long serialVersionUID = 1L;
 
 	public Vote() {

@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import java.awt.Color;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
@@ -26,6 +27,7 @@ import entities.ActiveMember;
 import java.awt.Canvas;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 import javax.swing.SwingConstants;
 
@@ -245,18 +247,23 @@ public class SignIn {
 				memberCreated.setRole(role);
 				
 				 
-//				 ActiveMember memberfound=ActiveMemberServicesDelegate.doFindActiveMemberByUserName(username);
-//				if(memberfound==null){
+			     ActiveMember found=new ActiveMember();
+				List<ActiveMember>aa=ActiveMemberServicesDelegate.doFindAllActiveMember();
+				for(ActiveMember a:aa){
+					
+					if(a.getUsername().equals(username)){
+					found=a;}
+				}
+				//if(found==null){
 				ActiveMemberServicesDelegate.doAddActiveMember(memberCreated);
 				frmSignIn.setVisible(false);
 				new Authentification().frmIdentification.setVisible(true);
-//				new Authentification().frmIdentification.setVisible(true);
-//				
+			
 //				}else
-//				{
-//			
-//					erreurusername.setVisible(true);
-//
+//				{	
+//					JFrame parent = new JFrame();
+//					JOptionPane.showMessageDialog(parent, "Existing Username");
+//					
 //				}
 			}
 		});

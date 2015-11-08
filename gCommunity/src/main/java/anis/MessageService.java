@@ -88,8 +88,8 @@ public class MessageService implements MessageServiceRemote, MessageServiceLocal
 	}
 
 	@Override
-	public ActiveMember findActiveMemberById(Long long1) {
-		return entityManager.find(ActiveMember.class, long1);
+	public ActiveMember findActiveMemberById(int i) {
+		return entityManager.find(ActiveMember.class, i);
 
 	}
 
