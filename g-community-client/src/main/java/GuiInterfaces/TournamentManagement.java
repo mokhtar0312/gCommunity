@@ -24,9 +24,12 @@ import javax.swing.border.EmptyBorder;
 import delegate.EventServiceDelegate;
 import entities.Event;
 import repo.EventModel;
+
 import javax.swing.JLabel;
 import javax.swing.border.MatteBorder;
+
 import java.awt.Font;
+
 import javax.swing.SwingConstants;
 
 public class TournamentManagement  extends JFrame {
@@ -79,7 +82,7 @@ public class TournamentManagement  extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(52, 73, 94));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setTitle("List of Account");
+		setTitle("Tournament Management");
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -93,7 +96,7 @@ public class TournamentManagement  extends JFrame {
 				System.out.println("aaa" + test + row);
 			}
 		});
-		scrollPane.setBounds(355, 110, 357, 217);
+		scrollPane.setBounds(355, 110, 403, 217);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -139,7 +142,7 @@ public class TournamentManagement  extends JFrame {
 					
 				
 			}});
-				upda.setBounds(623, 492, 89, 23);
+				upda.setBounds(567, 492, 89, 23);
 				contentPane.add(upda);
 				
 				btnDelete = new JButton("DELETE");
@@ -163,7 +166,7 @@ public class TournamentManagement  extends JFrame {
 						
 					}
 				});
-				btnDelete.setBounds(490, 492, 89, 23);
+				btnDelete.setBounds(454, 492, 89, 23);
 				contentPane.add(btnDelete);
 				
 				login = new JTextField();
@@ -297,7 +300,19 @@ public class TournamentManagement  extends JFrame {
 				JPanel panel_1 = new JPanel();
 				panel_1.setBackground(new Color(241, 196, 15));
 				panel_1.setBounds(226, 0, 3, 581);
-				contentPane.add(panel_1);}
+				contentPane.add(panel_1);
+				
+				JButton btnAdd = new JButton("ADD");
+				btnAdd.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						new AddTournament().frame.setVisible(true);
+						
+					}
+				});
+				btnAdd.setForeground(new Color(0, 0, 102));
+				btnAdd.setBounds(669, 492, 89, 23);
+				contentPane.add(btnAdd);}
 			
 			
 
