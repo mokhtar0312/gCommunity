@@ -78,4 +78,14 @@ public class NewsServices implements NewsServicesRemote, NewsServicesLocal {
 		return query.getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<News> FindbyTyped(String typed) {
+		String jpql = "SELECT n FROM News n WHERE n.title LIKE :pattern OR n.description LIKE :pattern1";
+		Query query = entitymanager.createQuery(jpql);
+		String typ = "%" + typed + "%";
+		query.setParameter("pattern", typ).setParameter("pattern1", typ);
+		return query.getResultList();
+	}
+
 }

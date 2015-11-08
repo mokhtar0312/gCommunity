@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import entities.ActiveMember;
 import entities.Vote;
 
 @Remote
@@ -14,4 +15,6 @@ public interface VoteServicesRemote {
 	Boolean updateVote(Vote vote);
 	Boolean deleteVote(Integer id);
 	List<Vote> findAllVotes();
+	Boolean Vote(Integer year, ActiveMember voter,
+			ActiveMember voted);
 }

@@ -16,6 +16,15 @@ public class ConsulterCandidat extends JPanel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public String getTest() {
+		return test;
+	}
+
+	public void setTest(String test) {
+		this.test = test;
+	}
+
+	private String test=null;
 	JTable accountingTable;
 
 	/**
@@ -40,7 +49,7 @@ public class ConsulterCandidat extends JPanel {
 				public void mouseClicked(MouseEvent e) {
 					int row = accountingTable.getSelectedRow();
 					System.out.println("aaaa" + row);
-					String test = accountingTable.getModel().getValueAt(row, 0).toString();
+					test = accountingTable.getModel().getValueAt(row, 0).toString();
 					System.out.println(test);
 
 				}

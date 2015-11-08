@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.naming.NamingException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.Color;
@@ -18,19 +19,23 @@ import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
 import delegate.ActiveMemberServicesDelegate;
+import delegate.VoteServicesDelegate;
 import entities.ActiveMember;
+import entities.Vote;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Calendar;
 import java.util.List;
+
 import javax.swing.JButton;
 
 public class VoteInterface {
 
-	private JFrame frame;
-
+	JFrame frame;
+    private static ActiveMember member =new ActiveMember();
 	/**
 	 * Launch the application.
 	 */
@@ -38,7 +43,8 @@ public class VoteInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VoteInterface window = new VoteInterface();
+					VoteInterface window = new VoteInterface(member);
+					System.out.println(member.getName()+"  hjhjkhkj  "+member.getSurname());
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +57,9 @@ public class VoteInterface {
 	 * Create the application.
 	 * @throws NamingException 
 	 */
-	public VoteInterface() throws NamingException {
+	
+	public VoteInterface(ActiveMember member) throws NamingException {
+		this.member=member;
 		initialize();
 	}
 
@@ -66,9 +74,7 @@ public class VoteInterface {
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setLayout(null);
 		
-		JButton btnCheckIfVote = new JButton("Check If Vote Is Possible");
-		btnCheckIfVote.setBounds(391, 458, 287, 33);
-		frame.getContentPane().add(btnCheckIfVote);
+		
 		
 		
 		ConsulterCandidat panel = new ConsulterCandidat();
@@ -76,6 +82,49 @@ public class VoteInterface {
 		panel.setBackground(new Color(52, 73, 94));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		
+		JButton btnCheckIfVote = new JButton("Check If Vote Is Possible");
+		btnCheckIfVote.addActionListener(new ActionListener() {
+			@SuppressWarnings("unused")
+			public void actionPerformed(ActionEvent e) {
+				List<Vote>votes=VoteServicesDelegate.findAllVotes();
+				Vote vote=new Vote();
+                     for(Vote a:votes){
+					
+					
+					if(a.getActivemembervoter().equals(member) && a.getYear().equals(Calendar.getInstance().get(Calendar.YEAR))){
+					vote=a;}
+				}
+                     
+                     if(vote==null  ){
+                    	 JFrame parent = new JFrame();
+   					JOptionPane.showMessageDialog(parent, "You have even voted for this year !!");
+                    	 
+                    	 
+                     }
+                     else{
+                    	 
+                    	 List<ActiveMember>members=ActiveMemberServicesDelegate.doFindAllActiveMember();
+         				ActiveMember voter=new ActiveMember();
+                              for(ActiveMember a:members){
+         					
+         					
+         					if(a.getName().equals(panel.getTest()) ){
+         					voter=a;}
+         				}
+                    	 
+                    	 
+                    	 
+                    	 
+                    	 VoteServicesDelegate.Vote(Calendar.getInstance().get(Calendar.YEAR), member, voter);
+                    	 
+                     }
+				
+				
+			}
+		});
+		btnCheckIfVote.setBounds(419, 458, 259, 33);
+		frame.getContentPane().add(btnCheckIfVote);
 		
 		
 //		JComboBox<String> comboType = new JComboBox<String>();

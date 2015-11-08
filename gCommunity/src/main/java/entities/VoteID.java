@@ -64,7 +64,12 @@ public class VoteID implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public VoteID() {
+	
+	}
+	public VoteID(Integer voter, Integer voted) {
 		super();
+		this.voter = voter;
+		this.voted = voted;
 	}
    
 }

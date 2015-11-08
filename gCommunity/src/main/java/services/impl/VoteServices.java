@@ -88,5 +88,22 @@ public class VoteServices implements VoteServicesRemote, VoteServicesLocal {
 
 		return query.getResultList();
 	}
+	
+	
+	public Boolean Vote(Integer year, ActiveMember voter,
+			ActiveMember voted) {
+		Boolean b = false;
+
+		try {
+			entitymanager.merge(voter);
+			entitymanager.merge(voted);
+			Vote vote = new Vote(voter, voted, year);
+			entitymanager.merge(vote);
+			b = true;
+		} catch (Exception e) {
+		}
+		return b;
+	}
+
 
 }

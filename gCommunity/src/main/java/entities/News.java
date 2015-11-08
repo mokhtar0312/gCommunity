@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.ManyToMany;
+
 
 /**
  * Entity implementation class for Entity: News
@@ -22,6 +24,7 @@ public class News implements Serializable {
 	private Date date;
 	private String description;
 	private static final long serialVersionUID = 1L;
+
 
 	private List<ActiveMember> ActiveMembers;
 
@@ -63,6 +66,7 @@ public class News implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 @ManyToMany(mappedBy="news")
 	public List<ActiveMember> getActiveMembers() {
 		return ActiveMembers;
@@ -71,6 +75,7 @@ public class News implements Serializable {
 	public void setActiveMembers(List<ActiveMember> activeMembers) {
 		ActiveMembers = activeMembers;
 	}
+
 
 
 }

@@ -2,6 +2,7 @@ package entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -19,7 +20,18 @@ public class Vote implements Serializable {
 	private ActiveMember activemembervoted;
 	private Integer year;
 
-	@ManyToOne
+	
+	
+	
+	public Vote(ActiveMember activemembervoter, ActiveMember activemembervoted,
+			Integer year) {
+		this.voteid = new VoteID(activemembervoter.getId(), activemembervoted.getId());
+		this.activemembervoter = activemembervoter;
+		this.activemembervoted = activemembervoted;
+		this.year = year;
+	}
+
+	@ManyToOne(cascade=CascadeType.MERGE )
 	@JoinColumn(name = "voter", referencedColumnName = "id", updatable = false, insertable = false)
 	public ActiveMember getActivemembervoter() {
 		return activemembervoter;
@@ -29,7 +41,7 @@ public class Vote implements Serializable {
 		this.activemembervoter = activemembervoter;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name = "voted", referencedColumnName = "id", updatable = false, insertable = false)
 	public ActiveMember getActivemembervoted() {
 		return activemembervoted;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import locator.ServiceLocator;
 import services.interfaces.VoteServicesRemote;
+import entities.ActiveMember;
 import entities.Vote;
 
 public class VoteServicesDelegate {
@@ -15,24 +16,28 @@ public class VoteServicesDelegate {
 		return (VoteServicesRemote) ServiceLocator.getInstance().getProxy(jndi);
 	}
 
-	private static Boolean addVote(Vote vote, Integer idMember) {
+	public static Boolean addVote(Vote vote, Integer idMember) {
 		return getProxy().addVote(vote, idMember);
 	}
 
-	private static Vote findVoteById(Integer id) {
+	public static Vote findVoteById(Integer id) {
 		return getProxy().findVoteById(id);
 	}
 
-	private static Boolean updateVote(Vote vote) {
+	public static Boolean updateVote(Vote vote) {
 		return getProxy().updateVote(vote);
 	}
 
-	private static Boolean deleteVote(Integer id) {
+	public static Boolean deleteVote(Integer id) {
 		return getProxy().deleteVote(id);
 	}
 
-	private static List<Vote> findAllVotes() {
+	public static List<Vote> findAllVotes() {
 		return getProxy().findAllVotes();
 	}
+	public static Boolean Vote(Integer year, ActiveMember voter,
+			ActiveMember voted){
+			return getProxy().Vote(year, voter, voted);
+		}
 
 }
