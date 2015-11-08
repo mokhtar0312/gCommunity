@@ -43,8 +43,8 @@ public class MessageServicesDelegate {
 		return getProxy().findActiveMemeberByUsername(username);
 	}
 
-	public static ActiveMember findActiveMemberById(Long long1) {
-		return getProxy().findActiveMemberById(long1);
+	public static ActiveMember findActiveMemberById(int i) {
+		return getProxy().findActiveMemberById(i);
 	}
 
 	public static ActiveMember findActiveMemberByEmail(String email) {

@@ -16,7 +16,7 @@ public interface MessageServiceRemote {
 	Boolean updateMessage(Message message);	
 	Message findMessageById(Integer id);
     ActiveMember findActiveMemeberByUsername(String username);
-    ActiveMember findActiveMemberById(Long long1);
+    ActiveMember findActiveMemberById(int i);
     ActiveMember findActiveMemberByEmail(String email);
     List<Message> readAllMessageByIDActiveMember(ActiveMember activeMember);
     List<Message> findAllMessage();
