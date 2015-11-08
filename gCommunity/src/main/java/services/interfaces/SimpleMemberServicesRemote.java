@@ -19,5 +19,6 @@ public interface SimpleMemberServicesRemote {
 	Boolean deleteSimpleMember(SimpleMember simpleMember);
 
 	List<SimpleMember> findAllSimpleMember();
+	
 
 }

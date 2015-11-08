@@ -13,11 +13,6 @@ import javax.swing.JButton;
 
 
 
-
-
-
-
-
 import delegate.ActiveMemberServicesDelegate;
 import delegate.MessageServicesDelegate;
 import entities.ActiveMember;
@@ -130,6 +125,7 @@ public class NewMessage extends JPanel {
 //				notif.setMessage(message);
 				try {
 					MessageServicesDelegate.ajouterMessage(message);
+
 					JOptionPane.showMessageDialog(null, "Success!!", "Good :D", JOptionPane.OK_CANCEL_OPTION);
 					
 					
