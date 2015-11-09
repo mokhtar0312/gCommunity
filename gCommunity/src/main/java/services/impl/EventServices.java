@@ -1,5 +1,6 @@
 package services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ejb.LocalBean;
@@ -10,7 +11,9 @@ import javax.persistence.Query;
 
 import services.interfaces.EventServicesLocal;
 import services.interfaces.EventServicesRemote;
+import entities.ActiveMember;
 import entities.Event;
+import entities.SimpleMember;
 
 /**
  * Session Bean implementation class EventServices
@@ -21,6 +24,8 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 
 	@PersistenceContext
 	private EntityManager entityManager;
+	ArrayList<Event> List;
+	List<SimpleMember> List1;
 
 	/**
 	 * Default constructor.
@@ -64,6 +69,8 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 		Boolean b = false;
 		try {
 			entityManager.merge(event);
+			entityManager.flush();
+			System.out.println("ouuui");
 			b = true;
 		} catch (Exception e) {
 			System.err.println("ouups ...");
@@ -91,4 +98,62 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 		return query.getResultList();
 	}
 
-}
+	@Override
+	public Event findEventByName(String nom) {
+		System.out.println("found");
+		String jpql = "select e from Event e where e.name=:param";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param", nom);
+		return (Event) query.getSingleResult();
+		
+		
+
+	}
+	public Boolean affectSimpleMemberToEvent(Event event,
+			List<SimpleMember> simpleMembers) {
+		Boolean b = false;
+		try {
+
+				event.setSimpleMember(simpleMembers);
+				entityManager.persist(event);
+				System.out.println("weeeeeeeeey");
+				event.setNumberOfParticipants(event.getNumberOfParticipants()-1);
+				entityManager.flush();
+
+			b = true;
+		} catch (Exception e) {
+		}
+		System.out.println("noooooooon");
+		return b;
+	}
+
+	@Override
+	public List<Event> findAllEventsRestants(SimpleMember simpleMember) {
+
+		List = (ArrayList) findAllEvents();
+
+
+		// System.out.println(List.toString());
+		for (Event e : List) {
+
+			System.out.println(e.getId());
+			
+			List1 = e.getSimpleMember();
+			
+			for (SimpleMember p : List1) {
+				System.out.println(p.getId());
+				System.out.println(simpleMember.getId());
+				System.out.println(p.getId()==simpleMember.getId());
+				if (p.getId()==simpleMember.getId()){
+					List.remove(e);
+					for (Event r : List) {
+						System.out.println(r.getId());
+
+					}
+				}
+
+			}
+		
+	}
+		return List;
+	}}

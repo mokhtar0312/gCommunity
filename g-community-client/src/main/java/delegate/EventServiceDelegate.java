@@ -5,6 +5,7 @@ import java.util.List;
 import locator.ServiceLocator;
 import services.interfaces.EventServicesRemote;
 import entities.Event;
+import entities.SimpleMember;
 
 public class EventServiceDelegate {
 	private static EventServicesRemote remote;
@@ -31,6 +32,7 @@ public class EventServiceDelegate {
 
 	public static Boolean DoUpdateEvent(Event event)
 	{
+		System.out.println("updated");
 		return getProxy().updateEvent(event);
 	}
 
@@ -42,5 +44,15 @@ public class EventServiceDelegate {
 	public static List<Event> findAllEvents()
 	{
 		return getProxy().findAllEvents();
+	}
+	public static Event DoFindEventByName (String nom){
+		return getProxy().findEventByName(nom);
+	}
+	public static Boolean DoAffectSimpleMemberToEvent(Event event,
+			List<SimpleMember> simpleMembers) {
+		return getProxy().affectSimpleMemberToEvent(event, simpleMembers);
+	}
+	public static List<Event> DofindAllEventsRestants(SimpleMember simpleMember) {
+		return getProxy().findAllEventsRestants(simpleMember);
 	}
 }

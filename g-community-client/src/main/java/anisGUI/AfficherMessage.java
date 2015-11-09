@@ -42,6 +42,7 @@ public class AfficherMessage extends JPanel  {
         try {
             TableModel model = table.getModel();
             FileWriter excel = new FileWriter(file);
+        	System.out.println(model.toString());
 
             for (int i = 0; i < model.getColumnCount(); i++) {
                 excel.write(model.getColumnName(i) + "\t");

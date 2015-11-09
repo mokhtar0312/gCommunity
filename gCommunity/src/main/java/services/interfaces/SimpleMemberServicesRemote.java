@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Remote;
 
+import entities.Event;
 import entities.SimpleMember;
 
 @Remote
@@ -19,6 +20,9 @@ public interface SimpleMemberServicesRemote {
 	Boolean deleteSimpleMember(SimpleMember simpleMember);
 
 	List<SimpleMember> findAllSimpleMember();
+	
+	Boolean affectEventToSimpleMember(SimpleMember simpleMember,
+			Event event);
 	
 
 }

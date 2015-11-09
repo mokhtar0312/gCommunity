@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.swing.JButton;
@@ -17,9 +18,15 @@ import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
 import delegate.ActiveMemberServicesDelegate;
+import delegate.EventServiceDelegate;
+import delegate.SimpleMemberdelegate;
 import entities.ActiveMember;
+import entities.Event;
+import entities.SimpleMember;
 
 import javax.swing.JScrollPane;
+
+import org.hibernate.event.spi.MergeEvent;
 
 import repo.ConsulterListeMessageAdminAdapter;
 import repo.EventAffich;
@@ -30,7 +37,9 @@ public class EventShowRestant extends JPanel  {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable accountingTable;
-    static ActiveMember admin = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
+    static SimpleMember admin = SimpleMemberdelegate.doFindSimpleMemberById(12);
+    int row ;
+    String nomevent;
 
 
 	/**
@@ -55,6 +64,24 @@ public class EventShowRestant extends JPanel  {
 			scrollPane.setViewportView(accountingTable);
 			accountingTable.setBackground(Color.WHITE);
 			accountingTable.setModel(new EventAffich((ActiveMember) admin) );
+			
+			JButton btnSubscribe = new JButton("subscribe");
+			btnSubscribe.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					row = accountingTable.getSelectedRow();
+					nomevent = accountingTable.getModel().getValueAt(row, 0).toString();
+					
+					
+					System.out.println(nomevent);
+					
+					Event event = EventServiceDelegate.DoFindEventByName(nomevent);
+					SimpleMemberdelegate.DoaffectEventToSimpleMember(admin, event);
+
+					
+				}
+			});
+			btnSubscribe.setBounds(362, 303, 89, 23);
+			add(btnSubscribe);
 
 		} catch (NamingException e1) {
 			// TODO Auto-generated catch block

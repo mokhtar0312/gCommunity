@@ -4,6 +4,7 @@ import java.util.List;
 
 import locator.ServiceLocator;
 import services.interfaces.SimpleMemberServicesRemote;
+import entities.Event;
 import entities.SimpleMember;
 
 public class SimpleMemberdelegate {
@@ -39,6 +40,11 @@ public class SimpleMemberdelegate {
 	public static List<SimpleMember> doFindAllSimpleMember(){
 
 		return getProxy().findAllSimpleMember();
+	}
+	public static Boolean DoaffectEventToSimpleMember(SimpleMember simpleMember,
+			Event event) {
+		return getProxy().affectEventToSimpleMember(simpleMember, event);
+		
 	}
 	
 }
