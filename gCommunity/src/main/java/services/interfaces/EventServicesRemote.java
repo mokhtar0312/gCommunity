@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import entities.Event;
+import entities.SimpleMember;
 
 @Remote
 public interface EventServicesRemote {
@@ -20,4 +21,11 @@ Boolean addEvent(Event event);
 	Boolean deleteEvent(Event event);
 
 	List<Event> findAllEvents();
+	
+	Event findEventByName(String nom);
+	
+	Boolean affectSimpleMemberToEvent(Event event,
+			List<SimpleMember> simpleMembers);
+	List<Event> findAllEventsRestants(SimpleMember simpleMember);
+
 }

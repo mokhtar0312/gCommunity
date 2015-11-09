@@ -21,7 +21,8 @@ public class ConsulterListeMessageAdminAdapter  extends AbstractTableModel{
 	//		.findAllMessage();
 
     public ConsulterListeMessageAdminAdapter(ActiveMember admin ) throws NamingException {
-		List=MessageServicesDelegate.readAllMessageByIDActiveMember(admin);
+    	int i =admin.getId();
+		List=MessageServicesDelegate.readAllMessageByIDActiveMember(i);
 	
 		System.out.println("aaaaaaaaaaaaaaaaaaaaa");
 

@@ -1,11 +1,13 @@
 package repo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
 import javax.swing.table.AbstractTableModel;
 
 import delegate.EventServiceDelegate;
+import delegate.SimpleMemberdelegate;
 import entities.ActiveMember;
 import entities.Event;
 import entities.SimpleMember;
@@ -19,33 +21,17 @@ public class EventAffich extends AbstractTableModel {
 			"numberOfParticipants" };
 	Event event = new Event();
 
-	List<Event> List;
-	List<SimpleMember> List1;
+	ArrayList<Event> List;
+
+
 
 	public EventAffich(ActiveMember admin) throws NamingException {
-		List = EventServiceDelegate.findAllEvents();
-		// System.out.println(List.toString());
-		for (Event e : List) {
-			List1 = e.getSimpleMember();
-			System.out.println(admin.toString());
-			System.out.println(List1.toString());
+		System.out.println(admin.getId());
+		List = (ArrayList<Event>) EventServiceDelegate.DofindAllEventsRestants(admin);
+	
 
-			for (SimpleMember S : List1) {
-				if (S.equals(admin)) {
-					List.remove(e.getId());
-				}
-			}
-			// if(List1.contains(admin))
-			// {
-			// System.out.println("karrazt");
-			//
-			// List.remove(e.getId());
-			// // System.out.println(List.toString());
-			//
-			//
-			// }
-		}
 	}
+	
 
 	@Override
 	public int getRowCount() {

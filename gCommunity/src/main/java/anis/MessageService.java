@@ -100,9 +100,9 @@ public class MessageService implements MessageServiceRemote, MessageServiceLocal
 
 	@Override
 	public List<Message> readAllMessageByIDActiveMember(
-			ActiveMember activeMember) {
-		Query query = entityManager.createQuery("Select e from Message e where e.activeMember=:l ");
-		query.setParameter("l", activeMember);
+			int i) {
+		Query query = entityManager.createQuery("Select e from Message e where e.idto=:l ");
+		query.setParameter("l", i);
 
 		return query.getResultList();
 	}

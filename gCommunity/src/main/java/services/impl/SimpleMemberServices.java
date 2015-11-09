@@ -10,6 +10,7 @@ import javax.persistence.Query;
 
 import services.interfaces.SimpleMemberServicesLocal;
 import services.interfaces.SimpleMemberServicesRemote;
+import entities.Event;
 import entities.SimpleMember;
 
 /**
@@ -89,4 +90,23 @@ public class SimpleMemberServices implements SimpleMemberServicesRemote, SimpleM
 		return query.getResultList();
 	}
 
-}
+	@Override
+	public Boolean affectEventToSimpleMember(SimpleMember simpleMember,
+			Event event) {
+		Boolean b = false;
+		try {
+
+			List<Event> events = simpleMember.getEvents();
+			events.add(event);
+			
+			simpleMember.setEvents(events);
+			updateSimpleMember(simpleMember);
+
+			b = true;
+		} catch (Exception e) {
+		}
+		System.out.println("noooooooon");
+		return b;
+	}	}
+
+

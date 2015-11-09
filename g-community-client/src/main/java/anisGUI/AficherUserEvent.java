@@ -70,7 +70,7 @@ public class AficherUserEvent extends JPanel  {
 					}
 								}
 			});
-			btnSub.setBounds(503, 284, 155, 23);
+			btnSub.setBounds(468, 284, 190, 23);
 			add(btnSub);
 
 		} catch (NamingException e1) {

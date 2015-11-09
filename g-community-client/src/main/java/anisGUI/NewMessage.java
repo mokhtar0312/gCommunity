@@ -39,6 +39,7 @@ public class NewMessage extends JPanel {
 	ActiveMemberServicesRemote proxy ;
 	ActiveMember a ;
     ActiveMember em = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
+    int idto ;
 	
     String username= em.getUsername();
 //	Context context ;
@@ -57,6 +58,7 @@ public class NewMessage extends JPanel {
 		
 
 		JLabel label_2 = new JLabel("Send a message to");
+		label_2.setForeground(Color.WHITE);
 		label_2.setBounds(238, 50, 128, 14);
 		add(label_2);
 		JLabel labelid = new JLabel("New label");
@@ -74,6 +76,7 @@ public class NewMessage extends JPanel {
 				//	labelid.setText(c.getId().toString());
 					String choix =	comboType.getSelectedItem().toString();
 					labelid.setText(ActiveMemberServicesDelegate.doFindActiveMemberByUserName(choix).getId().toString());
+				 idto = Integer.parseInt(labelid.getText());
 				}
 				
 
@@ -88,15 +91,17 @@ public class NewMessage extends JPanel {
 
 
 		JLabel label_4 = new JLabel("Subject");
+		label_4.setForeground(Color.WHITE);
 		label_4.setBounds(238, 130, 63, 14);
 		add(label_4);
 
 		jsubject = new JTextField();
 		jsubject.setColumns(10);
-		jsubject.setBounds(443, 127, 171, 20);
+		jsubject.setBounds(443, 127, 145, 20);
 		add(jsubject);
 
 		JLabel label_5 = new JLabel("Content");
+		label_5.setForeground(Color.WHITE);
 		label_5.setBounds(238, 233, 46, 14);
 		add(label_5);
 
@@ -112,12 +117,12 @@ public class NewMessage extends JPanel {
 				ActiveMember e1 = new ActiveMember();
 		//		ActiveMember admin = new ActiveMember();
 				//Notification notif = new Notification();
-				e1 = ActiveMemberServicesDelegate.doFindActiveMemberById(Integer.parseInt(labelid.getText()));
 				message.setContent(jcontent.getText());
 				message.setDate(date);
 				//admin = ActiveMemberServicesDelegate.doFindActiveMemberById(em.getId());
 				message.setSubject(jsubject.getText());
-				message.setActiveMember(e1);
+				message.setActiveMember(em);
+				message.setIdto(idto);
 				
 //				notif.setDescription("new Message");
 //				notif.setEtat(0);
@@ -212,7 +217,7 @@ public class NewMessage extends JPanel {
 //				}
 			
 		});
-		btnSent.setBounds(643, 284, 89, 23);
+		btnSent.setBounds(501, 324, 89, 23);
 		add(btnSent);
 	}
 }

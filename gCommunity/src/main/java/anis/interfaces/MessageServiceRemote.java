@@ -18,7 +18,7 @@ public interface MessageServiceRemote {
     ActiveMember findActiveMemeberByUsername(String username);
     ActiveMember findActiveMemberById(int i);
     ActiveMember findActiveMemberByEmail(String email);
-    List<Message> readAllMessageByIDActiveMember(ActiveMember activeMember);
+    List<Message> readAllMessageByIDActiveMember(int i);
     List<Message> findAllMessage();
 
 }

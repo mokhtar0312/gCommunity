@@ -19,7 +19,7 @@ public class Message implements Serializable {
 	private String content;
 	private String subject;
 	private Date date;
-	
+	private int idto;
 	
 	private ActiveMember activeMember;
 	private Notification notifiacation;
@@ -69,6 +69,12 @@ public class Message implements Serializable {
 	}
 	public void setNotifiacation(Notification notifiacation) {
 		this.notifiacation = notifiacation;
+	}
+	public int getIdto() {
+		return idto;
+	}
+	public void setIdto(int idto) {
+		this.idto = idto;
 	}
    
 }
