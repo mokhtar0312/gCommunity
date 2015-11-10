@@ -4,6 +4,7 @@ import java.util.List;
 
 import locator.ServiceLocator;
 import services.interfaces.TutorialServicesRemote;
+import entities.SimpleMember;
 import entities.Tutorial;
 
 public class TutorialServicesDelegate {
@@ -12,11 +13,13 @@ public class TutorialServicesDelegate {
 	private static final String jndi = "/g-community-ejb/TutorialServices!services.interfaces.TutorialServicesRemote";
 
 	private static TutorialServicesRemote getProxy() {
-		return (TutorialServicesRemote) ServiceLocator.getInstance().getProxy(jndi);
+		return (TutorialServicesRemote) ServiceLocator.getInstance().getProxy(
+				jndi);
 	}
 
-	public static Boolean addTutorial(Tutorial Tutorial) {
-		return getProxy().addTutorial(Tutorial);
+	public static Boolean addTutorial(Tutorial tutorial,
+			SimpleMember simplemembertut) {
+		return getProxy().addTutorial(tutorial, simplemembertut);
 	}
 
 	public static Tutorial findTutorialbyId(Integer id) {
@@ -31,7 +34,15 @@ public class TutorialServicesDelegate {
 		return getProxy().deleteTutorialById(id);
 	}
 
+	public static Boolean deleteTutorial(Tutorial tutorial) {
+		return getProxy().deleteTutorial(tutorial);
+	}
+
 	public static List<Tutorial> FindAllTutorial() {
 		return getProxy().findAllTutorial();
+	}
+
+	public static List<Tutorial> findByTyped(String typed) {
+		return getProxy().FindbyTyped(typed);
 	}
 }
