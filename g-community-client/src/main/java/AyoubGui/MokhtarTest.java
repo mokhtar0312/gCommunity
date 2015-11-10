@@ -18,6 +18,7 @@ import org.jdesktop.swingbinding.JTableBinding;
 import org.jdesktop.swingbinding.SwingBindings;
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 import org.jdesktop.beansbinding.BeanProperty;
+import javax.swing.JScrollPane;
 
 public class MokhtarTest extends JFrame {
 
@@ -53,9 +54,12 @@ public class MokhtarTest extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(31, 25, 377, 211);
+		contentPane.add(scrollPane);
+		
 		table = new JTable();
-		table.setBounds(31, 25, 377, 211);
-		contentPane.add(table);
+		scrollPane.setViewportView(table);
 		initDataBindings();
 	}
 
