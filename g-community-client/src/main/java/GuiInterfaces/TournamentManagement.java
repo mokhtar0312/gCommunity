@@ -142,7 +142,7 @@ public class TournamentManagement  extends JFrame {
 					
 				
 			}});
-				upda.setBounds(567, 492, 89, 23);
+				upda.setBounds(565, 492, 89, 23);
 				contentPane.add(upda);
 				
 				btnDelete = new JButton("DELETE");
@@ -166,7 +166,7 @@ public class TournamentManagement  extends JFrame {
 						
 					}
 				});
-				btnDelete.setBounds(454, 492, 89, 23);
+				btnDelete.setBounds(466, 492, 89, 23);
 				contentPane.add(btnDelete);
 				
 				login = new JTextField();
@@ -185,27 +185,30 @@ public class TournamentManagement  extends JFrame {
 				pseudo.setColumns(10);
 				
 				dtrpnLogin = new JEditorPane();
-				dtrpnLogin.setForeground(new Color(51, 0, 102));
+				dtrpnLogin.setFont(new Font("Tahoma", Font.BOLD, 14));
+				dtrpnLogin.setForeground(Color.YELLOW);
 				dtrpnLogin.setBackground(new Color(52, 73, 94));
-				dtrpnLogin.setText("Description :");
+				dtrpnLogin.setText("Description  :");
 				dtrpnLogin.setBounds(445, 352, 106, 20);
 				contentPane.add(dtrpnLogin);
 				
 				dtrpnPassword = new JEditorPane();
-				dtrpnPassword.setForeground(new Color(51, 0, 102));
+				dtrpnPassword.setFont(new Font("Tahoma", Font.BOLD, 14));
+				dtrpnPassword.setForeground(Color.YELLOW);
 				dtrpnPassword.setBackground(new Color(52, 73, 94));
-				dtrpnPassword.setText("Fee :");
+				dtrpnPassword.setText("Participants :");
 				dtrpnPassword.setBounds(445, 383, 106, 20);
 				contentPane.add(dtrpnPassword);
 				
 				dtrpnPseudo = new JEditorPane();
-				dtrpnPseudo.setForeground(new Color(51, 0, 102));
+				dtrpnPseudo.setFont(new Font("Tahoma", Font.BOLD, 14));
+				dtrpnPseudo.setForeground(Color.YELLOW);
 				dtrpnPseudo.setBackground(new Color(52, 73, 94));
-				dtrpnPseudo.setText("Pseudo :");
+				dtrpnPseudo.setText("Fee value     :");
 				dtrpnPseudo.setBounds(445, 414, 106, 20);
 				contentPane.add(dtrpnPseudo);
 				
-				JButton btnBack = new JButton("BACK");
+				JButton btnBack = new JButton("REFRESH");
 				btnBack.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						TournamentManagement frame = null;
@@ -221,7 +224,7 @@ public class TournamentManagement  extends JFrame {
 					
 				});
 				btnBack.setForeground(new Color(0, 0, 102));
-				btnBack.setBounds(355, 492, 89, 23);
+				btnBack.setBounds(367, 492, 89, 23);
 				contentPane.add(btnBack);
 				
 				JPanel panel = new JPanel();
@@ -258,6 +261,19 @@ public class TournamentManagement  extends JFrame {
 				panel.add(label_2);
 				
 				JLabel label_3 = new JLabel("Game");
+				label_3.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						
+						setVisible(false);
+						try {
+							new BoostingTemplate().frame.setVisible(true);
+						} catch (NamingException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
 				label_3.setOpaque(true);
 				label_3.setHorizontalAlignment(SwingConstants.CENTER);
 				label_3.setForeground(Color.DARK_GRAY);
@@ -270,7 +286,7 @@ public class TournamentManagement  extends JFrame {
 				JLabel label_4 = new JLabel("Tournaments");
 				label_4.setOpaque(true);
 				label_4.setHorizontalAlignment(SwingConstants.CENTER);
-				label_4.setForeground(Color.DARK_GRAY);
+				label_4.setForeground(Color.BLUE);
 				label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 				label_4.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
 				label_4.setBackground(Color.ORANGE);
@@ -288,6 +304,13 @@ public class TournamentManagement  extends JFrame {
 				panel.add(label_5);
 				
 				JLabel label_6 = new JLabel("Log Out");
+				label_6.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						setVisible(false);
+						new Authentification().frmIdentification.setVisible(true);
+					}
+				});
 				label_6.setOpaque(true);
 				label_6.setHorizontalAlignment(SwingConstants.CENTER);
 				label_6.setForeground(Color.DARK_GRAY);
@@ -311,7 +334,7 @@ public class TournamentManagement  extends JFrame {
 					}
 				});
 				btnAdd.setForeground(new Color(0, 0, 102));
-				btnAdd.setBounds(669, 492, 89, 23);
+				btnAdd.setBounds(666, 492, 89, 23);
 				contentPane.add(btnAdd);}
 			
 			

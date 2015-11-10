@@ -27,7 +27,7 @@ public class Event implements Serializable {
 	private Double fee;
 	private static final long serialVersionUID = 1L;
 
-	private List<SimpleMember> SimpleMember;
+	private List<SimpleMember> SimpleMembers;
 
 	public Event() {
 		super();
@@ -38,7 +38,7 @@ public class Event implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result
-				+ ((SimpleMember == null) ? 0 : SimpleMember.hashCode());
+				+ ((SimpleMembers == null) ? 0 : SimpleMembers.hashCode());
 		result = prime * result + ((date == null) ? 0 : date.hashCode());
 		result = prime * result
 				+ ((description == null) ? 0 : description.hashCode());
@@ -60,10 +60,10 @@ public class Event implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Event other = (Event) obj;
-		if (SimpleMember == null) {
-			if (other.SimpleMember != null)
+		if (SimpleMembers == null) {
+			if (other.SimpleMembers != null)
 				return false;
-		} else if (!SimpleMember.equals(other.SimpleMember))
+		} else if (!SimpleMembers.equals(other.SimpleMembers))
 			return false;
 		if (date == null) {
 			if (other.date != null)
@@ -147,11 +147,11 @@ public class Event implements Serializable {
 
 	@ManyToMany(mappedBy = "events",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	public List<SimpleMember> getSimpleMember() {
-		return SimpleMember;
+		return SimpleMembers;
 	}
 
 	public void setSimpleMember(List<SimpleMember> simpleMember) {
-		SimpleMember = simpleMember;
+		SimpleMembers = simpleMember;
 	}
 
 }

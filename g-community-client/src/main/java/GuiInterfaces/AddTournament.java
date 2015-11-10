@@ -70,7 +70,8 @@ public class AddTournament extends JFrame{
 	private void initialize() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(52,73,94));
-		frame.setBounds(100, 100, 462, 416);
+		//frame.setBounds(100, 100, 462, 416);
+		frame.setBounds(450, 250, 462, 416);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.setTitle("Add an Event");
@@ -86,13 +87,33 @@ public class AddTournament extends JFrame{
 			    
 				event.setDate(dateChooser.getDate());
 				event.setName(Nametext.getText());
+				
 				event.setDescription(DescritpionText.getText());
-				event.setNumberOfParticipants(Integer.parseInt(NumberofText.getText()));
-				event.setFee(Double.parseDouble(feesText.getText()));
+				Integer ControleNumber= Integer.parseInt(NumberofText.getText());
+				Double ControleFee=Double.parseDouble(feesText.getText());
+				if(ControleNumber>=2 &&ControleNumber <=32)
+				{
+				event.setNumberOfParticipants(ControleNumber);
+				if(ControleFee>=5 )
+				{
+				event.setFee(ControleFee);
 				EventServiceDelegate.DoAddEvent(event);
-				
+				JFrame parent = new JFrame();
+				JOptionPane.showMessageDialog(parent, "Added");
 				frame.setVisible(false);
+				}
+                 else {
+					
+					JFrame parent = new JFrame();
+					JOptionPane.showMessageDialog(parent, "Fee should not be higher than 5");
+				}
+				}
 				
+				else {
+					
+					JFrame parent = new JFrame();
+					JOptionPane.showMessageDialog(parent, "Number of participants should be between 2 and 32");
+				}
 			}
 		});
 		btnAddEvent.setBounds(163, 314, 118, 23);
@@ -142,6 +163,12 @@ public class AddTournament extends JFrame{
 		feesText.setBounds(256, 234, 95, 20);
 		frame.getContentPane().add(feesText);
 		feesText.setColumns(10);
+		
+		JLabel error1 = new JLabel("number should be in (2-32)");
+		error1.setForeground(Color.RED);
+		error1.setBounds(87, 154, 145, 14);
+		frame.getContentPane().add(error1);
+		error1.setVisible(false);
 		
 		
 	

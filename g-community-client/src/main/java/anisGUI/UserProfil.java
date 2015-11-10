@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
@@ -22,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
 import delegate.ActiveMemberServicesDelegate;
+import delegate.SimpleMemberdelegate;
 import entities.ActiveMember;
 
 import java.awt.event.MouseAdapter;
@@ -40,7 +42,6 @@ public class UserProfil {
 
 	// ActiveMember am =
 	// ActiveMemberServicesDelegate.doFindActiveMemberById(11);
-	ActiveMember am = new ActiveMember();
 	ActiveMember admin = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
 	String username=admin.getSurname();
 	String password=admin.getPassword();
@@ -77,19 +78,14 @@ public class UserProfil {
 	 * @throws NamingException 
 	 */
 	public UserProfil() throws NamingException {
-		am.setName("ani");
-		am.setSurname("aaa");
-		am.setUsername("fghj");
-		am.setPassword("fghj");
-		am.setSummonerName("iu");
-		am.setEmail("ajkbhjh");
+		
 		initialize();
-		textField.setText(am.getName());
-		textField_1.setText(am.getSurname());
-		textField_2.setText(am.getUsername());
-		textField_3.setText(am.getPassword());
-		textField_4.setText(am.getSummonerName());
-		textField_5.setText(am.getEmail());
+		textField.setText(admin.getName());
+		textField_1.setText(admin.getSurname());
+		textField_2.setText(admin.getUsername());
+		textField_3.setText(admin.getPassword());
+		textField_4.setText(admin.getSummonerName());
+		textField_5.setText(admin.getEmail());
 
 	}
 
@@ -220,7 +216,6 @@ public class UserProfil {
 		JPanel achievement = new JPanel();
 		achievement.setLayout(null);
 		achievement.setOpaque(true);
-		achievement.setBorder(null);
 		achievement.setBackground(new Color(52, 73, 94));
 		tabbedPane.addTab("Achievement", null, achievement, null);
 
@@ -273,19 +268,21 @@ public class UserProfil {
 		achievement.add(label_16);
 
 		textField = new JTextField();
+		textField.setEditable(false);
 		textField.setForeground(Color.WHITE);
 		textField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		textField.setBounds(401, 93, 138, 20);
+		textField.setBounds(401, 93, 169, 20);
 		textField.setBackground(new Color(52, 73, 94));
 		achievement.add(textField);
 		textField.setColumns(10);
 
 		textField_1 = new JTextField();
+		textField_1.setEditable(false);
 		textField_1.setForeground(Color.WHITE);
 		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_1.setColumns(10);
 		textField_1.setBackground(new Color(52, 73, 94));
-		textField_1.setBounds(401, 139, 138, 20);
+		textField_1.setBounds(401, 139, 169, 20);
 		achievement.add(textField_1);
 
 		textField_2 = new JTextField();
@@ -293,7 +290,7 @@ public class UserProfil {
 		textField_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_2.setColumns(10);
 		textField_2.setBackground(new Color(52, 73, 94));
-		textField_2.setBounds(401, 187, 138, 20);
+		textField_2.setBounds(401, 187, 169, 20);
 		achievement.add(textField_2);
 
 		textField_3 = new JTextField();
@@ -301,7 +298,7 @@ public class UserProfil {
 		textField_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_3.setColumns(10);
 		textField_3.setBackground(new Color(52, 73, 94));
-		textField_3.setBounds(401, 234, 138, 20);
+		textField_3.setBounds(401, 234, 169, 20);
 		achievement.add(textField_3);
 
 		textField_4 = new JTextField();
@@ -309,7 +306,7 @@ public class UserProfil {
 		textField_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textField_4.setColumns(10);
 		textField_4.setBackground(new Color(52, 73, 94));
-		textField_4.setBounds(401, 282, 138, 20);
+		textField_4.setBounds(401, 282, 169, 20);
 		achievement.add(textField_4);
 
 		textField_5 = new JTextField();
@@ -341,6 +338,29 @@ public class UserProfil {
 				.getResource("/images/fbc.png")));
 		button.setBounds(52, 461, 45, 43);
 		achievement.add(button);
+		
+		JButton btnNewButton = new JButton("Update");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				admin.setName(textField.getText());
+				admin.setSurname(textField_1.getText());
+				admin.setUsername(textField_2.getText());
+				admin.setPassword(textField_3.getText());
+				admin.setSummonerName(textField_4.getText());
+				admin.setEmail(textField_5.getText());
+				try {
+				SimpleMemberdelegate.doUpdateSimpleMember(admin);
+				
+				JOptionPane.showMessageDialog(null, "Success!!", "Good :D", JOptionPane.OK_CANCEL_OPTION);
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(null, "Error!!", "X", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+			
+		});
+		btnNewButton.setBounds(527, 403, 89, 23);
+		achievement.add(btnNewButton);
 
 		JPanel panel_6 = new JPanel();
 		panel_6.setBounds(205, 0, 10, 581);
