@@ -12,6 +12,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import entities.ActiveMember;
 import entities.SimpleMember;
 
@@ -108,7 +109,8 @@ public class Authentification {
 					
 					frmIdentification.setVisible(false);
 					try {
-						new VoteInterface(found).frame.setVisible(true);
+						AuthentificationDelegate.doConnect(found);
+						new VoteInterface().frame.setVisible(true);
 					} catch (NamingException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

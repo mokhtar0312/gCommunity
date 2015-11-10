@@ -20,13 +20,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
+import repo.StatVote;
 import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import delegate.VoteServicesDelegate;
 import entities.ActiveMember;
 import entities.Vote;
 
 public class VoteInterface {
-	static ActiveMember member = new ActiveMember();
+	ActiveMember member = new ActiveMember();
 	JFrame frame;
 	String choix;
 
@@ -37,7 +39,7 @@ public class VoteInterface {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VoteInterface window = new VoteInterface(member);
+					VoteInterface window = new VoteInterface();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,12 +54,9 @@ public class VoteInterface {
 	 * @throws NamingException
 	 */
 	public VoteInterface() throws NamingException {
-		initialize();
-	}
 
-	public VoteInterface(ActiveMember member) throws NamingException {
-		this.member = member;
 		initialize();
+		member = AuthentificationDelegate.doGetConectedPerson();
 	}
 
 	/**
@@ -74,9 +73,9 @@ public class VoteInterface {
 
 		JButton btnCheckIfVote = new JButton("Check If Vote Is Possible");
 		JComboBox<String> comboType = new JComboBox<String>();
-		JButton btnNewButton = new JButton("Vote");
+		JButton btnvote = new JButton("Vote");
 		JButton btnseeresult = new JButton("See Result");
-		
+
 		ConsulterCandidat panel = new ConsulterCandidat();
 		panel.setBounds(218, 0, 699, 581);
 		panel.setBackground(new Color(52, 73, 94));
@@ -84,34 +83,37 @@ public class VoteInterface {
 		panel.setLayout(null);
 		btnCheckIfVote.setBounds(228, 393, 287, 33);
 		panel.add(btnCheckIfVote);
-		btnNewButton.addActionListener(new ActionListener() {
+		btnvote.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<ActiveMember> accounting;
 				ActiveMember voted = new ActiveMember();
 				accounting = ActiveMemberServicesDelegate
 						.doFindAllActiveMember();
+				choix = comboType.getSelectedItem().toString();
 				for (ActiveMember c : accounting) {
 					if (c.getUsername().equals(choix)) {
 						voted = c;
 					}
 				}
 				VoteServicesDelegate.addVote(
-						Calendar.getInstance().get(Calendar.YEAR), 
-						member.getId(),voted.getId() );
-				
-				
-				
-				
-				
-				
-				
+						Calendar.getInstance().get(Calendar.YEAR),
+						member.getId(), voted.getId());
+
+				frame.dispose();
+
+				try {
+					new VoteInterface().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
 			}
 		});
-		btnNewButton.setVisible(false);
-		btnNewButton.setBounds(469, 263, 194, 33);
-		frame.getContentPane().add(btnNewButton);
+		btnvote.setVisible(false);
+		btnvote.setBounds(469, 263, 194, 33);
+		frame.getContentPane().add(btnvote);
 
-		
 		frame.getContentPane().add(comboType);
 		comboType.setVisible(false);
 		comboType.addMouseListener(new MouseAdapter() {
@@ -130,11 +132,13 @@ public class VoteInterface {
 		});
 		comboType.setBounds(357, 113, 410, 60);
 
-		
-		
-		
 		btnseeresult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+
+				StatVote pchart = new StatVote();
+				pchart.setSize(600, 500);
+				pchart.setVisible(true);
+
 			}
 		});
 		btnseeresult.setBounds(228, 440, 287, 33);
@@ -144,43 +148,41 @@ public class VoteInterface {
 
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(member.getName() + member.getServer());
-                Boolean verif=false;
+				// System.out.println(member.getName() + member.getServer());
+				Boolean verif = false;
 				Vote vote = new Vote();
 				List<Vote> votes = VoteServicesDelegate.findAllVotes();
 				System.out.println("kabougaaa");
 
 				for (Vote a : votes) {
 
-					if (a.getActivemembervoter().equals(member)
+					if (a.getActivemembervoted().getId().equals(member.getId())
 							&& a.getYear().equals(
 									Calendar.getInstance().get(Calendar.YEAR))) {
-						verif=true;
+						verif = true;
 						vote = a;
 					}
 				}
 
-				if(verif){ 
+				if (verif) {
 					JFrame parent = new JFrame();
-				 JOptionPane.showMessageDialog(parent,
-				 "You have even voted for this year");
-				
-				 }
-				 else{
-				
-					 panel.setVisible(false);
-						btnCheckIfVote.setVisible(false);
-						btnseeresult.setVisible(false);
-						JPanel panel = new JPanel();
-						panel.setBounds(218, 0, 699, 581);
-						panel.setBackground(new Color(52, 73, 94));
-						frame.getContentPane().add(panel);
-						panel.setLayout(null);
-						comboType.setVisible(true);
-						btnNewButton.setVisible(true);
-				
-				
-				 }
+					JOptionPane.showMessageDialog(parent,
+							"You have even voted for this year");
+
+				} else {
+
+					panel.setVisible(false);
+					btnCheckIfVote.setVisible(false);
+					btnseeresult.setVisible(false);
+					JPanel panel = new JPanel();
+					panel.setBounds(218, 0, 699, 581);
+					panel.setBackground(new Color(52, 73, 94));
+					frame.getContentPane().add(panel);
+					panel.setLayout(null);
+					comboType.setVisible(true);
+					btnvote.setVisible(true);
+
+				}
 
 			}
 		});
