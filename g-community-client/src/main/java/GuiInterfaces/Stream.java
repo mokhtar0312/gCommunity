@@ -243,7 +243,7 @@ JScrollPane scrollPane = new JScrollPane();
 				//login.setText(account.getDescription());
 				/*pseudo
 				pwd*/
-			Equipment account_found = new Equipment();
+			Streams account_found = new Streams();
               //  account_found = Accountdelegate.findAccountById(id);
 			
 				account.setDate_diffusion(dateChooser.getDate());
