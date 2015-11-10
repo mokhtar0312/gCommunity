@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
@@ -72,8 +73,17 @@ public class VoteInterface {
 		frame.getContentPane().setLayout(null);
 
 		JButton btnCheckIfVote = new JButton("Check If Vote Is Possible");
-
+		JComboBox<String> comboType = new JComboBox<String>();
 		JButton btnNewButton = new JButton("Vote");
+		JButton btnseeresult = new JButton("See Result");
+		
+		ConsulterCandidat panel = new ConsulterCandidat();
+		panel.setBounds(218, 0, 699, 581);
+		panel.setBackground(new Color(52, 73, 94));
+		frame.getContentPane().add(panel);
+		panel.setLayout(null);
+		btnCheckIfVote.setBounds(228, 393, 287, 33);
+		panel.add(btnCheckIfVote);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				List<ActiveMember> accounting;
@@ -86,15 +96,22 @@ public class VoteInterface {
 					}
 				}
 				VoteServicesDelegate.addVote(
-						Calendar.getInstance().get(Calendar.YEAR),
-						voted.getId(), member.getId());
+						Calendar.getInstance().get(Calendar.YEAR), 
+						member.getId(),voted.getId() );
+				
+				
+				
+				
+				
+				
+				
 			}
 		});
 		btnNewButton.setVisible(false);
 		btnNewButton.setBounds(469, 263, 194, 33);
 		frame.getContentPane().add(btnNewButton);
 
-		JComboBox<String> comboType = new JComboBox<String>();
+		
 		frame.getContentPane().add(comboType);
 		comboType.setVisible(false);
 		comboType.addMouseListener(new MouseAdapter() {
@@ -113,20 +130,22 @@ public class VoteInterface {
 		});
 		comboType.setBounds(357, 113, 410, 60);
 
-		ConsulterCandidat panel = new ConsulterCandidat();
-		panel.setBounds(218, 0, 699, 581);
-		panel.setBackground(new Color(52, 73, 94));
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
-		btnCheckIfVote.setBounds(228, 393, 287, 33);
-		panel.add(btnCheckIfVote);
+		
+		
+		
+		btnseeresult.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnseeresult.setBounds(228, 440, 287, 33);
+		panel.add(btnseeresult);
 
 		btnCheckIfVote.addActionListener(new ActionListener() {
 
 			@SuppressWarnings("unused")
 			public void actionPerformed(ActionEvent e) {
 				System.out.println(member.getName() + member.getServer());
-
+                Boolean verif=false;
 				Vote vote = new Vote();
 				List<Vote> votes = VoteServicesDelegate.findAllVotes();
 				System.out.println("kabougaaa");
@@ -136,29 +155,32 @@ public class VoteInterface {
 					if (a.getActivemembervoter().equals(member)
 							&& a.getYear().equals(
 									Calendar.getInstance().get(Calendar.YEAR))) {
+						verif=true;
 						vote = a;
 					}
 				}
 
-				// if(vote == null){
-				panel.setVisible(false);
-				btnCheckIfVote.setVisible(false);
-				JPanel panel = new JPanel();
-				panel.setBounds(218, 0, 699, 581);
-				panel.setBackground(new Color(52, 73, 94));
-				frame.getContentPane().add(panel);
-				panel.setLayout(null);
-				comboType.setVisible(true);
-				btnNewButton.setVisible(true);
-				// }
-				// else{
-				// JFrame parent = new JFrame();
-				// JOptionPane.showMessageDialog(parent,
-				// "You have even voted for this year");
-				//
-				//
-				//
-				// }
+				if(verif){ 
+					JFrame parent = new JFrame();
+				 JOptionPane.showMessageDialog(parent,
+				 "You have even voted for this year");
+				
+				 }
+				 else{
+				
+					 panel.setVisible(false);
+						btnCheckIfVote.setVisible(false);
+						btnseeresult.setVisible(false);
+						JPanel panel = new JPanel();
+						panel.setBounds(218, 0, 699, 581);
+						panel.setBackground(new Color(52, 73, 94));
+						frame.getContentPane().add(panel);
+						panel.setLayout(null);
+						comboType.setVisible(true);
+						btnNewButton.setVisible(true);
+				
+				
+				 }
 
 			}
 		});

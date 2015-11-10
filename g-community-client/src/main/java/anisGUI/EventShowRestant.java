@@ -20,7 +20,9 @@ import javax.swing.table.TableModel;
 
 import delegate.ActiveMemberServicesDelegate;
 import delegate.EventServiceDelegate;
+
 import delegate.MailServicesDelegate;
+
 import delegate.SimpleMemberdelegate;
 import entities.ActiveMember;
 import entities.Event;
@@ -78,6 +80,7 @@ public class EventShowRestant extends JPanel  {
 					
 					Event event = EventServiceDelegate.DoFindEventByName(nomevent);
 					SimpleMemberdelegate.DoaffectEventToSimpleMember(admin, event);
+
 					try {
 						MailServicesDelegate.doMail("inscription avec succes", "vous etes inscrit a l'event  "+event.getName(), admin.getEmail());
 						JOptionPane.showMessageDialog(null, "Mail Send SucceSfully!!", "Good :D", JOptionPane.OK_CANCEL_OPTION);
@@ -85,6 +88,7 @@ public class EventShowRestant extends JPanel  {
 						JOptionPane.showMessageDialog(null, "Error!!", "X", JOptionPane.ERROR_MESSAGE);
 						e1.printStackTrace();
 					}
+
 					
 				}
 			});

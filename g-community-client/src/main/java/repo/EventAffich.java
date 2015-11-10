@@ -26,9 +26,11 @@ public class EventAffich extends AbstractTableModel {
 
 
 	public EventAffich(ActiveMember admin) throws NamingException {
+
 		System.out.println(admin.getId());
 		List = (ArrayList<Event>) EventServiceDelegate.DofindAllEventsRestants(admin);
 	
+
 
 	}
 	

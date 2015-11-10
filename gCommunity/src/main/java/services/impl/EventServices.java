@@ -130,7 +130,9 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 	@Override
 	public List<Event> findAllEventsRestants(SimpleMember simpleMember) {
 
+
 		List = (ArrayList <Event>) findAllEvents();
+
 
 
 		// System.out.println(List.toString());

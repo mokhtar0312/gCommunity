@@ -46,6 +46,7 @@ public class AfficherMessage extends JPanel  {
 	 */
 	
 
+
 //    public void toExcel(JTable table, File file) {
 //        try {
 //            TableModel model = table.getModel();
@@ -71,6 +72,7 @@ public class AfficherMessage extends JPanel  {
 //            System.out.println(e);
 //        }
 //    }
+
 	public AfficherMessage(ActiveMember admin) throws NamingException {
 		
 		this.admin=admin;
