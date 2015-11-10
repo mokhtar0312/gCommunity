@@ -34,6 +34,7 @@ import entities.News;
 
 import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
+import javax.swing.ImageIcon;
 
 public class NewsCrud extends JFrame {
 
@@ -345,6 +346,11 @@ public class NewsCrud extends JFrame {
 		panel_1.setBackground(new Color(241, 196, 15));
 		panel_1.setBounds(208, 0, 10, 581);
 		contentPane.add(panel_1);
+		
+		JLabel label_8 = new JLabel("");
+		label_8.setIcon(new ImageIcon(NewsCrud.class.getResource("/images/logogcom.png")));
+		label_8.setBounds(237, 11, 300, 60);
+		contentPane.add(label_8);
 
 		initDataBindings();
 	}

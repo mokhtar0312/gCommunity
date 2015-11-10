@@ -40,6 +40,7 @@ import delegate.TutorialServicesDelegate;
 import entities.SimpleMember;
 import entities.TutoLevel;
 import entities.Tutorial;
+import javax.swing.ImageIcon;
 
 public class TutorialCrud extends JFrame {
 
@@ -209,7 +210,11 @@ public class TutorialCrud extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(466, 124, 444, 435);
 		contentPane.add(scrollPane);
+		JComboBox<TutoLevel> comboBox = new JComboBox<>();
+		comboBox.setModel(new DefaultComboBoxModel<>(TutoLevel.values()));
+		comboBox.setBounds(325, 177, 114, 20);
 
+		contentPane.add(comboBox);
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -221,6 +226,7 @@ public class TutorialCrud extends JFrame {
 							.get(table.getSelectedRow()).getSimplemember()
 							.getName());
 					txtpnF.setText(tutorials.get(table.getSelectedRow()).getDescription());
+					comboBox.setSelectedItem(tutorials.get(table.getSelectedRow()).getTutolev());
 				}
 			}
 		});
@@ -281,11 +287,7 @@ public class TutorialCrud extends JFrame {
 		lblDifficulty.setBounds(251, 177, 75, 14);
 		contentPane.add(lblDifficulty);
 
-		JComboBox<TutoLevel> comboBox = new JComboBox<>();
-		comboBox.setModel(new DefaultComboBoxModel<>(TutoLevel.values()));
-		comboBox.setBounds(325, 177, 114, 20);
-
-		contentPane.add(comboBox);
+		
 
 		JLabel lblBy = new JLabel("By :");
 		lblBy.setForeground(Color.ORANGE);
@@ -395,6 +397,11 @@ public class TutorialCrud extends JFrame {
 		});
 		btnAddTuto.setBounds(252, 502, 187, 23);
 		contentPane.add(btnAddTuto);
+		
+		JLabel label_11 = new JLabel("");
+		label_11.setIcon(new ImageIcon(TutorialCrud.class.getResource("/images/logogcom.png")));
+		label_11.setBounds(228, 11, 300, 60);
+		contentPane.add(label_11);
 
 	}
 
