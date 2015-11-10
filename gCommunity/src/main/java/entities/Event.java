@@ -25,6 +25,7 @@ public class Event implements Serializable {
 	private int numberOfParticipants;
 	private String description;
 	private Double fee;
+	private String lieu ;
 	private static final long serialVersionUID = 1L;
 
 	private List<SimpleMember> SimpleMembers;
@@ -152,6 +153,14 @@ public class Event implements Serializable {
 
 	public void setSimpleMember(List<SimpleMember> simpleMember) {
 		SimpleMembers = simpleMember;
+	}
+
+	public String getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(String lieu) {
+		this.lieu = lieu;
 	}
 
 }
