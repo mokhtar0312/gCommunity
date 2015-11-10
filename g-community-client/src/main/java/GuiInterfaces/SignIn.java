@@ -237,16 +237,16 @@ public class SignIn {
 				memberCreated.setPhone(phone);
 				memberCreated.setRole(role);
 
-				ActiveMember found = new ActiveMember();
+				Boolean tester=false;
 				List<ActiveMember> aa = ActiveMemberServicesDelegate
 						.doFindAllActiveMember();
 				for (ActiveMember a : aa) {
 
 					if (a.getUsername().equals(username)) {
-						found = a;
+						tester=true;
 					}
 				}
-				if (found != null) {
+				if (tester) {
 					JFrame parent = new JFrame();
 					JOptionPane.showMessageDialog(parent, "Existing Username");
 					
