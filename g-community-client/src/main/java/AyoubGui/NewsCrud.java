@@ -1,4 +1,4 @@
-package gui;
+package AyoubGui;
 
 import java.awt.Color;
 import java.awt.EventQueue;
