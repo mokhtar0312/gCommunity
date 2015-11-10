@@ -18,7 +18,7 @@ public class EventAffich extends AbstractTableModel {
 	 */
 	private static final long serialVersionUID = 1L;
 	String[] col_names = { "name", "description", "date", "fee",
-			"numberOfParticipants" };
+			"numberOfParticipants", "lieu" };
 	Event event = new Event();
 
 	ArrayList<Event> List;
@@ -60,13 +60,14 @@ public class EventAffich extends AbstractTableModel {
 		case 1:
 			return List.get(rowIndex).getDescription();
 
-		case 3:
+		case 2:
 			return List.get(rowIndex).getDate();
-		case 4:
+		case 3:
 			return List.get(rowIndex).getFee();
-		case 5:
+		case 4:
 			return List.get(rowIndex).getNumberOfParticipants();
-
+		case 5:
+			return List.get(rowIndex).getLieu();
 		default:
 			return null;
 		}

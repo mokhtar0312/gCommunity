@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import services.interfaces.TutorialServicesLocal;
 import services.interfaces.TutorialServicesRemote;
+import entities.SimpleMember;
 import entities.Tutorial;
 
 /**
@@ -28,17 +29,6 @@ public class TutorialServices implements TutorialServicesRemote,
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public Boolean addTutorial(Tutorial tutorial) {
-		Boolean b = false;
-		try {
-			entityManager.merge(tutorial);
-			b = true;
-		} catch (Exception e) {
-			System.err.println("problem adding tutorial");
-		}
-		return b;
-	}
 
 	@Override
 	public Boolean deleteTutorialById(Integer id) {
@@ -66,7 +56,7 @@ public class TutorialServices implements TutorialServicesRemote,
 			entityManager.merge(tutorial);
 			b = true;
 		} catch (Exception e) {
-			System.err.println("problem updating packs");
+			System.err.println("problem updating tutorials");
 		}
 		return b;
 	}
@@ -90,5 +80,39 @@ public class TutorialServices implements TutorialServicesRemote,
 		Query query = entityManager.createQuery(jpql);
 		return query.getResultList();
 	}
+
+
+	@Override
+	public Boolean addTutorial(Tutorial tutorial, SimpleMember simplemembertut) {
+		Boolean b = false;
+		
+				try {
+					if (simplemembertut == null) {
+						entityManager.merge(tutorial);
+						b = true;
+					} else {
+					entityManager.merge(simplemembertut);
+					tutorial.setSimplemember(simplemembertut);
+					entityManager.merge(tutorial);
+					b = true;
+					}
+				} catch (Exception e) {
+					System.err.println("problem adding tutorial");
+				}
+				return b;
+	}
+
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tutorial> FindbyTyped(String typed) {
+		String jpql = "SELECT n FROM Tutorial n WHERE n.name LIKE :pattern OR n.description LIKE :pattern1";
+		Query query = entityManager.createQuery(jpql);
+		String typ = "%" + typed + "%";
+		query.setParameter("pattern", typ).setParameter("pattern1", typ);
+		return query.getResultList();
+	}
+
+	
 
 }
