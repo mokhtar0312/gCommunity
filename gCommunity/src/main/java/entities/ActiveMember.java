@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -22,7 +21,6 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private Boolean approved;
 	private static final long serialVersionUID = 1L;
 
-	
 	private Membership membership;
 	private List<Equipment> equipments;
 	private List<News> news;
@@ -33,7 +31,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	private List<Message> messages;
 	private List<Notification> notifications;
 
-	@OneToMany(mappedBy = "activemembervoter",cascade=CascadeType.MERGE)
+	@OneToMany(mappedBy = "activemembervoter", cascade = CascadeType.MERGE)
 	public List<Vote> getVoters() {
 		return voters;
 	}
@@ -42,7 +40,7 @@ public class ActiveMember extends SimpleMember implements Serializable {
 		this.voters = voters;
 	}
 
-	@OneToMany(mappedBy = "activemembervoted", cascade=CascadeType.MERGE)
+	@OneToMany(mappedBy = "activemembervoted", cascade = CascadeType.MERGE)
 	public List<Vote> getVoteds() {
 		return voteds;
 	}
@@ -79,8 +77,6 @@ public class ActiveMember extends SimpleMember implements Serializable {
 	public void setMembership(Membership membership) {
 		this.membership = membership;
 	}
-
-	
 
 	@ManyToMany
 	public List<Equipment> getEquipments() {

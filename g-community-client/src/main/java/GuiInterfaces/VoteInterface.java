@@ -19,6 +19,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ChangeEvent;
 
 import repo.StatVote;
 import delegate.ActiveMemberServicesDelegate;
@@ -27,10 +28,22 @@ import delegate.VoteServicesDelegate;
 import entities.ActiveMember;
 import entities.Vote;
 
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+
+import org.jdesktop.beansbinding.BeanProperty;
+import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
+import org.jdesktop.swingbinding.JTableBinding;
+import org.jdesktop.swingbinding.SwingBindings;
+
 public class VoteInterface {
 	ActiveMember member = new ActiveMember();
 	JFrame frame;
 	String choix;
+	private JTable table;
+	private List<ActiveMember> memberssss = ActiveMemberServicesDelegate.doFindAllActiveMember();
+	Integer id=null;
+	
 
 	/**
 	 * Launch the application.
@@ -70,67 +83,37 @@ public class VoteInterface {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setLayout(null);
-
-		JButton btnCheckIfVote = new JButton("Check If Vote Is Possible");
-		JComboBox<String> comboType = new JComboBox<String>();
-		JButton btnvote = new JButton("Vote");
 		JButton btnseeresult = new JButton("See Result");
 
-		ConsulterCandidat panel = new ConsulterCandidat();
-		panel.setBounds(218, 0, 699, 581);
+		JPanel panel = new JPanel();
+		panel.setBounds(218, 0, 702, 581);
 		panel.setBackground(new Color(52, 73, 94));
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
-		btnCheckIfVote.setBounds(228, 393, 287, 33);
-		panel.add(btnCheckIfVote);
-		btnvote.addActionListener(new ActionListener() {
+		JButton Elect_President = new JButton("Elect President");
+		Elect_President.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				List<ActiveMember> accounting;
-				ActiveMember voted = new ActiveMember();
-				accounting = ActiveMemberServicesDelegate
-						.doFindAllActiveMember();
-				choix = comboType.getSelectedItem().toString();
-				for (ActiveMember c : accounting) {
-					if (c.getUsername().equals(choix)) {
-						voted = c;
-					}
+				if(member.getRole().equals("President")){
+					member.setRole("Event Member");
+					ActiveMemberServicesDelegate.doUpdateActiveMember(member);
+					ActiveMember newperz=ActiveMemberServicesDelegate.doFindActiveMemberById(id);
+					newperz.setRole("President");
+					ActiveMemberServicesDelegate.doUpdateActiveMember(newperz);
+					
+					JFrame parent = new JFrame();
+					JOptionPane.showMessageDialog(parent, "New President elected");	
 				}
-				VoteServicesDelegate.addVote(
-						Calendar.getInstance().get(Calendar.YEAR),
-						member.getId(), voted.getId());
-
-				frame.dispose();
-
-				try {
-					new VoteInterface().frame.setVisible(true);
-				} catch (NamingException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				else{
+					
+					JFrame parent = new JFrame();
+					JOptionPane.showMessageDialog(parent, "Only the current president can do this operation");	
+					
 				}
-
 			}
 		});
-		btnvote.setVisible(false);
-		btnvote.setBounds(469, 263, 194, 33);
-		frame.getContentPane().add(btnvote);
-
-		frame.getContentPane().add(comboType);
-		comboType.setVisible(false);
-		comboType.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				List<ActiveMember> accounting;
-				accounting = ActiveMemberServicesDelegate
-						.doFindAllActiveMember();
-				for (ActiveMember c : accounting) {
-					comboType.addItem(c.getUsername());
-
-					choix = comboType.getSelectedItem().toString();
-				}
-
-			}
-		});
-		comboType.setBounds(357, 113, 410, 60);
+		Elect_President.setBounds(230, 491, 287, 33);
+		panel.add(Elect_President);
+		
 
 		btnseeresult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -141,51 +124,95 @@ public class VoteInterface {
 
 			}
 		});
-		btnseeresult.setBounds(228, 440, 287, 33);
+		btnseeresult.setBounds(230, 427, 287, 33);
 		panel.add(btnseeresult);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		
+		scrollPane.setBounds(88, 97, 521, 193);
+		panel.add(scrollPane);
 
-		btnCheckIfVote.addActionListener(new ActionListener() {
-
-			@SuppressWarnings("unused")
-			public void actionPerformed(ActionEvent e) {
-				// System.out.println(member.getName() + member.getServer());
-				Boolean verif = false;
-				Vote vote = new Vote();
-				List<Vote> votes = VoteServicesDelegate.findAllVotes();
-				System.out.println("kabougaaa");
-
-				for (Vote a : votes) {
-
-					if (a.getActivemembervoted().getId().equals(member.getId())
-							&& a.getYear().equals(
-									Calendar.getInstance().get(Calendar.YEAR))) {
-						verif = true;
-						vote = a;
-					}
+		table = new JTable();
+		ChangeEvent e = null;
+		table.editingCanceled(e);
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				if (e.getClickCount() == 1) {
+					id=memberssss.get(table.getSelectedRow())
+							.getId();
+					
+System.out.println(id);
 				}
-
-				if (verif) {
-					JFrame parent = new JFrame();
-					JOptionPane.showMessageDialog(parent,
-							"You have even voted for this year");
-
-				} else {
-
-					panel.setVisible(false);
-					btnCheckIfVote.setVisible(false);
-					btnseeresult.setVisible(false);
-					JPanel panel = new JPanel();
-					panel.setBounds(218, 0, 699, 581);
-					panel.setBackground(new Color(52, 73, 94));
-					frame.getContentPane().add(panel);
-					panel.setLayout(null);
-					comboType.setVisible(true);
-					btnvote.setVisible(true);
-
-				}
-
 			}
 		});
+		scrollPane.setViewportView(table);
+		JButton btnvote = new JButton("Vote");
+		btnvote.setBounds(228, 359, 289, 33);
+		panel.add(btnvote);
+		
+		
+				JLabel lblNewLabel = new JLabel("Candidate List");
+				lblNewLabel.setBounds(230, 32, 225, 33);
+				panel.add(lblNewLabel);
+				lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				lblNewLabel.setForeground(Color.WHITE);
+		
+		
+		btnvote.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			
+			Boolean verif = false;
+			
+			List<Vote> votes = VoteServicesDelegate.findAllVotes();
+			System.out.println("kabougaaa");
+
+			for (Vote a : votes) {
+
+				if (a.getActivemembervoter().getId().equals(member.getId())
+						&& a.getYear().equals(
+								Calendar.getInstance().get(Calendar.YEAR))) {
+					verif = true;
+					
+				}
+			}
+
+			if (verif) {
+				JFrame parent = new JFrame();
+				JOptionPane.showMessageDialog(parent,
+						"You have even voted for this year");}
+			
+			
+				else{
+					List<ActiveMember> accounting;
+				ActiveMember voted = ActiveMemberServicesDelegate.doFindActiveMemberById(id);
+				
+				
+				VoteServicesDelegate.addVote(
+						Calendar.getInstance().get(Calendar.YEAR),
+						member.getId(), voted.getId());
+				
+				JFrame parent = new JFrame();
+				JOptionPane.showMessageDialog(parent,
+						"Thank you for voting ");
+				
+				
+				}
+			
+			
+			
+			
+			
+				
+
+				
+			}
+		});
+		//btnvote.setVisible(false);
+		
+		initDataBindings();
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(208, 0, 10, 581);
@@ -260,6 +287,14 @@ public class VoteInterface {
 		panel_2.add(label_5);
 
 		JLabel label_6 = new JLabel("Log Out");
+		label_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.dispose();
+				AuthentificationDelegate.doDisconnect();
+				new Authentification().frmIdentification.setVisible(true);
+			}
+		});
 		label_6.setBounds(21, 526, 164, 29);
 		label_6.setOpaque(true);
 		label_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -270,12 +305,19 @@ public class VoteInterface {
 		label_6.setBackground(Color.ORANGE);
 		panel_2.add(label_6);
 
-		JLabel lblNewLabel = new JLabel("Candidate List");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(450, 52, 225, 33);
-		frame.getContentPane().add(lblNewLabel);
-
+	}
+	protected void initDataBindings() {
+		JTableBinding<ActiveMember, List<ActiveMember>, JTable> jTableBinding = SwingBindings.createJTableBinding(UpdateStrategy.READ, memberssss, table);
+		//
+		BeanProperty<ActiveMember, String> activeMemberBeanProperty = BeanProperty.create("name");
+		jTableBinding.addColumnBinding(activeMemberBeanProperty).setColumnName("Name");
+		//
+		BeanProperty<ActiveMember, String> activeMemberBeanProperty_1 = BeanProperty.create("surname");
+		jTableBinding.addColumnBinding(activeMemberBeanProperty_1).setColumnName("Surname");
+		//
+		BeanProperty<ActiveMember, String> activeMemberBeanProperty_2 = BeanProperty.create("role");
+		jTableBinding.addColumnBinding(activeMemberBeanProperty_2).setColumnName("Role");
+		//
+		jTableBinding.bind();
 	}
 }

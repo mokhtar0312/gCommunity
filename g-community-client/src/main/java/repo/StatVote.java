@@ -64,8 +64,8 @@ public class StatVote extends JFrame {
 			
 
 		}
-
-		graphe = ChartFactory.createPieChart3D("Votes", dataset, true, true,
+		
+		graphe = ChartFactory.createPieChart3D("Votes " , dataset, true, true,
 				false);
 		cp = new ChartPanel(graphe);
 		this.add(cp);
