@@ -1,10 +1,16 @@
 package AyoubGui;
 
+import java.awt.Image;
 import java.util.List;
+
+import main.java.riotapi.RiotApi;
 
 import com.robrua.orianna.api.core.RiotAPI;
 import com.robrua.orianna.type.core.common.Region;
 import com.robrua.orianna.type.core.staticdata.Champion;
+import com.robrua.orianna.type.core.staticdata.ChampionSpell;
+
+import constant.staticdata.SpellData;
 
 public class TestApi {
 	public static void main(String[] args) {
@@ -15,8 +21,8 @@ public class TestApi {
 		// Summoner summoner = RiotAPI.getSummonerByName("FatalElement");
 		// System.out.println(summoner.getName() + " is a level " +
 		// summoner.getLevel() + " summoner on the NA server.");
-
 		List<Champion> champions = RiotAPI.getChampions();
+		//List<ChampionSpell> spellall = RiotAPI.getChampions().get(0).getSpells().get(0).getImage();
 		// System.out.println("He enjoys playing LoL on all different champions, like "
 		// + champions.get((int)(champions.size() * Math.random())) + ".");
 
@@ -31,7 +37,9 @@ public class TestApi {
 			for (int j = 0; j < skins.size(); j++) {
 				System.out.println(skins.get(j));
 			}*/
-			System.out.println(champions.get(i).getImage());
+			String lol = RiotAPI.getChampions().get(i).getSpells().get(i).getImage().getFull();
+			//System.out.println(champions.get(i).getImage());
+			System.out.println(lol);
 
 		}
 	}
