@@ -1,20 +1,19 @@
 package repo;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.InitialContext;
 import javax.swing.table.AbstractTableModel;
 
-import delegate.ActiveMemberServicesDelegate;
 import delegate.SimpleMemberdelegate;
 import services.interfaces.SimpleMemberServicesRemote;
-import entities.ActiveMember;
 import entities.SimpleMember;
 
 
-public class AccountListed extends AbstractTableModel {
-	private final String[] titels = {"ID", "email", "name", "Approved" };
-	ArrayList<ActiveMember> simpleMembers= (ArrayList<ActiveMember>)ActiveMemberServicesDelegate.doFindAllActiveMember();
+public class BoostingModel extends AbstractTableModel {
+	private final String[] titels = {"ID","Summoner Name", "Username", "Experience"};
+	ArrayList<SimpleMember> simpleMembers= (ArrayList<SimpleMember>)SimpleMemberdelegate.doFindAllSimpleMember();
 
 	@Override
 	public int getRowCount() {
@@ -37,20 +36,21 @@ public class AccountListed extends AbstractTableModel {
 	public Object getValueAt(int rowIndex, int columnIndex) {
 		switch (columnIndex) {
 
-		case 0:
+case 0:
 			
 			return simpleMembers.get(rowIndex).getId();
 		
 		case 1:
 			// Email
-			return simpleMembers.get(rowIndex).getEmail();
+			return simpleMembers.get(rowIndex).getSummonerName();
 
 		case 2:
 			// Prenom
-			return simpleMembers.get(rowIndex).getName();
+			return simpleMembers.get(rowIndex).getUsername();
 		case 3:
 			// Password
-			return simpleMembers.get(rowIndex).getApproved();
+			return simpleMembers.get(rowIndex).getXp();
+		
 		
 		
 		default:
@@ -59,15 +59,15 @@ public class AccountListed extends AbstractTableModel {
 	}
 
 
-	public List<ActiveMember> getSimpleMembers() {
+	public List<SimpleMember> getSimpleMembers() {
 		return simpleMembers;
 	}
 
-	public void setSimpleMembers(List<ActiveMember> simpleMembers) {
-		this.simpleMembers = (ArrayList<ActiveMember>) simpleMembers;
+	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
+		this.simpleMembers = (ArrayList<SimpleMember>) simpleMembers;
 	}
 	public void refresh() {
-		simpleMembers = (ArrayList<ActiveMember>) ActiveMemberServicesDelegate.doFindAllActiveMember();
+		simpleMembers = (ArrayList<SimpleMember>) SimpleMemberdelegate.doFindAllSimpleMember();
 				
     }
 

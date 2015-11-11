@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Remote;
 
 import entities.Event;
+import entities.News;
 import entities.SimpleMember;
 
 @Remote
@@ -27,5 +28,7 @@ Boolean addEvent(Event event);
 	Boolean affectSimpleMemberToEvent(Event event,
 			List<SimpleMember> simpleMembers);
 	List<Event> findAllEventsRestants(SimpleMember simpleMember);
+	
+	List<Event> FindbyTyped(String name);
 
 }

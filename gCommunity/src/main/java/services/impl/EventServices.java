@@ -13,6 +13,7 @@ import services.interfaces.EventServicesLocal;
 import services.interfaces.EventServicesRemote;
 import entities.ActiveMember;
 import entities.Event;
+import entities.News;
 import entities.SimpleMember;
 
 /**
@@ -158,4 +159,15 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 		
 	}
 		return List;
-	}}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> FindbyTyped(String typed) {
+		String jpql = "SELECT n FROM Event n WHERE n.name LIKE :pattern OR n.description LIKE :pattern1";
+		Query query = entityManager.createQuery(jpql);
+		String typ = "%" + typed + "%";
+		query.setParameter("pattern", typ).setParameter("pattern1", typ);
+		return query.getResultList();
+	}
+}

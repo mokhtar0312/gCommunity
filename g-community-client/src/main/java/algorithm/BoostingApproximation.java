@@ -220,7 +220,7 @@ public class BoostingApproximation {
 			
 		}
 		//silver to gold
-		else if(a>=25 && b>=50)
+		else if(a>=25 && b>=50 && a<50)
 		{
 			for(int i=a.intValue() ;i<50;i=i+5)
 			{
@@ -238,15 +238,21 @@ public class BoostingApproximation {
 		
 			for(int i=a.intValue() ;i<b.intValue();i=i+5)
 			{
+				System.out.println("trah");
 				cmp=cmp+5;
 			}
 			return cmp;
 		}
 		
 		
-		else return 500;
+		else return null;
 	}
 
+	public static Integer Facture(Integer a)
+	{
+		Integer facture=a*5;
+		return facture;
+	}
 	
 	
 

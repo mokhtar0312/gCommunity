@@ -55,4 +55,8 @@ public class EventServiceDelegate {
 	public static List<Event> DofindAllEventsRestants(SimpleMember simpleMember) {
 		return getProxy().findAllEventsRestants(simpleMember);
 	}
+	public static List<Event> DoFindbyTyped(String name){
+		
+		return getProxy().FindbyTyped(name);
+	}
 }
