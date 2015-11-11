@@ -12,6 +12,8 @@ import java.util.logging.Logger;
 
 import repo.EquipmentModel;
 import repo.EventModel;
+import repo.StatEquipment;
+import repo.StatVote;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
@@ -156,7 +158,7 @@ public class Logistics {
 		
 JScrollPane scrollPane = new JScrollPane();
 		
-		scrollPane.setBounds(59, 189, 473, 282);
+		scrollPane.setBounds(59, 122, 473, 282);
 		
 		Tab1.add(scrollPane);
 		
@@ -189,17 +191,19 @@ JScrollPane scrollPane = new JScrollPane();
 		idEquip = new JTextField();
 		idEquip.setEditable(false);
 		idEquip.setColumns(10);
-		idEquip.setBounds(253, 117, 37, 20);
+		idEquip.setBounds(253, 117, 126, 20);
 		Tab.add(idEquip);
 		
 		JLabel label_3 = new JLabel("Id");
-		label_3.setBounds(177, 115, 52, 25);
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_3.setForeground(Color.WHITE);
+		label_3.setBounds(146, 115, 83, 25);
 		Tab.add(label_3);
 		
 		JComboBox stateCB = new JComboBox();
 		stateCB.setModel(new DefaultComboBoxModel(new String[] {"Available", "Out of Stock"}));
 		stateCB.setToolTipText("");
-		stateCB.setBounds(253, 252, 85, 20);
+		stateCB.setBounds(253, 252, 126, 20);
 		Tab.add(stateCB);
 		
 		JButton button_5 = new JButton("Add");
@@ -268,26 +272,32 @@ JScrollPane scrollPane = new JScrollPane();
 		
 		nameEquip = new JTextField();
 		nameEquip.setColumns(10);
-		nameEquip.setBounds(253, 158, 108, 20);
+		nameEquip.setBounds(253, 158, 126, 20);
 		Tab.add(nameEquip);
 		
 		JLabel label_4 = new JLabel("Reference");
-		label_4.setBounds(175, 205, 50, 14);
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_4.setForeground(Color.WHITE);
+		label_4.setBounds(146, 205, 79, 14);
 		Tab.add(label_4);
 		
 		referenceEquip = new JTextField();
 		referenceEquip.setColumns(10);
-		referenceEquip.setBounds(253, 203, 107, 20);
+		referenceEquip.setBounds(253, 203, 126, 20);
 		Tab.add(referenceEquip);
 		
 		JLabel label_5 = new JLabel("State");
-		label_5.setBounds(179, 255, 26, 14);
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_5.setForeground(Color.WHITE);
+		label_5.setBounds(146, 255, 59, 14);
 		Tab.add(label_5);
 		
 		
 		
 		JLabel label_6 = new JLabel("Name");
-		label_6.setBounds(177, 159, 27, 14);
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_6.setForeground(Color.WHITE);
+		label_6.setBounds(146, 159, 58, 14);
 		Tab.add(label_6);
 		
 		JButton button_7 = new JButton("Clear");
@@ -405,6 +415,17 @@ JScrollPane scrollPane = new JScrollPane();
 		});
 		button_3.setBounds(336, 57, 87, 23);
 		Tab1.add(button_3);
+		
+		JButton btnEquipmentDisponibility = new JButton("Equipment disponibility");
+		btnEquipmentDisponibility.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StatEquipment pchart = new StatEquipment();
+				pchart.setSize(600, 500);
+				pchart.setVisible(true);
+			}
+		});
+		btnEquipmentDisponibility.setBounds(306, 466, 226, 23);
+		Tab1.add(btnEquipmentDisponibility);
 		
 		JButton btnBack = new JButton("Back");
 		btnBack.addActionListener(new ActionListener() {

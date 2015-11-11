@@ -276,6 +276,19 @@ System.out.println(id);
 		panel_2.add(label_4);
 
 		JLabel label_5 = new JLabel("Vote");
+		label_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.dispose();
+				
+				try {
+					new VoteInterface().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		label_5.setBounds(10, 345, 188, 53);
 		label_5.setOpaque(true);
 		label_5.setHorizontalAlignment(SwingConstants.CENTER);
