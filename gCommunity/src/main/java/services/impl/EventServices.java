@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import services.interfaces.EventServicesLocal;
 import services.interfaces.EventServicesRemote;
 import entities.Event;
+import entities.News;
 import entities.SimpleMember;
 
 /**
@@ -131,33 +132,25 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 
 		//List = (ArrayList <Event>) findAllEvents();
 		
+
+	
+	
+	
+
+
 		//Query query = entityManager.createQuery("select e from event e  where :emp member of e.SimpleMember"); 
 		Query query = entityManager.createQuery("select distinct event from Event event  where :emp not member of event.simpleMember "); 
 		query.setParameter("emp", simpleMember);
 		return query.getResultList();
 
-//
-//		// System.out.println(List.toString());
-//		for (Event e : List) {
-//
-//			System.out.println(e.getId());
-//			
-//			List1 = e.getSimpleMember();
-//			
-//			for (SimpleMember p : List1) {
-//				System.out.println(p.getId());
-//				System.out.println(simpleMember.getId());
-//				System.out.println(p.getId()==simpleMember.getId());
-//				if (p.getId()==simpleMember.getId()){
-//					List.remove(e);
-//					for (Event r : List) {
-//						System.out.println(r.getId());
-//
-//					}
-//				}
-//
-//			}
-//		
-//	}
-//		return List;
-	}}
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> FindbyTyped(String typed) {
+		String jpql = "SELECT n FROM Event n WHERE n.name LIKE :pattern OR n.description LIKE :pattern1";
+		Query query = entityManager.createQuery(jpql);
+		String typ = "%" + typed + "%";
+		query.setParameter("pattern", typ).setParameter("pattern1", typ);
+		return query.getResultList();
+	}
+}

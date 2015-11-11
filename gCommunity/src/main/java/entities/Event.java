@@ -23,6 +23,7 @@ public class Event implements Serializable {
 	private Date date;
 	private String name;
 	private int numberOfParticipants;
+	private int numberOfPlaces;
 	private String description;
 	private Double fee;
 	private String lieu ;
@@ -161,6 +162,14 @@ public class Event implements Serializable {
 
 	public void setLieu(String lieu) {
 		this.lieu = lieu;
+	}
+
+	public int getNumberOfPlaces() {
+		return numberOfPlaces;
+	}
+
+	public void setNumberOfPlaces(int numberOfPlaces) {
+		this.numberOfPlaces = numberOfPlaces;
 	}
 
 }

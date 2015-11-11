@@ -1,14 +1,12 @@
 package anisGUI;
 
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.naming.NamingException;
 import javax.swing.ImageIcon;
@@ -22,17 +20,10 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
+import GuiInterfaces.Authentification;
 import delegate.ActiveMemberServicesDelegate;
 import delegate.SimpleMemberdelegate;
 import entities.ActiveMember;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
-import javax.swing.JScrollPane;
-
-import GuiInterfaces.Authentification;
-import repo.AfficherEventAdapter;
 
 public class UserProfil {
 	/**
@@ -42,12 +33,10 @@ public class UserProfil {
 
 	// ActiveMember am =
 	// ActiveMemberServicesDelegate.doFindActiveMemberById(11);
-	ActiveMember admin = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
-	String username=admin.getSurname();
-	String password=admin.getPassword();
-
-
-
+	ActiveMember admin = ActiveMemberServicesDelegate
+			.doFindActiveMemberById(12);
+	String username = admin.getSurname();
+	String password = admin.getPassword();
 
 	private JFrame frame;
 	private JTextField textField;
@@ -75,10 +64,11 @@ public class UserProfil {
 
 	/**
 	 * Create the application.
-	 * @throws NamingException 
+	 * 
+	 * @throws NamingException
 	 */
 	public UserProfil() throws NamingException {
-		
+
 		initialize();
 		textField.setText(admin.getName());
 		textField_1.setText(admin.getSurname());
@@ -91,7 +81,8 @@ public class UserProfil {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws NamingException 
+	 * 
+	 * @throws NamingException
 	 */
 	private void initialize() throws NamingException {
 		frame = new JFrame();
@@ -170,11 +161,10 @@ public class UserProfil {
 		label_6.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-			
-					frame.setVisible(false);
-					new Authentification().frmIdentification.setVisible(true);
-					
-					
+
+				frame.setVisible(false);
+				new Authentification().frmIdentification.setVisible(true);
+
 			}
 		});
 		label_6.setOpaque(true);
@@ -198,20 +188,6 @@ public class UserProfil {
 		tabbedPane.setOpaque(true);
 		tabbedPane.setBackground(new Color(52, 73, 94));
 		panel_1.add(tabbedPane);
-
-		AfficherMessage Message = new AfficherMessage(admin);
-		Message.setLayout(null);
-		Message.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("  All Messages  ", null, Message, null);
-
-		NewMessage nvmj = new NewMessage(admin , username, password);
-		nvmj.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("New Message", null, nvmj, null);
-
-		AficherUserEvent event = new AficherUserEvent(admin);
-		event.setLayout(null);
-		event.setBackground(new Color(52, 73, 94));
-		tabbedPane.addTab("My Events", null, event, null);
 
 		JPanel achievement = new JPanel();
 		achievement.setLayout(null);
@@ -317,28 +293,6 @@ public class UserProfil {
 		textField_5.setBounds(401, 328, 169, 20);
 		achievement.add(textField_5);
 
-		JButton button = new JButton("");
-		button.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try {
-
-					String url = "https://www.facebook.com/pages/Codein-junkies/1380504912264014?skip_nax_wizard=true&ref_type=bookmark";
-
-					Desktop dt = Desktop.getDesktop();
-					URI uri = new URI(url);
-					dt.browse(uri.resolve(uri));
-
-				} catch (URISyntaxException ex) {
-
-				} catch (IOException ex) {
-				}
-			}
-		});
-		button.setIcon(new ImageIcon(UserProfil.class
-				.getResource("/images/fbc.png")));
-		button.setBounds(52, 461, 45, 43);
-		achievement.add(button);
-		
 		JButton btnNewButton = new JButton("Update");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -349,21 +303,37 @@ public class UserProfil {
 				admin.setSummonerName(textField_4.getText());
 				admin.setEmail(textField_5.getText());
 				try {
-				SimpleMemberdelegate.doUpdateSimpleMember(admin);
-				
-				JOptionPane.showMessageDialog(null, "Success!!", "Good :D", JOptionPane.OK_CANCEL_OPTION);
+					SimpleMemberdelegate.doUpdateSimpleMember(admin);
+
+					JOptionPane.showMessageDialog(null, "Success!!", "Good :D",
+							JOptionPane.OK_CANCEL_OPTION);
 				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(null, "Error!!", "X", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error!!", "X",
+							JOptionPane.ERROR_MESSAGE);
 				}
-				
+
 			}
-			
+
 		});
 		btnNewButton.setBounds(527, 403, 89, 23);
 		achievement.add(btnNewButton);
 
+		AfficherMessage Message = new AfficherMessage(admin);
+		Message.setLayout(null);
+		Message.setBackground(new Color(52, 73, 94));
+		tabbedPane.addTab("  All Messages  ", null, Message, null);
+
+		NewMessage nvmj = new NewMessage(admin, username, password);
+		nvmj.setBackground(new Color(52, 73, 94));
+		tabbedPane.addTab("New Message", null, nvmj, null);
+
+		AficherUserEvent event = new AficherUserEvent(admin);
+		event.setLayout(null);
+		event.setBackground(new Color(52, 73, 94));
+		tabbedPane.addTab("My Events", null, event, null);
+
 		JPanel panel_6 = new JPanel();
-		panel_6.setBounds(205, 0, 10, 581);
+		panel_6.setBounds(205, 0, 15, 581);
 		frame.getContentPane().add(panel_6);
 		panel_6.setBackground(new Color(241, 196, 15));
 	}

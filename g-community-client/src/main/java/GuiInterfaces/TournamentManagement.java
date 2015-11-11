@@ -10,6 +10,7 @@ import java.util.Calendar;
 
 import javax.naming.NamingException;
 import javax.naming.event.EventDirContext;
+import javax.persistence.criteria.CriteriaBuilder.In;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
@@ -22,7 +23,9 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 import delegate.EventServiceDelegate;
+import delegate.NewsServicesDelegate;
 import entities.Event;
+import repo.AccountBySearsh;
 import repo.EventModel;
 
 import javax.swing.JLabel;
@@ -49,6 +52,7 @@ public class TournamentManagement  extends JFrame {
 	private JEditorPane dtrpnLogin;
 	private JEditorPane dtrpnPassword;
 	private JEditorPane dtrpnPseudo;
+	private JTextField searchh;
 	
 
 	/**
@@ -96,7 +100,7 @@ public class TournamentManagement  extends JFrame {
 				System.out.println("aaa" + test + row);
 			}
 		});
-		scrollPane.setBounds(355, 110, 403, 217);
+		scrollPane.setBounds(467, 124, 340, 217);
 		contentPane.add(scrollPane);
 
 		table = new JTable();
@@ -107,6 +111,13 @@ public class TournamentManagement  extends JFrame {
 				System.out.println("aaaa" + row);
 				String test = table.getModel().getValueAt(row, 0).toString();
 				System.out.println(test);
+				
+				int id = Integer.parseInt(test);
+				Event account = new Event();
+				account = EventServiceDelegate.DoFindEventById(id);
+				login.setText(account.getDescription());
+				pwd.setText(Integer.toString(account.getNumberOfParticipants()));
+				pseudo.setText(Double.toString(account.getFee()));
 
 			}
 		});
@@ -120,13 +131,15 @@ public class TournamentManagement  extends JFrame {
 			upda.setForeground(new Color(0, 0, 102));
 			upda.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 					String test = table.getModel().getValueAt(row, 0).toString();
 					int id = Integer.parseInt(test);
 					Event account = new Event();
 					account = EventServiceDelegate.DoFindEventById(id);
-					//login.setText(account.getDescription());
-					/*pseudo
-					pwd*/
+					
+					
+					
+					//pwd*/
 				Event account_found = new Event();
 	              //  account_found = Accountdelegate.findAccountById(id);
 			account.setDescription(login.getText());
@@ -142,7 +155,7 @@ public class TournamentManagement  extends JFrame {
 					
 				
 			}});
-				upda.setBounds(565, 492, 89, 23);
+				upda.setBounds(352, 318, 89, 23);
 				contentPane.add(upda);
 				
 				btnDelete = new JButton("DELETE");
@@ -166,21 +179,21 @@ public class TournamentManagement  extends JFrame {
 						
 					}
 				});
-				btnDelete.setBounds(466, 492, 89, 23);
+				btnDelete.setBounds(598, 423, 89, 23);
 				contentPane.add(btnDelete);
 				
 				login = new JTextField();
-				login.setBounds(581, 352, 72, 20);
+				login.setBounds(352, 169, 89, 20);
 				contentPane.add(login);
 				login.setColumns(10);
 				
 				pwd = new JTextField();
-				pwd.setBounds(581, 383, 72, 20);
+				pwd.setBounds(352, 215, 89, 20);
 				contentPane.add(pwd);
 				pwd.setColumns(10);
 				
 				pseudo = new JTextField();
-				pseudo.setBounds(581, 414, 72, 20);
+				pseudo.setBounds(352, 259, 89, 20);
 				contentPane.add(pseudo);
 				pseudo.setColumns(10);
 				
@@ -189,7 +202,7 @@ public class TournamentManagement  extends JFrame {
 				dtrpnLogin.setForeground(Color.YELLOW);
 				dtrpnLogin.setBackground(new Color(52, 73, 94));
 				dtrpnLogin.setText("Description  :");
-				dtrpnLogin.setBounds(445, 352, 106, 20);
+				dtrpnLogin.setBounds(239, 169, 106, 20);
 				contentPane.add(dtrpnLogin);
 				
 				dtrpnPassword = new JEditorPane();
@@ -197,7 +210,7 @@ public class TournamentManagement  extends JFrame {
 				dtrpnPassword.setForeground(Color.YELLOW);
 				dtrpnPassword.setBackground(new Color(52, 73, 94));
 				dtrpnPassword.setText("Participants :");
-				dtrpnPassword.setBounds(445, 383, 106, 20);
+				dtrpnPassword.setBounds(239, 215, 106, 20);
 				contentPane.add(dtrpnPassword);
 				
 				dtrpnPseudo = new JEditorPane();
@@ -205,7 +218,7 @@ public class TournamentManagement  extends JFrame {
 				dtrpnPseudo.setForeground(Color.YELLOW);
 				dtrpnPseudo.setBackground(new Color(52, 73, 94));
 				dtrpnPseudo.setText("Fee value     :");
-				dtrpnPseudo.setBounds(445, 414, 106, 20);
+				dtrpnPseudo.setBounds(239, 259, 106, 20);
 				contentPane.add(dtrpnPseudo);
 				
 				JButton btnBack = new JButton("REFRESH");
@@ -224,7 +237,7 @@ public class TournamentManagement  extends JFrame {
 					
 				});
 				btnBack.setForeground(new Color(0, 0, 102));
-				btnBack.setBounds(367, 492, 89, 23);
+				btnBack.setBounds(491, 423, 89, 23);
 				contentPane.add(btnBack);
 				
 				JPanel panel = new JPanel();
@@ -334,8 +347,43 @@ public class TournamentManagement  extends JFrame {
 					}
 				});
 				btnAdd.setForeground(new Color(0, 0, 102));
-				btnAdd.setBounds(666, 492, 89, 23);
-				contentPane.add(btnAdd);}
+				btnAdd.setBounds(704, 423, 89, 23);
+				contentPane.add(btnAdd);
+				
+				JLabel lblSeashBy = new JLabel("Searsh By :");
+				lblSeashBy.setForeground(Color.YELLOW);
+				lblSeashBy.setFont(new Font("Tahoma", Font.BOLD, 14));
+				lblSeashBy.setBounds(467, 77, 89, 23);
+				contentPane.add(lblSeashBy);
+				
+				searchh = new JTextField();
+				searchh.setBounds(566, 80, 89, 20);
+				contentPane.add(searchh);
+				searchh.setColumns(10);
+				
+				JButton btnSearsh = new JButton("SEARSH");
+				btnSearsh.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						String s=searchh.getText();
+				
+						try {
+							System.out.println("hedhi s "+s);
+							AccountBySearsh mod=new AccountBySearsh(s);
+							System.out.println("dkhalllt");
+							table.setModel(mod);
+							mod.refresh();
+							mod.fireTableDataChanged();
+							
+						} catch (NamingException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				});
+				btnSearsh.setForeground(Color.BLUE);
+				btnSearsh.setFont(new Font("Tahoma", Font.PLAIN, 11));
+				btnSearsh.setBounds(684, 79, 89, 23);
+				contentPane.add(btnSearsh);}
 			
 			
 
