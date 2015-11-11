@@ -17,6 +17,8 @@ import javax.swing.JTable;
 
 import repo.AccountListed;
 import repo.BoostingModel;
+import repo.StatPlayerDivision;
+import repo.StatVote;
 import algorithm.BoostingApproximation;
 
 import com.itextpdf.text.Document;
@@ -35,6 +37,7 @@ import javax.swing.JTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Font;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
@@ -115,7 +118,7 @@ public class BoostingTab extends JPanel {
 		});
 		
 
-		scrollPane.setBounds(107, 109, 415, 173);
+		scrollPane.setBounds(47, 105, 415, 173);
 
 		add(scrollPane);
 		table = new JTable();
@@ -407,6 +410,19 @@ table.addMouseListener(new MouseAdapter() {
 		});
 		btnNewButton.setBounds(251, 477, 132, 34);
 		add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Players Division");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				StatPlayerDivision pchart = new StatPlayerDivision();
+				pchart.setSize(600, 500);
+				pchart.setVisible(true);
+				
+			}
+		});
+		btnNewButton_1.setBounds(489, 174, 132, 23);
+		add(btnNewButton_1);
 
 //		
 //		JLabel BronzeIcone = new JLabel("New label");
