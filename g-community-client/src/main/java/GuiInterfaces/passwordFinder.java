@@ -65,11 +65,11 @@ public class passwordFinder {
 		JLabel lblEnterYourEmail = new JLabel("Enter your Email ");
 		lblEnterYourEmail.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lblEnterYourEmail.setForeground(Color.WHITE);
-		lblEnterYourEmail.setBounds(51, 88, 123, 14);
+		lblEnterYourEmail.setBounds(35, 66, 123, 14);
 		panel.add(lblEnterYourEmail);
 
 		tfemail = new JTextField();
-		tfemail.setBounds(211, 87, 180, 20);
+		tfemail.setBounds(204, 65, 180, 20);
 		panel.add(tfemail);
 		tfemail.setColumns(10);
 
@@ -114,7 +114,17 @@ public class passwordFinder {
 
 			}
 		});
-		btnSend.setBounds(161, 139, 89, 23);
+		btnSend.setBounds(229, 119, 89, 23);
 		panel.add(btnSend);
+		
+		JButton btnBack = new JButton("Back");
+		btnBack.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				new Authentification().frmIdentification.setVisible(true);
+			}
+		});
+		btnBack.setBounds(89, 119, 89, 23);
+		panel.add(btnBack);
 	}
 }

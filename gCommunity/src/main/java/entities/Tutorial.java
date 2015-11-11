@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  * Entity implementation class for Entity: Tutorial
@@ -19,16 +20,7 @@ public class Tutorial implements Serializable {
 	private Integer id;
 	private String name;
 	private String description;
-	private Integer rate;
-	private static final long serialVersionUID = 1L;
-	
-	private List<SimpleMember> simpleMembers;
-
-
-	public Tutorial() {
-		super();
-	}
-
+	private TutoLevel tutolev;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
@@ -38,6 +30,32 @@ public class Tutorial implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	public TutoLevel getTutolev() {
+		return tutolev;
+	}
+
+	public void setTutolev(TutoLevel tutolev) {
+		this.tutolev = tutolev;
+	}
+
+	private static final long serialVersionUID = 1L;
+
+	private SimpleMember simplemember;
+
+	@ManyToOne
+	public SimpleMember getSimplemember() {
+		return simplemember;
+	}
+
+	public void setSimplemember(SimpleMember simplemember) {
+		this.simplemember = simplemember;
+	}
+
+	public Tutorial() {
+		super();
+	}
+
+	
 
 	public String getName() {
 		return this.name;
@@ -55,21 +73,6 @@ public class Tutorial implements Serializable {
 		this.description = description;
 	}
 
-	public Integer getRate() {
-		return this.rate;
-	}
-
-	public void setRate(Integer rate) {
-		this.rate = rate;
-	}
-@ManyToMany(mappedBy="tutorials")
-	public List<SimpleMember> getSimpleMembers() {
-		return simpleMembers;
-	}
-
-	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
-		this.simpleMembers = simpleMembers;
-	}
 
 	
 

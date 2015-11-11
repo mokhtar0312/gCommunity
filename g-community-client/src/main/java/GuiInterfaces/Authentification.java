@@ -7,11 +7,13 @@ import javax.naming.NamingException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import entities.ActiveMember;
 import entities.SimpleMember;
 
@@ -93,28 +95,38 @@ public class Authentification {
 		JButton btnLogIn = new JButton("Log In");
 		btnLogIn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String username=tfname.getText();
-				System.out.println(username);
-				String password=passwordField.getText();
-				ActiveMember found=new ActiveMember();
-				List<ActiveMember>aa=ActiveMemberServicesDelegate.doFindAllActiveMember();
-				for(ActiveMember a:aa){
-					
-					if(a.getUsername().equals(username)){
-					found=a;}
-				}
-				
-				if(found.getPassword().equals(password)){
-					
-					frmIdentification.setVisible(false);
-					try {
-						new VoteInterface(found).frame.setVisible(true);
-					} catch (NamingException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+				try {
+					String username=tfname.getText();
+					System.out.println(username);
+					String password=passwordField.getText();
+					ActiveMember found=new ActiveMember();
+					List<ActiveMember>aa=ActiveMemberServicesDelegate.doFindAllActiveMember();
+					for(ActiveMember a:aa){
+						
+						if(a.getUsername().equals(username)){
+						found=a;}
 					}
 					
+					if(found.getPassword().equals(password)){
+						
+						frmIdentification.setVisible(false);
+						try {
+							AuthentificationDelegate.doConnect(found);
+							new VoteInterface().frame.setVisible(true);
+						} catch (NamingException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+					}
+				} catch (Exception e1) {
+					JFrame parent = new JFrame();
+					JOptionPane.showMessageDialog(parent, "Wrong Username or Password");	
 				}
+				
+					
+					
+				
 				
 				
 				
@@ -123,6 +135,7 @@ public class Authentification {
 				
 				
 			}
+		
 		});
 		btnLogIn.setBounds(211, 155, 112, 23);
 		panel.add(btnLogIn);

@@ -1,5 +1,6 @@
 package anisGUI;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javassist.tools.framedump;
@@ -47,12 +48,13 @@ public class AfficherEventRestant {
 	 */
 	private void initialize() throws NamingException {
 		frameaffich = new JFrame();
-		frameaffich.setBounds(100, 100, 936, 620);
-		//.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameaffich.getContentPane().setBackground(new Color(52,73,94));
+		frameaffich.setBounds(120, 120, 800, 500);
+		frameaffich.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameaffich.getContentPane().setLayout(null);
 		
 		EventShowRestant panel = new EventShowRestant(admin);
-		panel.setBounds(70, 70, 756, 420);
+		panel.setBounds(52, 68, 688, 340);
 		frameaffich.getContentPane().add(panel);
 	}
 }

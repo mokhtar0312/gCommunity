@@ -21,6 +21,7 @@ public class Streams implements Serializable {
 	private Date date_diffusion;
 	private String winner;
 	private Integer viewers;
+	private String url;
 	private static final long serialVersionUID = 1L;
 
 	private List<SimpleMember> simpleMembers;
@@ -79,6 +80,14 @@ public class Streams implements Serializable {
 
 	public void setSimpleMembers(List<SimpleMember> simpleMembers) {
 		this.simpleMembers = simpleMembers;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	

@@ -29,6 +29,14 @@ public class Equipment implements Serializable {
 	public Equipment() {
 		super();
 	}   
+	
+	public Equipment(String reference, String name, Boolean state) {
+		super();
+		this.reference = reference;
+		this.name = name;
+		this.state = state;
+	}
+
 	@Id  
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public Integer getId() {

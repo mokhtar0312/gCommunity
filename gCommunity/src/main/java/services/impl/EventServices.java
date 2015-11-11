@@ -11,7 +11,6 @@ import javax.persistence.Query;
 
 import services.interfaces.EventServicesLocal;
 import services.interfaces.EventServicesRemote;
-import entities.ActiveMember;
 import entities.Event;
 import entities.News;
 import entities.SimpleMember;
@@ -106,20 +105,19 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter("param", nom);
 		return (Event) query.getSingleResult();
-		
-		
 
 	}
+
 	public Boolean affectSimpleMemberToEvent(Event event,
 			List<SimpleMember> simpleMembers) {
 		Boolean b = false;
 		try {
 
-				event.setSimpleMember(simpleMembers);
-				entityManager.persist(event);
-				System.out.println("weeeeeeeeey");
-				event.setNumberOfParticipants(event.getNumberOfParticipants()-1);
-				entityManager.flush();
+			event.setSimpleMember(simpleMembers);
+			entityManager.persist(event);
+			System.out.println("weeeeeeeeey");
+			event.setNumberOfParticipants(event.getNumberOfParticipants() - 1);
+			entityManager.flush();
 
 			b = true;
 		} catch (Exception e) {
@@ -127,40 +125,25 @@ public class EventServices implements EventServicesRemote, EventServicesLocal {
 		System.out.println("noooooooon");
 		return b;
 	}
-
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> findAllEventsRestants(SimpleMember simpleMember) {
+		System.out.println(simpleMember.getId());
 
-
-		List = (ArrayList <Event>) findAllEvents();
-
-
-
-		// System.out.println(List.toString());
-		for (Event e : List) {
-
-			System.out.println(e.getId());
-			
-			List1 = e.getSimpleMember();
-			
-			for (SimpleMember p : List1) {
-				System.out.println(p.getId());
-				System.out.println(simpleMember.getId());
-				System.out.println(p.getId()==simpleMember.getId());
-				if (p.getId()==simpleMember.getId()){
-					List.remove(e);
-					for (Event r : List) {
-						System.out.println(r.getId());
-
-					}
-				}
-
-			}
+		//List = (ArrayList <Event>) findAllEvents();
 		
-	}
-		return List;
-	}
+
 	
+	
+	
+
+
+		//Query query = entityManager.createQuery("select e from event e  where :emp member of e.SimpleMember"); 
+		Query query = entityManager.createQuery("select distinct event from Event event  where :emp not member of event.simpleMember "); 
+		query.setParameter("emp", simpleMember);
+		return query.getResultList();
+
+	}
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Event> FindbyTyped(String typed) {
