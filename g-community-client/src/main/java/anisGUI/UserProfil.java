@@ -20,10 +20,17 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 
+import AyoubGui.TutorialCrud;
 import GuiInterfaces.Authentification;
-import delegate.ActiveMemberServicesDelegate;
+import GuiInterfaces.BoostingTemplate;
+import GuiInterfaces.Logistics;
+import GuiInterfaces.ShowUsers;
+import GuiInterfaces.TournamentManagement;
+import GuiInterfaces.VoteInterface;
+import delegate.AuthentificationDelegate;
 import delegate.SimpleMemberdelegate;
 import entities.ActiveMember;
+import gui.NewsCrud;
 
 public class UserProfil {
 	/**
@@ -33,12 +40,11 @@ public class UserProfil {
 
 	// ActiveMember am =
 	// ActiveMemberServicesDelegate.doFindActiveMemberById(11);
-	ActiveMember admin = ActiveMemberServicesDelegate
-			.doFindActiveMemberById(12);
+	ActiveMember admin = AuthentificationDelegate.doGetConectedPerson();
 	String username = admin.getSurname();
 	String password = admin.getPassword();
 
-	private JFrame frame;
+	public JFrame frame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -96,15 +102,28 @@ public class UserProfil {
 		panel.setBounds(0, 0, 208, 581);
 		frame.getContentPane().add(panel);
 
-		JLabel label = new JLabel("My Profile");
-		label.setOpaque(true);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.DARK_GRAY);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
-		label.setBackground(Color.ORANGE);
-		label.setBounds(10, 85, 188, 53);
-		panel.add(label);
+		JLabel lblProfile = new JLabel("My Profile");
+		lblProfile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				try {
+					frame.setVisible(false);
+					new UserProfil().frame.setVisible(true);			
+					} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblProfile.setOpaque(true);
+		lblProfile.setHorizontalAlignment(SwingConstants.CENTER);
+		lblProfile.setForeground(Color.DARK_GRAY);
+		lblProfile.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblProfile.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+		lblProfile.setBackground(Color.ORANGE);
+		lblProfile.setBounds(10, 85, 188, 38);
+		panel.add(lblProfile);
 
 		JLabel label_1 = new JLabel("Home");
 		label_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -113,52 +132,101 @@ public class UserProfil {
 		label_1.setBounds(0, 0, 208, 53);
 		panel.add(label_1);
 
-		JLabel label_2 = new JLabel("Members");
-		label_2.setOpaque(true);
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setForeground(Color.DARK_GRAY);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_2.setBorder(new MatteBorder(1, 1, 3, 3,
+		JLabel lblmember = new JLabel("Members");
+		lblmember.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					frame.setVisible(false);
+					new ShowUsers().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblmember.setOpaque(true);
+		lblmember.setHorizontalAlignment(SwingConstants.CENTER);
+		lblmember.setForeground(Color.DARK_GRAY);
+		lblmember.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblmember.setBorder(new MatteBorder(1, 1, 3, 3,
 				(Color) new Color(0, 0, 0)));
-		label_2.setBackground(Color.ORANGE);
-		label_2.setBounds(10, 149, 188, 53);
-		panel.add(label_2);
+		lblmember.setBackground(Color.ORANGE);
+		lblmember.setBounds(10, 131, 188, 38);
+		panel.add(lblmember);
 
-		JLabel label_3 = new JLabel("Game");
-		label_3.setOpaque(true);
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setForeground(Color.DARK_GRAY);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_3.setBorder(new MatteBorder(1, 1, 3, 3,
+		JLabel lbGame = new JLabel("Game");
+		lbGame.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+					new BoostingTemplate().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lbGame.setOpaque(true);
+		lbGame.setHorizontalAlignment(SwingConstants.CENTER);
+		lbGame.setForeground(Color.DARK_GRAY);
+		lbGame.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lbGame.setBorder(new MatteBorder(1, 1, 3, 3,
 				(Color) new Color(0, 0, 0)));
-		label_3.setBackground(Color.ORANGE);
-		label_3.setBounds(10, 213, 188, 53);
-		panel.add(label_3);
+		lbGame.setBackground(Color.ORANGE);
+		lbGame.setBounds(10, 180, 188, 38);
+		panel.add(lbGame);
 
-		JLabel label_4 = new JLabel("Tournaments");
-		label_4.setOpaque(true);
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setForeground(Color.DARK_GRAY);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_4.setBorder(new MatteBorder(1, 1, 3, 3,
+		JLabel lblTournament = new JLabel("Tournaments");
+		lblTournament.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+				TournamentManagement a=	new TournamentManagement() ;
+				a.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblTournament.setOpaque(true);
+		lblTournament.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTournament.setForeground(Color.DARK_GRAY);
+		lblTournament.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblTournament.setBorder(new MatteBorder(1, 1, 3, 3,
 				(Color) new Color(0, 0, 0)));
-		label_4.setBackground(Color.ORANGE);
-		label_4.setBounds(10, 277, 188, 57);
-		panel.add(label_4);
+		lblTournament.setBackground(Color.ORANGE);
+		lblTournament.setBounds(10, 229, 188, 38);
+		panel.add(lblTournament);
 
-		JLabel label_5 = new JLabel("Vote");
-		label_5.setOpaque(true);
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setForeground(Color.DARK_GRAY);
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_5.setBorder(new MatteBorder(1, 1, 3, 3,
+		JLabel lblVote = new JLabel("Vote");
+		lblVote.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+					new VoteInterface().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		lblVote.setOpaque(true);
+		lblVote.setHorizontalAlignment(SwingConstants.CENTER);
+		lblVote.setForeground(Color.DARK_GRAY);
+		lblVote.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblVote.setBorder(new MatteBorder(1, 1, 3, 3,
 				(Color) new Color(0, 0, 0)));
-		label_5.setBackground(Color.ORANGE);
-		label_5.setBounds(10, 345, 188, 53);
-		panel.add(label_5);
+		lblVote.setBackground(Color.ORANGE);
+		lblVote.setBounds(10, 278, 188, 38);
+		panel.add(lblVote);
 
-		JLabel label_6 = new JLabel("Log Out");
-		label_6.addMouseListener(new MouseAdapter() {
+		JLabel lblLogout = new JLabel("Log Out");
+		lblLogout.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
@@ -167,15 +235,81 @@ public class UserProfil {
 
 			}
 		});
-		label_6.setOpaque(true);
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setForeground(Color.DARK_GRAY);
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_6.setBorder(new MatteBorder(1, 1, 3, 3,
+		lblLogout.setOpaque(true);
+		lblLogout.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogout.setForeground(Color.DARK_GRAY);
+		lblLogout.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblLogout.setBorder(new MatteBorder(1, 1, 3, 3,
 				(Color) new Color(0, 0, 0)));
-		label_6.setBackground(Color.ORANGE);
-		label_6.setBounds(21, 526, 164, 29);
-		panel.add(label_6);
+		lblLogout.setBackground(Color.ORANGE);
+		lblLogout.setBounds(21, 526, 164, 29);
+		panel.add(lblLogout);
+		
+		JLabel lblNews = new JLabel("News");
+		lblNews.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				
+				NewsCrud a=	new NewsCrud() ;
+				a.setVisible(true);
+				
+			}
+		});
+		lblNews.setOpaque(true);
+		lblNews.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNews.setForeground(Color.DARK_GRAY);
+		lblNews.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNews.setBorder(new MatteBorder(1, 1, 3, 3,
+						(Color) new Color(0, 0, 0)));
+		lblNews.setBackground(Color.ORANGE);
+		lblNews.setBounds(10, 327, 188, 38);
+		panel.add(lblNews);
+		
+		JLabel lblTutorial = new JLabel("Tutorial");
+		lblTutorial.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+               frame.setVisible(false);
+				
+				TutorialCrud a=	new TutorialCrud() ;
+				a.setVisible(true);
+				
+			}
+		});
+		lblTutorial.setOpaque(true);
+		lblTutorial.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTutorial.setForeground(Color.DARK_GRAY);
+		lblTutorial.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblTutorial.setBorder(new MatteBorder(1, 1, 3, 3,
+						(Color) new Color(0, 0, 0)));
+		lblTutorial.setBackground(Color.ORANGE);
+		lblTutorial.setBounds(10, 376, 188, 38);
+		panel.add(lblTutorial);
+		
+		JLabel lblLogistics = new JLabel("Logistics");
+		lblLogistics.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+					new Logistics().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		});
+		lblLogistics.setOpaque(true);
+		lblLogistics.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogistics.setForeground(Color.DARK_GRAY);
+		lblLogistics.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblLogistics.setBorder(new MatteBorder(1, 1, 3, 3,
+						(Color) new Color(0, 0, 0)));
+		lblLogistics.setBackground(Color.ORANGE);
+		lblLogistics.setBounds(10, 425, 188, 38);
+		panel.add(lblLogistics);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(52, 73, 94));

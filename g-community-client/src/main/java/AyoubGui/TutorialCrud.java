@@ -13,7 +13,9 @@ import java.awt.event.WindowFocusListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -28,19 +30,25 @@ import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
-import javax.transaction.Transactional.TxType;
 
 import org.jdesktop.beansbinding.AutoBinding.UpdateStrategy;
 import org.jdesktop.beansbinding.BeanProperty;
 import org.jdesktop.swingbinding.JTableBinding;
 import org.jdesktop.swingbinding.SwingBindings;
 
+import GuiInterfaces.Authentification;
+import GuiInterfaces.BoostingTemplate;
+import GuiInterfaces.Logistics;
+import GuiInterfaces.ShowUsers;
+import GuiInterfaces.TournamentManagement;
+import GuiInterfaces.VoteInterface;
+import anisGUI.UserProfil;
 import delegate.SimpleMemberdelegate;
 import delegate.TutorialServicesDelegate;
 import entities.SimpleMember;
 import entities.TutoLevel;
 import entities.Tutorial;
-import javax.swing.ImageIcon;
+import gui.NewsCrud;
 
 public class TutorialCrud extends JFrame {
 
@@ -50,6 +58,7 @@ public class TutorialCrud extends JFrame {
 	private JTextField textFieldTutoTitle;
 	private JTextField textField_searchTuto;
 	private JTextField textFieldselectedmember;
+	JFrame frame;
 
 	/**
 	 * Launch the application.
@@ -82,7 +91,7 @@ public class TutorialCrud extends JFrame {
 		contentPane.setBackground(new Color(52, 73, 94));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JTextPane txtpnF = new JTextPane();
 		txtpnF.setBounds(252, 312, 187, 179);
 		contentPane.add(txtpnF);
@@ -92,115 +101,6 @@ public class TutorialCrud extends JFrame {
 		lblDescription.setFont(new Font("Roboto Medium", Font.PLAIN, 15));
 		lblDescription.setBounds(252, 287, 95, 14);
 		contentPane.add(lblDescription);
-
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBackground(new Color(52, 73, 94));
-		panel.setBounds(0, 0, 208, 581);
-		contentPane.add(panel);
-
-		JLabel label = new JLabel("My Profile");
-		label.setOpaque(true);
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setForeground(Color.DARK_GRAY);
-		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
-		label.setBackground(Color.ORANGE);
-		label.setBounds(10, 58, 188, 53);
-		panel.add(label);
-
-		JLabel label_1 = new JLabel("Home");
-		label_1.setHorizontalAlignment(SwingConstants.CENTER);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_1.setBounds(0, 0, 208, 53);
-		panel.add(label_1);
-
-		JLabel label_2 = new JLabel("Members");
-		label_2.setOpaque(true);
-		label_2.setHorizontalAlignment(SwingConstants.CENTER);
-		label_2.setForeground(Color.DARK_GRAY);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_2.setBorder(new MatteBorder(1, 1, 3, 3,
-
-		(Color) new Color(0, 0, 0)));
-		label_2.setBackground(Color.ORANGE);
-		label_2.setBounds(10, 122, 188, 53);
-		panel.add(label_2);
-
-		JLabel label_3 = new JLabel("Game");
-		label_3.setOpaque(true);
-		label_3.setHorizontalAlignment(SwingConstants.CENTER);
-		label_3.setForeground(Color.DARK_GRAY);
-		label_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_3.setBorder(new MatteBorder(1, 1, 3, 3,
-
-		(Color) new Color(0, 0, 0)));
-		label_3.setBackground(Color.ORANGE);
-		label_3.setBounds(10, 186, 188, 53);
-		panel.add(label_3);
-
-		JLabel label_4 = new JLabel("Tournaments");
-		label_4.setOpaque(true);
-		label_4.setHorizontalAlignment(SwingConstants.CENTER);
-		label_4.setForeground(Color.DARK_GRAY);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_4.setBorder(new MatteBorder(1, 1, 3, 3,
-
-		(Color) new Color(0, 0, 0)));
-		label_4.setBackground(Color.ORANGE);
-		label_4.setBounds(10, 250, 188, 57);
-		panel.add(label_4);
-
-		JLabel label_5 = new JLabel("Vote");
-		label_5.setOpaque(true);
-		label_5.setHorizontalAlignment(SwingConstants.CENTER);
-		label_5.setForeground(Color.DARK_GRAY);
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		label_5.setBorder(new MatteBorder(1, 1, 3, 3,
-
-		(Color) new Color(0, 0, 0)));
-		label_5.setBackground(Color.ORANGE);
-		label_5.setBounds(10, 318, 188, 53);
-		panel.add(label_5);
-
-		JLabel label_6 = new JLabel("Log Out");
-		label_6.setOpaque(true);
-		label_6.setHorizontalAlignment(SwingConstants.CENTER);
-		label_6.setForeground(Color.DARK_GRAY);
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_6.setBorder(new MatteBorder(1, 1, 3, 3,
-
-		(Color) new Color(0, 0, 0)));
-		label_6.setBackground(Color.ORANGE);
-		label_6.setBounds(21, 526, 164, 29);
-		panel.add(label_6);
-
-		JLabel label_7 = new JLabel("");
-		label_7.setForeground(Color.BLACK);
-		label_7.setBackground(Color.BLACK);
-		label_7.setBounds(10, 382, 192, 57);
-		panel.add(label_7);
-
-		JButton buttonNews = new JButton("News");
-		buttonNews.setForeground(Color.DARK_GRAY);
-		buttonNews.setFont(new Font("Roboto", Font.PLAIN, 17));
-		buttonNews.setBackground(Color.ORANGE);
-		buttonNews.setBounds(10, 382, 188, 53);
-		panel.add(buttonNews);
-
-		JLabel label_8 = new JLabel("");
-		label_8.setForeground(Color.BLACK);
-		label_8.setBackground(Color.BLACK);
-		label_8.setBounds(10, 446, 192, 57);
-		panel.add(label_8);
-
-		JButton buttonTuto = new JButton("Tutorials");
-		buttonTuto.setForeground(Color.DARK_GRAY);
-		buttonTuto.setFont(new Font("Roboto", Font.PLAIN, 17));
-		buttonTuto.setBackground(Color.ORANGE);
-		buttonTuto.setBounds(10, 446, 188, 53);
-		panel.add(buttonTuto);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(241, 196, 15));
@@ -225,8 +125,10 @@ public class TutorialCrud extends JFrame {
 					textFieldselectedmember.setText(tutorials
 							.get(table.getSelectedRow()).getSimplemember()
 							.getName());
-					txtpnF.setText(tutorials.get(table.getSelectedRow()).getDescription());
-					comboBox.setSelectedItem(tutorials.get(table.getSelectedRow()).getTutolev());
+					txtpnF.setText(tutorials.get(table.getSelectedRow())
+							.getDescription());
+					comboBox.setSelectedItem(tutorials.get(
+							table.getSelectedRow()).getTutolev());
 				}
 			}
 		});
@@ -255,7 +157,8 @@ public class TutorialCrud extends JFrame {
 		JButton btnSearchTuto = new JButton("Search");
 		btnSearchTuto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				tutorials = TutorialServicesDelegate.findByTyped(textField_searchTuto.getText());
+				tutorials = TutorialServicesDelegate
+						.findByTyped(textField_searchTuto.getText());
 				initDataBindings();
 			}
 		});
@@ -286,8 +189,6 @@ public class TutorialCrud extends JFrame {
 		lblDifficulty.setFont(new Font("Roboto Medium", Font.PLAIN, 15));
 		lblDifficulty.setBounds(251, 177, 75, 14);
 		contentPane.add(lblDifficulty);
-
-		
 
 		JLabel lblBy = new JLabel("By :");
 		lblBy.setForeground(Color.ORANGE);
@@ -325,12 +226,12 @@ public class TutorialCrud extends JFrame {
 				tuto.setName(textFieldTutoTitle.getText());
 				tuto.setDescription(txtpnF.getText());
 				tuto.setTutolev((TutoLevel) comboBox.getSelectedItem());
-				tuto.setSimplemember(tutorials
-						.get(table.getSelectedRow()).getSimplemember());
+				tuto.setSimplemember(tutorials.get(table.getSelectedRow())
+						.getSimplemember());
 				TutorialServicesDelegate.updateTutorial(tuto);
 				tutorials = TutorialServicesDelegate.FindAllTutorial();
 				initDataBindings();
-				
+
 				textFieldTutoTitle.setText(null);
 				txtpnF.setText(null);
 				textFieldselectedmember.setText(null);
@@ -346,7 +247,7 @@ public class TutorialCrud extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				Tutorial tuto = tutorials.get(table.getSelectedRow());
 				TutorialServicesDelegate.deleteTutorial(tuto);
-				
+
 				tutorials = TutorialServicesDelegate.FindAllTutorial();
 				initDataBindings();
 				textFieldTutoTitle.setText(null);
@@ -359,7 +260,6 @@ public class TutorialCrud extends JFrame {
 		btnDeleteTuto.setBounds(354, 536, 85, 23);
 		contentPane.add(btnDeleteTuto);
 
-		
 		initDataBindings();
 
 		if (tutorials.size() == 0) {
@@ -397,11 +297,225 @@ public class TutorialCrud extends JFrame {
 		});
 		btnAddTuto.setBounds(252, 502, 187, 23);
 		contentPane.add(btnAddTuto);
-		
+
 		JLabel label_11 = new JLabel("");
-		label_11.setIcon(new ImageIcon(TutorialCrud.class.getResource("/images/logogcom.png")));
+		label_11.setIcon(new ImageIcon(TutorialCrud.class
+				.getResource("/images/logogcom.png")));
 		label_11.setBounds(228, 11, 300, 60);
 		contentPane.add(label_11);
+
+		JPanel panel = new JPanel();
+		panel.setLayout(null);
+		panel.setBackground(new Color(52, 73, 94));
+		panel.setBounds(0, 0, 208, 581);
+		contentPane.add(panel);
+
+		JLabel label = new JLabel("My Profile");
+		label.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+
+					frame.setVisible(false);
+					new UserProfil().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		label.setOpaque(true);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+		label.setForeground(Color.DARK_GRAY);
+		label.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label.setBorder(new MatteBorder(1, 1, 3, 3, (Color) new Color(0, 0, 0)));
+		label.setBackground(Color.ORANGE);
+		label.setBounds(10, 85, 188, 38);
+		panel.add(label);
+
+		JLabel label_1 = new JLabel("Home");
+		label_1.setHorizontalAlignment(SwingConstants.CENTER);
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_1.setBounds(0, 0, 208, 53);
+		panel.add(label_1);
+
+		JLabel label_2 = new JLabel("Members");
+		label_2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {
+					frame.setVisible(false);
+					new ShowUsers().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		label_2.setOpaque(true);
+		label_2.setHorizontalAlignment(SwingConstants.CENTER);
+		label_2.setForeground(Color.DARK_GRAY);
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_2.setBorder(new MatteBorder(1, 1, 3, 3,
+				(Color) new Color(0, 0, 0)));
+		label_2.setBackground(Color.ORANGE);
+		label_2.setBounds(10, 131, 188, 38);
+		panel.add(label_2);
+
+		JLabel label_3 = new JLabel("Game");
+		label_3.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+					new BoostingTemplate().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		label_3.setOpaque(true);
+		label_3.setHorizontalAlignment(SwingConstants.CENTER);
+		label_3.setForeground(Color.DARK_GRAY);
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_3.setBorder(new MatteBorder(1, 1, 3, 3,
+				(Color) new Color(0, 0, 0)));
+		label_3.setBackground(Color.ORANGE);
+		label_3.setBounds(10, 180, 188, 38);
+		panel.add(label_3);
+
+		JLabel label_4 = new JLabel("Tournaments");
+		label_4.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+					TournamentManagement a = new TournamentManagement();
+					a.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		label_4.setOpaque(true);
+		label_4.setHorizontalAlignment(SwingConstants.CENTER);
+		label_4.setForeground(Color.DARK_GRAY);
+		label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_4.setBorder(new MatteBorder(1, 1, 3, 3,
+				(Color) new Color(0, 0, 0)));
+		label_4.setBackground(Color.ORANGE);
+		label_4.setBounds(10, 229, 188, 38);
+		panel.add(label_4);
+
+		JLabel label_5 = new JLabel("Vote");
+		label_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+					new VoteInterface().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		label_5.setOpaque(true);
+		label_5.setHorizontalAlignment(SwingConstants.CENTER);
+		label_5.setForeground(Color.DARK_GRAY);
+		label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_5.setBorder(new MatteBorder(1, 1, 3, 3,
+				(Color) new Color(0, 0, 0)));
+		label_5.setBackground(Color.ORANGE);
+		label_5.setBounds(10, 278, 188, 38);
+		panel.add(label_5);
+
+		JLabel label_6 = new JLabel("Log Out");
+		label_6.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				new Authentification().frmIdentification.setVisible(true);
+			}
+		});
+		label_6.setOpaque(true);
+		label_6.setHorizontalAlignment(SwingConstants.CENTER);
+		label_6.setForeground(Color.DARK_GRAY);
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_6.setBorder(new MatteBorder(1, 1, 3, 3,
+				(Color) new Color(0, 0, 0)));
+		label_6.setBackground(Color.ORANGE);
+		label_6.setBounds(21, 526, 164, 29);
+		panel.add(label_6);
+
+		JLabel label_7 = new JLabel("News");
+		label_7.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+
+				NewsCrud a = new NewsCrud();
+				a.setVisible(true);
+			}
+		});
+		label_7.setOpaque(true);
+		label_7.setHorizontalAlignment(SwingConstants.CENTER);
+		label_7.setForeground(Color.DARK_GRAY);
+		label_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_7.setBorder(new MatteBorder(1, 1, 3, 3,
+
+		(Color) new Color(0, 0, 0)));
+		label_7.setBackground(Color.ORANGE);
+		label_7.setBounds(10, 327, 188, 38);
+		panel.add(label_7);
+
+		JLabel label_8 = new JLabel("Tutorial");
+		label_8.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+
+				TutorialCrud a = new TutorialCrud();
+				a.setVisible(true);
+			}
+		});
+		label_8.setOpaque(true);
+		label_8.setHorizontalAlignment(SwingConstants.CENTER);
+		label_8.setForeground(Color.DARK_GRAY);
+		label_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_8.setBorder(new MatteBorder(1, 1, 3, 3,
+
+		(Color) new Color(0, 0, 0)));
+		label_8.setBackground(Color.ORANGE);
+		label_8.setBounds(10, 376, 188, 38);
+		panel.add(label_8);
+
+		JLabel label_12 = new JLabel("Logistics");
+		label_12.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				try {
+					new Logistics().frame.setVisible(true);
+				} catch (NamingException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		label_12.setOpaque(true);
+		label_12.setHorizontalAlignment(SwingConstants.CENTER);
+		label_12.setForeground(Color.DARK_GRAY);
+		label_12.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		label_12.setBorder(new MatteBorder(1, 1, 3, 3,
+
+		(Color) new Color(0, 0, 0)));
+		label_12.setBackground(Color.ORANGE);
+		label_12.setBounds(10, 425, 188, 38);
+		panel.add(label_12);
 
 	}
 

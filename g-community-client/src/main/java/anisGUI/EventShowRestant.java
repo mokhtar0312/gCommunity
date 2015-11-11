@@ -22,6 +22,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
 import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import delegate.EventServiceDelegate;
 import delegate.MailServicesDelegate;
 import delegate.SimpleMemberdelegate;
@@ -51,7 +52,7 @@ public class EventShowRestant extends JPanel  {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable accountingTable;
-    static SimpleMember admin = SimpleMemberdelegate.doFindSimpleMemberById(12);
+    static SimpleMember admin = AuthentificationDelegate.doGetConectedPerson();
     int row ;
     String nomevent;
     public static String[] getLatLongPositions(String address) throws Exception

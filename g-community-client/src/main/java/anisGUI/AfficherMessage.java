@@ -20,6 +20,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
 import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import entities.ActiveMember;
 
 import javax.swing.JScrollPane;
@@ -37,7 +38,7 @@ public class AfficherMessage extends JPanel  {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable accountingTable;
-    static ActiveMember admin = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
+    static ActiveMember admin = AuthentificationDelegate.doGetConectedPerson();
 
 
 	/**

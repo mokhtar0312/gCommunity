@@ -37,6 +37,7 @@ import repo.AfficherEventAdapter;
 import repo.StatEvent;
 import repo.StatVote;
 import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import delegate.EventServiceDelegate;
 import entities.ActiveMember;
 import entities.Event;
@@ -47,7 +48,7 @@ public class AficherUserEvent extends JPanel  {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JTable accountingTable;
-    static ActiveMember admin = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
+    static ActiveMember admin = AuthentificationDelegate.doGetConectedPerson();
     
     public static String[] getLatLongPositions(String address) throws Exception
     {

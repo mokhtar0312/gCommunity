@@ -2,6 +2,13 @@ package GuiInterfaces;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.naming.NamingException;
 import javax.swing.JButton;
@@ -11,22 +18,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
+import anisGUI.UserProfil;
 import delegate.ActiveMemberServicesDelegate;
 import delegate.AuthentificationDelegate;
 import entities.ActiveMember;
-import entities.SimpleMember;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.util.List;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
-import javax.swing.SwingConstants;
-
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class Authentification {
 
@@ -112,7 +109,7 @@ public class Authentification {
 						frmIdentification.setVisible(false);
 						try {
 							AuthentificationDelegate.doConnect(found);
-							new VoteInterface().frame.setVisible(true);
+							new UserProfil().frame.setVisible(true);
 						} catch (NamingException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();

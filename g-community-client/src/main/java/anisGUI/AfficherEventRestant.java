@@ -3,18 +3,14 @@ package anisGUI;
 import java.awt.Color;
 import java.awt.EventQueue;
 
-import javassist.tools.framedump;
-
 import javax.naming.NamingException;
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JPanel;
 
-import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import entities.ActiveMember;
 
 public class AfficherEventRestant {
-    static ActiveMember admin = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
+	static ActiveMember admin = AuthentificationDelegate.doGetConectedPerson();
 
 	public JFrame frameaffich;
 
@@ -36,7 +32,8 @@ public class AfficherEventRestant {
 
 	/**
 	 * Create the application.
-	 * @throws NamingException 
+	 * 
+	 * @throws NamingException
 	 */
 	public AfficherEventRestant() throws NamingException {
 		initialize();
@@ -44,15 +41,16 @@ public class AfficherEventRestant {
 
 	/**
 	 * Initialize the contents of the frame.
-	 * @throws NamingException 
+	 * 
+	 * @throws NamingException
 	 */
 	private void initialize() throws NamingException {
 		frameaffich = new JFrame();
-		frameaffich.getContentPane().setBackground(new Color(52,73,94));
+		frameaffich.getContentPane().setBackground(new Color(52, 73, 94));
 		frameaffich.setBounds(120, 120, 800, 500);
 		frameaffich.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameaffich.getContentPane().setLayout(null);
-		
+
 		EventShowRestant panel = new EventShowRestant(admin);
 		panel.setBounds(52, 68, 688, 340);
 		frameaffich.getContentPane().add(panel);

@@ -13,7 +13,9 @@ import javax.swing.JButton;
 
 
 
+
 import delegate.ActiveMemberServicesDelegate;
+import delegate.AuthentificationDelegate;
 import delegate.MessageServicesDelegate;
 import entities.ActiveMember;
 import entities.Message;
@@ -38,7 +40,7 @@ public class NewMessage extends JPanel {
 	private JTextField jsubject;
 	ActiveMemberServicesRemote proxy ;
 	ActiveMember a ;
-    ActiveMember em = ActiveMemberServicesDelegate.doFindActiveMemberById(12);
+    ActiveMember em = AuthentificationDelegate.doGetConectedPerson();
     int idto ;
 	
     String username= em.getUsername();
