@@ -34,8 +34,12 @@ import com.google.code.geocoder.model.GeocodeResponse;
 import com.google.code.geocoder.model.GeocoderRequest;
 
 import repo.AfficherEventAdapter;
+import repo.StatEvent;
+import repo.StatVote;
 import delegate.ActiveMemberServicesDelegate;
+import delegate.EventServiceDelegate;
 import entities.ActiveMember;
+import entities.Event;
 
 public class AficherUserEvent extends JPanel  {
 	/**
@@ -166,6 +170,23 @@ public class AficherUserEvent extends JPanel  {
 			});
 			btnNewButton.setBounds(79, 287, 109, 23);
 			add(btnNewButton);
+			
+			JButton btnParticipationPourcentage = new JButton("Participation Pourcentage ");
+			btnParticipationPourcentage.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					 int row = accountingTable.getSelectedRow();
+					String eventname = accountingTable.getModel().getValueAt(row, 0).toString();
+					System.out.println(eventname);
+				Event	event = EventServiceDelegate.DoFindEventByName(eventname);
+
+					StatEvent pchart = new StatEvent(event);
+					pchart.setSize(600, 500);
+					pchart.setVisible(true);
+
+				}
+			});
+			btnParticipationPourcentage.setBounds(210, 287, 197, 23);
+			add(btnParticipationPourcentage);
 
 		} catch (NamingException e1) {
 			// TODO Auto-generated catch block
